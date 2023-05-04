@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpInterimFragment">
+
+    <EditText
+        android:id="@+id/signUpEditTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signUpEditTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prenom"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextLastName" />
+
+    <EditText
+        android:id="@+id/signUpEditTextBirthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date de naissance"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextFirstName" />
+
+    <EditText
+        android:id="@+id/signUpEditTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextBirthday" />
+
+    <EditText
+        android:id="@+id/signUpEditTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Téléphone"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextEmail" />
+
+    <EditText
+        android:id="@+id/signUpEditTextNationality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nationalité"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextPhone" />
+
+    <EditText
+        android:id="@+id/signUpEditTextTown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ville"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextNationality" />
+
+
+
+    <TextView
+        android:id="@+id/signUpTextViewCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CV"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextTown" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
