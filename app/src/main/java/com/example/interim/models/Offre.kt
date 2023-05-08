@@ -1,18 +1,19 @@
 package com.example.interim.models
 
-import java.util.Date
-
 class Offre(
-    var name: String,
+    var title: String,
     var metier: String,
     var description: String,
-    var date_debut: Date,
-    var date_fin: Date,
-    var remuneration: String
+    var date_debut: String,
+    var date_fin: String,
+    var remuneration: String,
+    var id: Int,
+    var id_entreprise: String = ""
 ) {
 
+
     override fun toString(): String {
-        return "Offre(name='$name', " +
+        return "Offre(name='$title', " +
                 "metier='$metier'," +
                 "description='$description', " +
                 "date_debut=$date_debut," +

@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_offres">Offre</string>
+    <string name="creer_offre">Proposer une offre</string>
+    <string name="offre_name">Intitulé</string>
+    <string name="offre_metier">Métier</string>
+    <string name="offre_desc">Description</string>
+    <string name="offre_debut">Date de début</string>
+    <string name="offre_fin">Date de fin</string>
+    <string name="offre_remuneration">Rémuneration</string>
+    <string name="offre_creer">Créer</string>
+    <string name="dashboard_creer_offre">Proposer une offre</string>
 </resources>

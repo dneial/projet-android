@@ -15,12 +15,42 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.interim.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_offres"
+            app:destination="@id/navigation_offres"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+        <action
+            android:id="@+id/action_navigation_dashboard_to_create_offre"
+            app:destination="@id/navigation_create_offre"
+            app:popUpToInclusive="true"
+            app:popUpToSaveState="true"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.interim.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_offres"
+        android:name="com.example.interim.ui.offres.OffreFragment"
+        android:label="@string/title_offres"
+        tools:layout="@layout/fragment_offre" >
+        <argument android:name="offre_title" />
+        <argument android:name="offre_desc" />
+        <argument android:name="offre_remuneration" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_create_offre"
+        android:name="com.example.interim.ui.offres.OffreFormFragment"
+        android:label="Créer une offre"
+        tools:layout="@layout/offre_form">
+
+        </fragment>
 
 </navigation>
