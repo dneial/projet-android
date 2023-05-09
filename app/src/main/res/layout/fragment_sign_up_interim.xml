@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpInterimFragment">
+    tools:context=".ui.connection.SignUpInterimFragment">
 
     <EditText
         android:id="@+id/signUpEditTextLastName"
@@ -76,6 +76,16 @@
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpEditTextNationality" />
+
+    <EditText
+        android:id="@+id/signUpEditTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ville"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextTown" />
 
 
 

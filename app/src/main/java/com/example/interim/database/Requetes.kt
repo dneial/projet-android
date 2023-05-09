@@ -29,76 +29,35 @@ object Requetes {
 
     const val DROP_TABLE_OFFRE: String = "DROP TABLE IF EXISTS $TABLE_OFFRE;";
     const val SELECT_ALL_OFFRE: String = "SELECT * FROM $TABLE_OFFRE;";
+
+
+    const val TABLE_USERS: String = "users";
+    const val COL_ID_USER: String = "id";
+    const val COL_NAME_USER: String = "name";
+    const val COL_LASTNAME_USER: String = "lastname";
+    const val COL_EMAIL_USER: String = "email";
+    const val COL_PASSWORD_USER: String = "password";
+    const val COL_PHONE_USER: String = "phone";
+    const val COL_ROLE_USER: String = "role";
+    const val COL_VILLE_USER: String = "ville";
+    const val COL_VILLE_BIRTHDAY: String = "birthday";
+
+    const val CREATE_TABLE_USERS: String = "CREATE TABLE $TABLE_USERS (" +
+            "$COL_ID_USER INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "$COL_NAME_USER TEXT," +
+            "$COL_LASTNAME_USER TEXT," +
+            "$COL_EMAIL_USER TEXT," +
+            "$COL_PASSWORD_USER TEXT," +
+            "$COL_PHONE_USER TEXT," +
+            "$COL_ROLE_USER TEXT" +
+            "$COL_VILLE_USER TEXT" +
+            "$COL_VILLE_BIRTHDAY DATE" +
+            ");";
+
+    const val DROP_TABLE_USERS: String = "DROP TABLE IF EXISTS $TABLE_USERS;";
+    const val SELECT_ALL_USERS: String = "SELECT * FROM $TABLE_USERS;";
+
+
 }
 
 
-class OffreService(var context: Context) {
-
-    var db: SQLiteDatabase = MaBaseOpenHelper(context).readableDatabase
-
-
-        fun create(offre: Offre): Boolean {
-            val query = "INSERT INTO ${Requetes.TABLE_OFFRE} (" +
-                    "${Requetes.COL_NAME}, " +
-                    "${Requetes.COL_METIER}, " +
-                    "${Requetes.COL_DESCRIPTION}, " +
-                    "${Requetes.COL_DATE_DEBUT}, " +
-                    "${Requetes.COL_DATE_FIN}, " +
-                    "${Requetes.COL_REMUNERATION}, " +
-                    "${Requetes.COL_ID_ENTREPRISE}" +
-                    ") VALUES (" +
-                    "'${offre.title}', " +
-                    "'${offre.metier}', " +
-                    "'${offre.description}', " +
-                    "'${offre.date_debut}', " +
-                    "'${offre.date_fin}', " +
-                    "'${offre.remuneration}', " +
-                    "'${offre.id_entreprise}'" +
-                    ");";
-
-            return try{
-                db.execSQL(query)
-                true
-            } catch (e: Exception) {
-                Log.d("error", e.toString())
-                false
-            }
-
-        }
-
-        fun readAll(): ArrayList<Offre> {
-            val query = Requetes.SELECT_ALL_OFFRE;
-            val sortOrder = "${Requetes.COL_ID} DESC"
-            val cursor = db.query(Requetes.TABLE_OFFRE, null, null, null, null, null, sortOrder);
-            val offres = ArrayList<Offre>();
-
-            while (cursor.moveToNext()) {
-                val offre = Offre(
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_METIER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DESCRIPTION)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_DEBUT)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(Requetes.COL_ID))
-                );
-                offres.add(offre);
-            }
-            cursor.close();
-
-            Log.d("OffreService", offres.toString())
-            return offres;
-        }
-
-        fun update(offre: Offre) {
-            val query = "UPDATE ${Requetes.TABLE_OFFRE} SET " +
-                    "${Requetes.COL_NAME} = '${offre.title}', " +
-                    "${Requetes.COL_METIER} = '${offre.metier}', " +
-                    "${Requetes.COL_DESCRIPTION} = '${offre.description}', " +
-                    "${Requetes.COL_DATE_DEBUT} = '${offre.date_debut}', " +
-                    "${Requetes.COL_DATE_FIN} = '${offre.date_fin}', " +
-                    "${Requetes.COL_REMUNERATION} = '${offre.remuneration}', " +
-                    "${Requetes.COL_ID_ENTREPRISE} = '${offre.id_entreprise}' " +
-                    "WHERE ${Requetes.COL_ID} = ${offre.id};";
-        }
-}

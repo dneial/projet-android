@@ -67,7 +67,7 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
         )
 
 
-        var offreService = OffreService(requireContext())
+        var offreService = OffreService()
 
         if(offreService.create(offre)){
             Toast.makeText(requireContext(), "Offre créée", Toast.LENGTH_SHORT).show()

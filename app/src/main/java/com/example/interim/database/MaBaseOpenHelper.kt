@@ -6,8 +6,15 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
+object DataBase {
+    lateinit var db: SQLiteDatabase
+    fun init(context: Context) {
+        val helper = MaBaseOpenHelper(context)
+        db = helper.writableDatabase
+    }
+}
 
-class MaBaseOpenHelper(context: Context, name: String = Requetes.TABLE_OFFRE, version: Int = 1) : SQLiteOpenHelper(
+class MaBaseOpenHelper(context: Context, name: String = "DB", version: Int = 1) : SQLiteOpenHelper(
     context,
     name,
 null,
@@ -15,9 +22,12 @@ null,
 ) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        Log.d("oncreate", "here")
-        db?.execSQL(Requetes.CREATE_TABLE_OFFRE);
+        db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
+        db?.execSQL(Requetes.CREATE_TABLE_USERS)
+        create_default_offres(db)
+    }
 
+    private fun create_default_offres(db: SQLiteDatabase?) {
         val values = ContentValues()
         values.put(Requetes.COL_NAME, "Java Developer")
         values.put(Requetes.COL_METIER, "IT")
@@ -40,8 +50,8 @@ null,
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
+        db?.execSQL(Requetes.DROP_TABLE_USERS);
         onCreate(db);
     }
 }

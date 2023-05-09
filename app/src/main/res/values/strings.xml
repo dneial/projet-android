@@ -13,4 +13,7 @@
     <string name="offre_remuneration">Rémuneration</string>
     <string name="offre_creer">Créer</string>
     <string name="dashboard_creer_offre">Proposer une offre</string>
+    <string name="interimaire">Interimaire</string>
+    <string name="employer">Employer</string>
+    <string name="agence">Agence</string>
 </resources>

@@ -12,7 +12,7 @@ import com.example.interim.models.OffreList
 
 class DashboardViewModel(var context: Context) : ViewModel() {
 
-    var offreService: OffreService = OffreService(context)
+    var offreService: OffreService = OffreService()
 
     private val _offres = MutableLiveData<List<Offre>>().apply {
         value = offreService.readAll()
