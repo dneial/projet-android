@@ -25,6 +25,7 @@ null,
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
         db?.execSQL(Requetes.CREATE_TABLE_USERS)
         create_default_offres(db)
+        create_default_user(db)
     }
 
     private fun create_default_offres(db: SQLiteDatabase?) {
@@ -49,6 +50,17 @@ null,
         db?.insert(Requetes.TABLE_OFFRE, null, values)
     }
 
+    private fun create_default_user(db: SQLiteDatabase?){
+        val values = ContentValues()
+        values.put(Requetes.COL_NAME_USER, "admin")
+        values.put(Requetes.COL_LASTNAME_USER, "admin")
+        values.put(Requetes.COL_EMAIL_USER, "admin@admin.com")
+        values.put(Requetes.COL_PASSWORD_USER, "admin")
+        values.put(Requetes.COL_PHONE_USER, "0000000000")
+        values.put(Requetes.COL_ROLE_USER, "admin")
+        db?.insert(Requetes.TABLE_USERS, null, values)
+
+    }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
         db?.execSQL(Requetes.DROP_TABLE_USERS);

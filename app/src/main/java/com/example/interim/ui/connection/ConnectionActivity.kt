@@ -1,8 +1,11 @@
 package com.example.interim.ui.connection
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.DataBase
 
@@ -13,10 +16,20 @@ class ConnectionActivity : AppCompatActivity() {
 
         val database: Unit = DataBase.init(this)
 
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        val userId = sharedPref.getLong("user_id", -1)
+        val storedExpirationTime = sharedPref.getLong("expirationTime", 0)
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.connectionFragmentContainer, ConnectionFragment())
-            .commit()
+        if(userId != -1L && storedExpirationTime > System.currentTimeMillis()){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.connectionFragmentContainer, ConnectionFragment())
+                .commit()
+        }
+
+
 
 
     }

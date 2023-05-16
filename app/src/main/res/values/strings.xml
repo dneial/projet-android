@@ -16,4 +16,6 @@
     <string name="interimaire">Interimaire</string>
     <string name="employer">Employer</string>
     <string name="agence">Agence</string>
+    <string name="remember">Rester connecté</string>
+    <string name="title_compte">Profil</string>
 </resources>

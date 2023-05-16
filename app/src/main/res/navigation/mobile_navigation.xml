@@ -53,4 +53,10 @@
 
         </fragment>
 
+    <fragment
+        android:id="@+id/navigation_compte"
+        android:name="com.example.interim.ui.compte.CompteFragment"
+        android:label="@string/title_compte"
+        tools:layout="@layout/fragment_compte" />
+
 </navigation>

@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.interim.MainActivity
 import com.example.interim.R
+import com.example.interim.database.UsersService
+import com.example.interim.models.User
 
 class ConnectionFragment: Fragment() {
 
@@ -44,15 +47,32 @@ class ConnectionFragment: Fragment() {
     private fun signIn(view: View?) {
         val email = view?.findViewById<TextView>(R.id.emailEditText)?.text.toString()
         val password = view?.findViewById<TextView>(R.id.passwordEditText)?.text.toString()
+        val remember = view?.findViewById<CheckBox>(R.id.rememberMeCheckBox)!!.isChecked
 
         if(email == "" || password == "") {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
-            Log.d("ConnectionFragment", "email: $email, password: $password")
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+            val user: User? = UsersService().signIn(email, password)
+            Log.d("ConnectionFragment", "user: $user")
+            if(user != null && remember){
+                saveSession(user)
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 
+    private fun saveSession(user: User){
+
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val expirationTime = System.currentTimeMillis() + 864000000
+
+        with (sharedPref.edit()) {
+            putLong("user_id", user.id)
+            putLong("expirationTime", expirationTime)
+            commit()
+        }
+    }
 
 }

@@ -117,6 +117,7 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
         val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextBirthday)
 
         val user = User(
+            0,
             lastName.text.toString(),
             firstName.text.toString(),
             email.text.toString(),
@@ -127,7 +128,7 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
 
         val userService = UsersService()
         userService.create(user)
-        Log.d("user created", userService.get(user.email, user.password).toString())
+        Log.d("user created", userService.signIn(user.email, user.password).toString())
 
 
     }

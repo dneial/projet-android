@@ -32,13 +32,14 @@ class UsersService() {
     }
 
     @SuppressLint("Range")
-    fun get(email: String, password: String): User?{
+    fun signIn(email: String, password: String): User?{
         val query = "SELECT * FROM ${Requetes.TABLE_USERS} WHERE ${Requetes.COL_EMAIL_USER} = '$email' AND ${Requetes.COL_PASSWORD_USER} = '$password';"
         val cursor = db.rawQuery(query, null)
         var user: User? = null
 
         if(cursor.moveToFirst()){
             user = User(
+                cursor.getLong(cursor.getColumnIndex(Requetes.COL_ID_USER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_NAME_USER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_LASTNAME_USER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_USER)),
@@ -52,5 +53,7 @@ class UsersService() {
         return user
 
     }
+
+
 
 }
