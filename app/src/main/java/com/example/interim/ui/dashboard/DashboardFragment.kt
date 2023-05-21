@@ -1,5 +1,6 @@
 package com.example.interim.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.interim.R
 import com.example.interim.database.MaBaseOpenHelper
+import com.example.interim.database.UsersService
 import com.example.interim.databinding.FragmentDashboardBinding
 import com.example.interim.ui.offres.OffreFormFragment
 
@@ -60,12 +63,35 @@ class DashboardFragment : Fragment() {
 
         val button: Button = binding.fixedButton
         button.setOnClickListener{
-            it.findNavController().navigate(
-                R.id.action_navigation_dashboard_to_create_offre
-            )
+            if(check_permissions())
+                it.findNavController().navigate(
+                    R.id.action_navigation_dashboard_to_create_offre
+                )
         }
 
         return root
+    }
+
+    fun check_permissions(): Boolean {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        Log.d("sharedPref", sharedPref?.all.toString())
+        val user_id = sharedPref?.getLong("user_id", -1)!!
+        Log.d("user_id", user_id.toString())
+
+        if(user_id == -1L){
+            Toast.makeText(requireContext(), "Veuillez vous connecter", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        val role = user_id?.let { UsersService().getRole(it) }
+        Log.d("role", role.toString())
+
+        if(role != "employeur"){
+            Toast.makeText(requireContext(), "Vous n'avez pas le droit de créér une offre'", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true;
     }
 
     override fun onDestroyView() {

@@ -39,6 +39,12 @@
                 android:hint="@string/offre_desc"
                 android:inputType="textMultiLine" />
 
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/offre_address" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

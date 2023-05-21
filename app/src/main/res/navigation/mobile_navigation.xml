@@ -39,10 +39,9 @@
         android:name="com.example.interim.ui.offres.OffreFragment"
         android:label="@string/title_offres"
         tools:layout="@layout/fragment_offre" >
-        <argument android:name="offre_title" />
-        <argument android:name="offre_desc" />
-        <argument android:name="offre_remuneration" />
-
+        <argument
+            android:name="offre"
+            app:argType="com.example.interim.models.Offre" />
     </fragment>
 
     <fragment

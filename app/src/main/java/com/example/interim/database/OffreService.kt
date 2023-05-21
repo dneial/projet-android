@@ -1,6 +1,5 @@
 package com.example.interim.database
 
-import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.models.Offre
@@ -52,7 +51,9 @@ class OffreService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_DEBUT)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
-                cursor.getInt(cursor.getColumnIndexOrThrow(Requetes.COL_ID))
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID)),
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_ENTREPRISE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_VILLE))
             );
             offres.add(offre);
         }

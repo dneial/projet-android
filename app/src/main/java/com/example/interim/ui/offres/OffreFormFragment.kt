@@ -1,6 +1,8 @@
 package com.example.interim.ui.offres
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.OffreService
+import com.example.interim.database.UsersService
 import com.example.interim.models.Offre
 
 class OffreFormFragment: Fragment(), View.OnClickListener {
@@ -30,9 +33,13 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+        val user_id = activity?.getPreferences(Context.MODE_PRIVATE)?.getLong("user_id", 0)!!
+
+
         val offre_title = view?.findViewById<android.widget.EditText>(R.id.edit_title)?.text.toString()
         val offre_metier = view?.findViewById<android.widget.EditText>(R.id.edit_profession)?.text.toString()
         val offre_desc = view?.findViewById<android.widget.EditText>(R.id.edit_description)?.text.toString()
+        val offre_ville = view?.findViewById<android.widget.EditText>(R.id.edit_address)?.text.toString()
         val offre_remuneration = view?.findViewById<android.widget.EditText>(R.id.edit_salary)?.text.toString()
         val offre_date_debut = view?.findViewById<android.widget.DatePicker>(R.id.date_start)
         val offre_date_fin = view?.findViewById<android.widget.DatePicker>(R.id.date_end)
@@ -63,7 +70,9 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
             debut_date,
             fin_date,
             offre_remuneration,
-            0
+            0,
+            user_id,
+            offre_ville
         )
 
 

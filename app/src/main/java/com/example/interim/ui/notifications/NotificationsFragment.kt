@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.interim.databinding.FragmentNotificationsBinding
-import com.example.interim.models.Offre
-import com.example.interim.models.OffreList
 
 class NotificationsFragment : Fragment() {
 

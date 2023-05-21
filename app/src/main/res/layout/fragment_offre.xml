@@ -1,24 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.offres.OffreFragment">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView"
+            <TextView
+                android:id="@+id/offre_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:text="Job Title" />
+
+            <TextView
+                android:id="@+id/offre_metier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/offre_title"
+                android:padding="16dp"
+                android:text="Field of Work" />
+
+            <TextView
+                android:id="@+id/offre_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/offre_metier"
+                android:padding="16dp"
+                android:text="Job Description" />
+
+            <TextView
+                android:id="@+id/offre_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/offre_desc"
+                android:padding="16dp"
+                android:text="Start Date - End Date" />
+
+            <TextView
+                android:id="@+id/offre_remuneration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/offre_date"
+                android:padding="16dp"
+                android:text="Salary" />
+
+            <TextView
+                android:id="@+id/offre_entreprise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/offre_remuneration"
+                android:padding="16dp"
+                android:text="Enterprise" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello" />
-    </ScrollView>
+        android:layout_below="@id/offre_entreprise"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
-</FrameLayout>
+
+                <Button
+                    android:id="@+id/applyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Apply"
+                    android:padding="16dp"
+                    android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Enregistrer"
+                    android:padding="16dp" />
+    </LinearLayout>
+</RelativeLayout>
+

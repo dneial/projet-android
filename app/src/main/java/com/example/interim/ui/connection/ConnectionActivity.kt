@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.DataBase
+import com.example.interim.database.UsersService
 
 class ConnectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,8 +16,10 @@ class ConnectionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_connection)
 
         val database: Unit = DataBase.init(this)
+        val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE)
 
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+
+        Log.d("sharedPref at connection", sharedPref?.all.toString())
         val userId = sharedPref.getLong("user_id", -1)
         val storedExpirationTime = sharedPref.getLong("expirationTime", 0)
 

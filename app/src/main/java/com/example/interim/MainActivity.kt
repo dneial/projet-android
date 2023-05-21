@@ -1,6 +1,8 @@
 package com.example.interim
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -32,5 +34,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE)
+
+
+        Log.d("sharedPref at mainactivity", sharedPref?.all.toString())
     }
 }

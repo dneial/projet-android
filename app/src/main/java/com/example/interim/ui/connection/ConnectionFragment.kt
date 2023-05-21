@@ -45,6 +45,8 @@ class ConnectionFragment: Fragment() {
     }
 
     private fun signIn(view: View?) {
+        val usersService = UsersService()
+
         val email = view?.findViewById<TextView>(R.id.emailEditText)?.text.toString()
         val password = view?.findViewById<TextView>(R.id.passwordEditText)?.text.toString()
         val remember = view?.findViewById<CheckBox>(R.id.rememberMeCheckBox)!!.isChecked
@@ -52,7 +54,7 @@ class ConnectionFragment: Fragment() {
         if(email == "" || password == "") {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
-            val user: User? = UsersService().signIn(email, password)
+            val user: User? = usersService.signIn(email, password)
             Log.d("ConnectionFragment", "user: $user")
             if(user != null && remember){
                 saveSession(user)
@@ -65,7 +67,7 @@ class ConnectionFragment: Fragment() {
 
     private fun saveSession(user: User){
 
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
         val expirationTime = System.currentTimeMillis() + 864000000
 
         with (sharedPref.edit()) {

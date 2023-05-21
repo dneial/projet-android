@@ -23,7 +23,7 @@ class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapte
         val remunerationView: TextView = view.findViewById(R.id.remuneration)
 
         fun bind(item: Offre) {
-            cardView.id = item.id
+            cardView.id = item.id.toInt()
             nameView.text = item.title
             metierView.text = item.metier
             remunerationView.text = item.remuneration
@@ -47,18 +47,13 @@ class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapte
         holder.bind(values[position])
         holder.cardView.setOnClickListener { it ->
             val offreId = it.id
-                val offreName = values.find { it.id == offreId }?.title
-                val offreDesc = values.find { it.id == offreId }?.description
-                val offreRemuneration = values.find { it.id == offreId }?.remuneration
+            val offre = values.find { it.id.toInt() == offreId }
 
                 it.findNavController().navigate(
                     R.id.action_navigation_dashboard_to_navigation_offres,
 
                     Bundle().apply {
-                        putString("offre_title", offreName)
-                        putString("offre_desc", offreDesc)
-                        putString("offre_remuneration", offreRemuneration)
-
+                        putParcelable("offre", offre)
                     },
                     navOptions { // Use the Kotlin DSL for building NavOptions
                         anim {

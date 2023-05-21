@@ -24,8 +24,22 @@ null,
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
         db?.execSQL(Requetes.CREATE_TABLE_USERS)
+        db?.execSQL(Requetes.CREATE_TABLE_ENTREPRISE)
+        db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
+
         create_default_offres(db)
         create_default_user(db)
+        create_default_entreprise(db)
+    }
+
+    private fun create_default_entreprise(db: SQLiteDatabase?) {
+        val values = ContentValues()
+        values.put(Requetes.COL_NAME_ENTREPRISE, "ABC Company")
+        values.put(Requetes.COL_EMAIL_ENTREPRISE, "abc@gmail.com")
+        values.put(Requetes.COL_PHONE_ENTREPRISE, "123456789")
+        values.put(Requetes.COL_VILLE_ENTREPRISE, "Paris")
+        values.put(Requetes.COL_PASSWORD_ENTREPRISE, "abc123")
+        db?.insert(Requetes.TABLE_ENTREPRISE, null, values)
     }
 
     private fun create_default_offres(db: SQLiteDatabase?) {
@@ -36,7 +50,8 @@ null,
         values.put(Requetes.COL_DATE_DEBUT, "2023-06-01")
         values.put(Requetes.COL_DATE_FIN, "2023-12-31")
         values.put(Requetes.COL_REMUNERATION, 50000)
-        values.put(Requetes.COL_ID_ENTREPRISE, "ABC Company")
+        values.put(Requetes.COL_VILLE, "Paris")
+        values.put(Requetes.COL_ID_ENTREPRISE, 1L)
         db?.insert(Requetes.TABLE_OFFRE, null, values)
 
         values.clear()
@@ -46,7 +61,8 @@ null,
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
         values.put(Requetes.COL_DATE_FIN, "2024-06-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
-        values.put(Requetes.COL_ID_ENTREPRISE, "XYZ Corporation")
+        values.put(Requetes.COL_VILLE, "Paris")
+        values.put(Requetes.COL_ID_ENTREPRISE, 2L)
         db?.insert(Requetes.TABLE_OFFRE, null, values)
     }
 
@@ -58,12 +74,15 @@ null,
         values.put(Requetes.COL_PASSWORD_USER, "admin")
         values.put(Requetes.COL_PHONE_USER, "0000000000")
         values.put(Requetes.COL_ROLE_USER, "admin")
+        values.put(Requetes.COL_VILLE_USER, "Paris")
         db?.insert(Requetes.TABLE_USERS, null, values)
 
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
         db?.execSQL(Requetes.DROP_TABLE_USERS);
+        db?.execSQL(Requetes.DROP_TABLE_ENTREPRISE);
+        db?.execSQL(Requetes.DROP_TABLE_CANDIDATURE);
         onCreate(db);
     }
 }
