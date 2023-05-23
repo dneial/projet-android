@@ -109,12 +109,12 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
 
     private fun signUpInterim(view: View) {
         Log.d("signUpInterim", "signUpInterim")
-        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextLastName)
-        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextFirstName)
-        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextEmail)
-        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextPassword)
-        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextPhone)
-        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.signUpEditTextBirthday)
+        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
+        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
+        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
+        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
+        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
+        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
 
         val user = User(
             0,

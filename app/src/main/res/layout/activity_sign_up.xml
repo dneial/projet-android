@@ -14,7 +14,7 @@
             android:id="@+id/singUpTextViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inscription"
+            android:text="@string/title_Sign_up"
             android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
             android:id="@+id/signUpTextViewInscriptionType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type d'inscription"
+            android:text="@string/inscription_type"
             android:textAlignment="center"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_marginLeft="10dp"
-                android:text="Interimaire"
+                android:text="@string/temporary_worker"
                 android:textSize="20dp" />
 
             <CheckBox
@@ -56,7 +56,7 @@
                 android:layout_row="0"
                 android:layout_column="1"
                 android:layout_gravity="center_horizontal"
-                android:text="Employer"
+                android:text="@string/Employer"
 
                 android:textAlignment="center"
                 android:textSize="20dp" />
@@ -68,7 +68,7 @@
                 android:layout_row="0"
                 android:layout_column="2"
                 android:layout_marginRight="10dp"
-                android:text="Agence"
+                android:text="@string/Agency"
                 android:textSize="20dp" />
 
         </GridLayout>

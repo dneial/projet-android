@@ -23,4 +23,51 @@
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
     <string name="offre_address">Ville</string>
+
+    <!--Sign-Up-->
+    <string name="tv_company_name">Nom de l\'entreprise *</string>
+    <string name="et_company_name">Entrez le nom de l\'entreprise</string>
+    <string name="tv_departement_service">Nom du service/département</string>
+    <string name="et_departement_service">Informatique</string>
+    <string name="tv_sub_departement_service">Nom du sous-service/sous-département</string>
+    <string name="et_sub_departement_service">Sécurité</string>
+    <string name="tv_company_id">SIRET *</string>
+    <string name="et_company_id">XXX XXX XXX XXXXX</string>
+    <string name="tv_contact_name_1">Nom personne contact 1</string>
+    <string name="tv_contact_name_2">Nom personne contact 2</string>
+    <string name="et_contact_name_1">Simula Tom</string>
+    <string name="et_contact_name_2">Azevedo Gomes Daniel</string>
+    <string name="tv_mail_1">Adresse e-mail 1 *</string>
+    <string name="et_mail_1">premier.mail@gmail.com</string>
+    <string name="tv_mail_2">Adresse e-mail 2</string>
+    <string name="et_mail_2">second.mail@gmail.com</string>
+    <string name="tv_phone_1">Numéro de téléphone 1</string>
+    <string name="tv_phone_2">Numéro de téléphone 2</string>
+    <string name="tv_address">Adresse *</string>
+    <string name="et_address">52 rue montmartre 75002 Paris</string>
+    <string name="button_sign_up">S\'inscrire</string>
+    <string name="tv_first_name">Prenom *</string>
+    <string name="et_first_name">Tom</string>
+    <string name="tv_last_name">Nom *</string>
+    <string name="et_last_name">Simula</string>
+    <string name="tv_birthday">Date de naissance</string>
+    <string name="et_birthday">JJ/MM/AAAA</string>
+    <string name="et_email">mon.mail@gmail.com</string>
+    <string name="tv_email">Email</string>
+    <string name="et_phone">XX XX XX XX XX</string>
+    <string name="tv_phone">Numéro de téléphone</string>
+    <string name="tv_nationality">Nationalité</string>
+    <string name="et_nationality">Français</string>
+    <string name="tv_city">Ville</string>
+    <string name="et_city">Montpellier</string>
+    <string name="tv_CV">CV</string>
+    <string name="button_upload_file">Charger un fichier</string>
+    <string name="tv_password">Mot de passe *</string>
+    <string name="et_password">Entrez votre mot de passe</string>
+    <string name="title_Sign_up">Inscription</string>
+    <string name="inscription_type">Type d\'inscription</string>
+    <string name="Agency">Agence</string>
+    <string name="Employer">Employeur</string>
+    <string name="temporary_worker">Interimaire</string>
+
 </resources>

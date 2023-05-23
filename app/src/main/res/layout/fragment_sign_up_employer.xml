@@ -1,92 +1,234 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.connection.SignUpEmployerFragment">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/signUpEditTextLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nom"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/employerSignUpTextViewCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_company_name"
+            android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/signUpEditTextFirstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Prenom"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextLastName" />
+        <EditText
+            android:id="@+id/employerSignUpEditTextCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewCompanyName"
+            android:hint="@string/et_company_name"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/signUpEditTextBirthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date de naissance"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextFirstName" />
+        <TextView
+            android:id="@+id/employerSignUpTextViewDepartmentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextCompanyName"
+            android:text="@string/tv_departement_service"
+            android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/signUpEditTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextBirthday" />
+        <EditText
+            android:id="@+id/employerSignUpEditTextDepartmentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewDepartmentName"
+            android:hint="@string/et_departement_service"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/signUpEditTextPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Téléphone"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextEmail" />
+        <TextView
+            android:id="@+id/employerSignUpTextViewSubDepartmentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextDepartmentName"
+            android:text="@string/tv_sub_departement_service"
+            android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/signUpEditTextNationality"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nationalité"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextPhone" />
+        <EditText
+            android:id="@+id/employerSignUpEditTextSubDepartmentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewSubDepartmentName"
+            android:hint="@string/et_sub_departement_service"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/signUpEditTextTown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ville"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextNationality" />
+        <TextView
+            android:id="@+id/employerSignUpTextViewEntityNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextSubDepartmentName"
+            android:text="@string/tv_company_id"
+            android:layout_marginTop="8dp"/>
 
+        <EditText
+            android:id="@+id/employerSignUpEditTextEntityNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewEntityNumber"
+            android:hint="@string/et_company_id"
+            android:inputType="numberSigned"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
+        <TextView
+            android:id="@+id/employerSignUpTextViewContactPerson1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextEntityNumber"
+            android:text="@string/tv_contact_name_1"
+            android:layout_marginTop="8dp"/>
 
-    <TextView
-        android:id="@+id/signUpTextViewCV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CV"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextTown" />
+        <EditText
+            android:id="@+id/employerSignUpEditTextContactPerson1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewContactPerson1"
+            android:hint="@string/et_contact_name_1"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/employerSignUpTextViewContactPerson2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextContactPerson1"
+            android:text="@string/tv_contact_name_2"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextContactPerson2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewContactPerson2"
+            android:hint="@string/et_contact_name_2"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewEmail1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextContactPerson2"
+            android:text="@string/tv_mail_1"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextEmail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewEmail1"
+            android:hint="@string/et_mail_1"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewEmail2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextEmail1"
+            android:text="@string/tv_mail_2"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextEmail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewEmail2"
+            android:hint="@string/et_mail_2"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewPhone1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextEmail2"
+            android:text="@string/tv_phone_1"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextPhone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewPhone1"
+            android:hint="@string/et_phone"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewPhone2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextPhone1"
+            android:text="@string/tv_phone_2"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextPhone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewPhone2"
+            android:hint="@string/et_phone"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextPhone2"
+            android:text="@string/tv_address"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewAddress"
+            android:inputType="text"
+            android:hint="@string/et_address"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextAddress"
+            android:text="@string/tv_password"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewPassword"
+            android:inputType="textPassword"
+            android:hint="@string/et_password"
+            android:importantForAutofill="no" />
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpEditTextPassword"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/button_sign_up"/>
+
+    </RelativeLayout>
+</ScrollView>
