@@ -8,7 +8,7 @@ class Candidature (
     var id_candidat: Long,
     var status: String,
     var date: String
-        ){
+    ){
 
 
     override fun toString(): String {
@@ -26,5 +26,14 @@ class Candidature (
         values.put("status", status)
         values.put("date", date)
         return values
+    }
+
+    data class CandidatureView (
+        val id: Long,
+        val offre_titre: String,
+        val date: String,
+        val status: String
+    ) {
+
     }
 }

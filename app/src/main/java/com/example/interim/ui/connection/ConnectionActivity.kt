@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.DataBase
@@ -25,16 +26,12 @@ class ConnectionActivity : AppCompatActivity() {
 
         if(userId != -1L && storedExpirationTime > System.currentTimeMillis()){
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("user_id", userId)
             startActivity(intent)
         } else {
             supportFragmentManager.beginTransaction()
                 .add(R.id.connectionFragmentContainer, ConnectionFragment())
                 .commit()
         }
-
-
-
 
     }
 

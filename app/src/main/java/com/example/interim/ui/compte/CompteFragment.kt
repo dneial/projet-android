@@ -23,9 +23,11 @@ class CompteFragment : Fragment(){
         val button = view.findViewById<View>(R.id.btnDeconnexion) as Button
         button.setOnClickListener {
             val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
-            val editor = sharedPref?.edit()
-            editor?.putLong("user_id", -1L)
-            editor?.apply()
+            with(sharedPref?.edit()) {
+                this?.putLong("user_id", -1)
+                this?.apply()
+            }
+
         }
 
         return view

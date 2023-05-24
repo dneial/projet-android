@@ -9,7 +9,7 @@ object Requetes {
 
     const val TABLE_OFFRE: String = "offres";
     const val COL_ID: String = "id";
-    const val COL_NAME: String = "title";
+    const val COL_TITLE: String = "title";
     const val COL_METIER: String = "metier";
     const val COL_DESCRIPTION: String = "description";
     const val COL_DATE_DEBUT: String = "date_debut";
@@ -21,7 +21,7 @@ object Requetes {
 
     const val CREATE_TABLE_OFFRE: String = "CREATE TABLE $TABLE_OFFRE (" +
             "$COL_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "$COL_NAME TEXT," +
+            "$COL_TITLE TEXT," +
             "$COL_METIER TEXT," +
             "$COL_DESCRIPTION TEXT," +
             "$COL_DATE_DEBUT DATE," +
@@ -81,6 +81,15 @@ object Requetes {
 
     const val DROP_TABLE_CANDIDATURE: String = "DROP TABLE IF EXISTS $TABLE_CANDIDATURE;";
     const val SELECT_ALL_CANDIDATURE: String = "SELECT * FROM $TABLE_CANDIDATURE;";
+    const val SELECT_CANDIDATURE_DATE_AND_STATUS_AND_OFFRE_TITLE_BY_ID_USER: String = "" +
+            "SELECT $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE, " +
+            "$TABLE_OFFRE.$COL_TITLE, " +
+            "$TABLE_CANDIDATURE.$COL_DATE_CANDIDATURE, " +
+            "$TABLE_CANDIDATURE.$COL_STATUS_CANDIDATURE " +
+            "FROM $TABLE_CANDIDATURE " +
+            "INNER JOIN $TABLE_OFFRE " +
+            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID " +
+            "WHERE $TABLE_CANDIDATURE.$COL_ID_USER_CANDIDATURE = ?;";
 
 }
 

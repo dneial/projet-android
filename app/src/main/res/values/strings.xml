@@ -73,5 +73,12 @@
     <string name="tv_LettreMotivation">Lettre de motivation</string>
     <string name="candidature_button">Postuler</string>
     <string name="title_candidature">Candidature</string>
+    <string name="login_guest">Connexion annonyme</string>
+    <string name="don_t_have_an_account">Vous n\'avez pas de compte?</string>
+    <string name="or">Ou</string>
+    <string name="connection">Connection</string>
+    <string name="signup">Sign Up\n</string>
+    <string name="title_inapp_connection">Connection</string>
+    <string name="title_inapp_inscription">Sign Up</string>
 
 </resources>

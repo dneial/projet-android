@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.interim.database.OffreService
 import com.example.interim.models.Offre
 
-class DashboardViewModel(var context: Context) : ViewModel() {
+class DashboardViewModel() : ViewModel() {
 
     var offreService: OffreService = OffreService()
 
@@ -20,5 +20,11 @@ class DashboardViewModel(var context: Context) : ViewModel() {
 
     fun refresh() {
         _offres.value = offreService.readAll()
+    }
+
+    fun filter(ville: String) {
+        // TODO: filtre par ville
+        if(ville != "Montpellier") _offres.value = offreService.readAll()
+        else _offres.value = offreService.filter(ville)
     }
 }

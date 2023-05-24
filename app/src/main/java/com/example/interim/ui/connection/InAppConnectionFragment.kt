@@ -7,50 +7,37 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.UsersService
 import com.example.interim.models.User
 
-class ConnectionFragment: Fragment() {
+class InAppConnectionFragment: Fragment() {
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.popup_login, container, false)
 
-        val signupButton = view.findViewById<Button>(R.id.signUpButton)
 
-        signupButton.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.connectionFragmentContainer, SignUpFragment())
-                .addToBackStack(null)
-                .commit()
-        }
-
-        val signin = view.findViewById<Button>(R.id.connectionButton)
-
-        signin.setOnClickListener{
+        val signin = view.findViewById<View>(R.id.connectionButton)
+        signin.setOnClickListener {
             signIn(view)
         }
 
-
-        val anonymous = view.findViewById<Button>(R.id.anonymousLoginButton)
-
-        anonymous.setOnClickListener{
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+        val signup = view.findViewById<TextView>(R.id.signUpTextView)
+        signup.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_inapp_connection_to_navigation_inapp_inscription)
         }
-
-
         return view
-
     }
 
     private fun signIn(view: View?) {
@@ -83,5 +70,4 @@ class ConnectionFragment: Fragment() {
             commit()
         }
     }
-
 }

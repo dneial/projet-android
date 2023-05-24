@@ -48,7 +48,6 @@ class CandidatureFragment: Fragment() {
             view?.findViewById<EditText>(R.id.candidature_ville_edit)?.setText(user.ville)
             view?.findViewById<EditText>(R.id.candidature_nationality_edit)?.setText(user.nationality)
             view?.findViewById<EditText>(R.id.candidature_anniversaire_edit)?.setText(user.birthday)
-
         }
     }
 

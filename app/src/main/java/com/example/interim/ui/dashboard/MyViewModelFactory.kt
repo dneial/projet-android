@@ -9,7 +9,7 @@ class MyViewModelFactory(private val context: Context) : ViewModelProvider.Facto
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
-            return DashboardViewModel(context) as T
+            return DashboardViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -43,12 +43,20 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
+        val ville = sharedPref?.getString("ville", "")!!
+
         var refresh = binding.root.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
 
         refresh.setOnRefreshListener {
             refresh.isRefreshing = false
-            dashboardViewModel.refresh()
+            if(ville == "") dashboardViewModel.refresh()
+            else dashboardViewModel.filter(ville)
         }
+
+
+
+        if(ville != "") dashboardViewModel.filter(ville)
 
         val listView: RecyclerView = binding.listView
         dashboardViewModel.offres.observe(viewLifecycleOwner) {
@@ -58,18 +66,21 @@ class DashboardFragment : Fragment() {
             listView.layoutManager = manager
             listView.setPadding(0, 0, 0, 200)
             listView.clipToPadding = false
-
         }
 
         val button: Button = binding.fixedButton
 
-        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
-        val user_id = sharedPref?.getLong("user_id", -1)!!
-        val role = UsersService().getRole(user_id)
+        val user_id = sharedPref.getLong("user_id", -1)
+        var role = ""
+        if(user_id != -1L){
+            role = UsersService().getRole(user_id)
+        }
         if(role != "employeur")
             button.visibility = View.GONE
         else
             button.visibility = View.VISIBLE
+
+
 
         button.setOnClickListener{
             if(check_permissions())
