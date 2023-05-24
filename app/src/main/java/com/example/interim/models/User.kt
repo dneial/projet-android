@@ -9,7 +9,8 @@ class User(
     var phone: String = "",
     var role: String = "",
     var ville: String = "",
-    var birthday: String = ""
+    var birthday: String = "",
+    var nationality: String = ""
 ){
 
 }

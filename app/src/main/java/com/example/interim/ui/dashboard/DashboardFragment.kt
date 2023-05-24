@@ -62,6 +62,15 @@ class DashboardFragment : Fragment() {
         }
 
         val button: Button = binding.fixedButton
+
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
+        val user_id = sharedPref?.getLong("user_id", -1)!!
+        val role = UsersService().getRole(user_id)
+        if(role != "employeur")
+            button.visibility = View.GONE
+        else
+            button.visibility = View.VISIBLE
+
         button.setOnClickListener{
             if(check_permissions())
                 it.findNavController().navigate(
@@ -73,7 +82,7 @@ class DashboardFragment : Fragment() {
     }
 
     fun check_permissions(): Boolean {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
         Log.d("sharedPref", sharedPref?.all.toString())
         val user_id = sharedPref?.getLong("user_id", -1)!!
         Log.d("user_id", user_id.toString())

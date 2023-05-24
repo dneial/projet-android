@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.interim.R
+import com.example.interim.database.CandidatureService
 import com.example.interim.databinding.FragmentOffreBinding
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
@@ -58,26 +61,22 @@ class OffreFragment : Fragment() {
     }
 
     private fun postuler_offre(offre: Offre) {
-        val Date = Date()
-        val date = Date.toString().substring(0, 10)
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
 
+        val user_id = sharedPref?.getLong("user_id", -1)
 
-        val user_id = activity?.getPreferences(Context.MODE_PRIVATE)?.getLong("user_id", 0)
-
-        if(user_id == 0L) {
+        if(user_id == -1L) {
             Log.d("OffreFragment", "user_id not found")
             return
         }
-        
-        val candidature = Candidature(
-            -1,
-            offre.id,
-            user_id!!,
-            offre.id_entreprise,
-            "En cours",
-            date
+
+        findNavController().navigate(
+            R.id.action_navigation_offres_to_navigation_candidature,
+            Bundle().apply {
+                putLong("offre_id", offre.id)
+            },
         )
-        Log.d("Candidature", candidature.toString())
+
     }
 
     private fun enregistrer_offre(offre: Offre) {

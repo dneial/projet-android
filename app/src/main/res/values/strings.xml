@@ -69,5 +69,9 @@
     <string name="Agency">Agence</string>
     <string name="Employer">Employeur</string>
     <string name="temporary_worker">Interimaire</string>
+    <string name="lettre_motivation">Charger un fichier</string>
+    <string name="tv_LettreMotivation">Lettre de motivation</string>
+    <string name="candidature_button">Postuler</string>
+    <string name="title_candidature">Candidature</string>
 
 </resources>

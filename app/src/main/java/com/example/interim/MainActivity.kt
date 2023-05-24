@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE)
-
-
-        Log.d("sharedPref at mainactivity", sharedPref?.all.toString())
+        // demander authorisation pour la localisation
     }
 }

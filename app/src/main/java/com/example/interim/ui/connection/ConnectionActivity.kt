@@ -25,6 +25,7 @@ class ConnectionActivity : AppCompatActivity() {
 
         if(userId != -1L && storedExpirationTime > System.currentTimeMillis()){
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("user_id", userId)
             startActivity(intent)
         } else {
             supportFragmentManager.beginTransaction()

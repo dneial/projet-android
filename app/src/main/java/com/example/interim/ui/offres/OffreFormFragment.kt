@@ -70,7 +70,6 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
             debut_date,
             fin_date,
             offre_remuneration,
-            0,
             user_id,
             offre_ville
         )

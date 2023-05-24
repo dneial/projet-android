@@ -47,7 +47,10 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_USER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_PASSWORD_USER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_PHONE_USER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_ROLE_USER))
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_ROLE_USER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_VILLE_USER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_BIRTHDAY_USER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_NATIONALITY_USER))
             )
             cursor.close()
         }
@@ -69,6 +72,30 @@ class UsersService() {
 
         return role!!
     }
+    @SuppressLint("Range")
+    fun getUser(user_id: Long): User? {
+        val query = "SELECT * FROM ${Requetes.TABLE_USERS} WHERE ${Requetes.COL_ID_USER} = '$user_id';"
+        val cursor = db.rawQuery(query, null)
+        var user: User? = null
+
+        if(cursor.moveToFirst()){
+            user = User(
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ROLE_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_VILLE_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_USER))
+            );
+        }
+
+        return user
+    }
+
 
     fun readAll(): ArrayList<User> {
         val query = Requetes.SELECT_ALL_USERS;
@@ -84,7 +111,10 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_USER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_USER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_USER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ROLE_USER))
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ROLE_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_VILLE_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_USER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_USER))
             );
             users.add(user);
         }

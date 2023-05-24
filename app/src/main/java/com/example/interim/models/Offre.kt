@@ -11,7 +11,6 @@ class Offre(
     var date_fin: String?,
     var remuneration: String?,
     var id: Long,
-    var id_entreprise: Long,
     var ville: String? = ""
 ): Parcelable {
 
@@ -23,7 +22,6 @@ class Offre(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readLong(),
         parcel.readLong(),
         parcel.readString()
     ) {
@@ -46,7 +44,6 @@ class Offre(
         parcel.writeString(date_fin)
         parcel.writeString(remuneration)
         parcel.writeLong(id)
-        parcel.writeLong(id_entreprise)
         parcel.writeString(ville)
     }
 

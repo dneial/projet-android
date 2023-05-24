@@ -16,7 +16,6 @@ class OffreService() {
                 "${Requetes.COL_DATE_DEBUT}, " +
                 "${Requetes.COL_DATE_FIN}, " +
                 "${Requetes.COL_REMUNERATION}, " +
-                "${Requetes.COL_ID_ENTREPRISE}" +
                 ") VALUES (" +
                 "'${offre.title}', " +
                 "'${offre.metier}', " +
@@ -24,7 +23,6 @@ class OffreService() {
                 "'${offre.date_debut}', " +
                 "'${offre.date_fin}', " +
                 "'${offre.remuneration}', " +
-                "'${offre.id_entreprise}'" +
                 ");";
 
         return try{
@@ -38,7 +36,6 @@ class OffreService() {
     }
 
     fun readAll(): ArrayList<Offre> {
-        val query = Requetes.SELECT_ALL_OFFRE;
         val sortOrder = "${Requetes.COL_ID} DESC"
         val cursor = db.query(Requetes.TABLE_OFFRE, null, null, null, null, null, sortOrder);
         val offres = ArrayList<Offre>();
@@ -52,7 +49,6 @@ class OffreService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
                 cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID)),
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_ENTREPRISE)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_VILLE))
             );
             offres.add(offre);
@@ -71,7 +67,6 @@ class OffreService() {
                 "${Requetes.COL_DATE_DEBUT} = '${offre.date_debut}', " +
                 "${Requetes.COL_DATE_FIN} = '${offre.date_fin}', " +
                 "${Requetes.COL_REMUNERATION} = '${offre.remuneration}', " +
-                "${Requetes.COL_ID_ENTREPRISE} = '${offre.id_entreprise}' " +
                 "WHERE ${Requetes.COL_ID} = ${offre.id};";
     }
 }

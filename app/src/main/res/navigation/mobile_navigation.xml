@@ -42,6 +42,9 @@
         <argument
             android:name="offre"
             app:argType="com.example.interim.models.Offre" />
+        <action
+            android:id="@+id/action_navigation_offres_to_navigation_candidature"
+            app:destination="@id/navigation_candidature" />
     </fragment>
 
     <fragment
@@ -57,5 +60,16 @@
         android:name="com.example.interim.ui.compte.CompteFragment"
         android:label="@string/title_compte"
         tools:layout="@layout/fragment_compte" />
+
+    <fragment
+        android:id="@+id/navigation_candidature"
+        android:name="com.example.interim.ui.candidature.CandidatureFragment"
+        android:label="@string/title_candidature"
+        tools:layout="@layout/fragment_candidature" >
+        <argument
+            android:name="offre_id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 
 </navigation>

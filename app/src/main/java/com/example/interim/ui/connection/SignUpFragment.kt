@@ -46,12 +46,14 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
             selectedFragment!!
         ).commit()
 
-
+        /*
         var connectButton = view.findViewById<Button>(R.id.connectionButton)
 
         connectButton.setOnClickListener {
             signUp(view, selectedId)
         }
+        */
+
         return view
     }
 
@@ -108,7 +110,6 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
     }
 
     private fun signUpInterim(view: View) {
-        Log.d("signUpInterim", "signUpInterim")
         val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
         val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
         val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
