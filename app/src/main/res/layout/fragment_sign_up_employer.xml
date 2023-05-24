@@ -9,11 +9,22 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/employerSignUpTextViewMustFill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_must_fill1"
+            android:textStyle="italic"
+            android:layout_marginTop="8dp"/>
+
+
+        <TextView
             android:id="@+id/employerSignUpTextViewCompanyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_company_name"
-            android:layout_marginTop="8dp"/>
+            android:layout_below="@+id/employerSignUpTextViewMustFill"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/employerSignUpEditTextCompanyName"
@@ -31,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextCompanyName"
             android:text="@string/tv_departement_service"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -49,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextDepartmentName"
             android:text="@string/tv_sub_departement_service"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -67,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextSubDepartmentName"
             android:text="@string/tv_company_id"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -85,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextEntityNumber"
             android:text="@string/tv_contact_name_1"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -103,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextContactPerson1"
             android:text="@string/tv_contact_name_2"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -121,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextContactPerson2"
             android:text="@string/tv_mail_1"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -139,6 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextEmail1"
             android:text="@string/tv_mail_2"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -157,6 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextEmail2"
             android:text="@string/tv_phone_1"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -175,6 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextPhone1"
             android:text="@string/tv_phone_2"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -193,6 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextPhone2"
             android:text="@string/tv_address"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -210,6 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextAddress"
             android:text="@string/tv_password"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -222,7 +244,7 @@
             android:importantForAutofill="no" />
 
         <Button
-            android:id="@+id/buttonSignUp"
+            android:id="@+id/employerSignUpbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/employerSignUpEditTextPassword"

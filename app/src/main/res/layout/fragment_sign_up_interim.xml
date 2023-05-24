@@ -12,27 +12,48 @@
     android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/interimSignUpTextViewMustFill1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_must_fill2"
+            android:textStyle="italic"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/interimSignUpTextViewMustFill2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_below="@+id/interimSignUpTextViewMustFill1"
+            android:text="@string/tv_must_fill1"
+            />
+
+        <TextView
             android:id="@+id/interimSignUpTextViewFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_first_name"
-            android:layout_marginTop="8dp"/>
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpTextViewMustFill2"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/interimSignUpEditTextFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/interimSignUpTextViewFirstName"
+            android:background="?attr/editTextBackground"
             android:hint="@string/et_first_name"
+            android:importantForAutofill="no"
             android:inputType="text"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/interimSignUpTextViewLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_last_name"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextFirstName"
             android:layout_marginTop="8dp"/>
 
@@ -51,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_birthday"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextLastName"
             android:layout_marginTop="8dp"/>
 
@@ -69,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_email"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextBirthday"
             android:layout_marginTop="8dp"/>
 
@@ -87,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_phone"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextEmail"
             android:layout_marginTop="8dp"/>
 
@@ -105,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_nationality"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextPhone"
             android:layout_marginTop="8dp"/>
 
@@ -123,6 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_city"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextNationality"
             android:layout_marginTop="8dp"/>
 
@@ -141,6 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_CV"
+            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextCity"
             android:layout_marginTop="8dp"/>
 
@@ -157,6 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/interimSignUpButtonUploadCV"
             android:text="@string/tv_password"
+            android:textSize="20dp"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -170,7 +198,7 @@
             android:importantForAutofill="no" />
 
         <Button
-            android:id="@+id/interimSignUpButtonSignIn"
+            android:id="@+id/interimSignUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/interimSignUpEditTextPassword"

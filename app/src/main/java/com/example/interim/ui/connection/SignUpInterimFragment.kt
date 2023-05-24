@@ -8,18 +8,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.interim.R
-import com.example.interim.database.UsersService
+import android.content.Intent
+import android.net.Uri
 import com.example.interim.models.User
+import java.util.regex.Pattern
+import kotlin.random.Random
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpInterimFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SignUpInterimFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +29,14 @@ class SignUpInterimFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_sign_up_interim, container, false)
 
-        val button = view.findViewById<View>(R.id.interimSignUpButtonSignIn) as Button
+        val button = view.findViewById<View>(R.id.interimSignUpButton) as Button
 
         button.setOnClickListener { signUpInterim(view) }
 
         return view
     }
 
-    private fun signUpInterim(view: View) {
+    private fun signUpInterim(view: View){
         val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
         val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
         val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
@@ -48,36 +44,100 @@ class SignUpInterimFragment : Fragment() {
         val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
         val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
 
-        val user = User(
-            0,
-            lastName.text.toString(),
-            firstName.text.toString(),
-            email.text.toString(),
-            password.text.toString(),
-            phone.text.toString(),
-            birthday.text.toString()
-        )
+        if (checkSignUpInterim(view)){
+            val user = Bundle()
+            user.putString("lastName", lastName.text.toString())
+            user.putString("firstName", firstName.text.toString())
+            user.putString("email", email.text.toString())
+            user.putString("password", password.text.toString())
+            user.putString("phone", phone.text.toString())
+            user.putString("birthday", birthday.text.toString())
 
-        val userService = UsersService()
-        userService.create(user)
-        Log.d("user created", userService.signIn(user.email, user.password).toString())
+            SignUpAuthentification().arguments = user
 
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, SignUpAuthentification()).commit()
 
+            Log.d("signUpInterim", "Send authentification")
+        }
+
+        Log.d("signUpInterim", "Inscription invalide")
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpInterimFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpInterimFragment().apply {
 
-            }
+    private fun checkSignUpInterim(view: View) : Boolean{
+        var authentification : Boolean = true
+        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
+        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
+        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
+        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
+        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
+        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
+        val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
+        val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
+
+        var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
+        if (firstName.text.toString() == "" ){
+            firstName.setBackgroundResource(R.drawable.outline_warning)
+            authentification = false
+        } else if (!pattern.matcher(firstName.text.toString()).matches()){
+            authentification = false
+            firstName.setBackgroundResource(androidx.appcompat.R.attr.editTextBackground)
+        } else {
+            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (lastName.text.toString() == ""){
+            lastName.setBackgroundResource(R.drawable.outline_warning)
+            authentification = false
+        } else if (!pattern.matcher(lastName.text.toString()).matches()){
+            lastName.setBackgroundResource(R.drawable.outline_warning)
+            authentification = false
+        } else {
+            lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (password.text.toString() == ""){
+            password.setBackgroundResource(R.drawable.outline_warning)
+            authentification = false
+        } else {
+            password.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (city.text.toString() != "" && !pattern.matcher(city.text.toString()).matches()){
+            city.setBackgroundResource(R.drawable.outline_warning)
+        } else {
+            city.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (nationality.text.toString() != "" && !pattern.matcher(nationality.text.toString()).matches()){
+            nationality.setBackgroundResource(R.drawable.outline_warning)
+        } else {
+            nationality.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (email.text.toString() == "" && phone.text.toString() == ""){
+            email.setBackgroundResource(R.drawable.outline_warning)
+            phone.setBackgroundResource(R.drawable.outline_warning)
+            Log.d("password/email false", email.background.toString() + phone.background.toString())
+            authentification = false
+        } else {
+            pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
+            if (email.text.toString() != "" && !pattern.matcher(email.text.toString()).matches()){
+                email.setBackgroundResource(R.drawable.outline_warning)
+                authentification = false
+            } else { email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+
+            if (phone.text.toString() != "" && phone.text.toString().length != 10){
+                phone.setBackgroundResource(R.drawable.outline_warning)
+                authentification = false
+            }else { phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+        }
+
+        pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
+        if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
+            birthday.setBackgroundResource(R.drawable.outline_warning)
+            authentification = false
+        } else { birthday.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+
+        return authentification
     }
 }

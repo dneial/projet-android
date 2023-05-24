@@ -23,6 +23,9 @@
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
     <string name="offre_address">Ville</string>
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
+    <string name="resend">Renvoyer</string>
 
     <!--Sign-Up-->
     <string name="tv_company_name">Nom de l\'entreprise *</string>
@@ -80,5 +83,8 @@
     <string name="signup">Sign Up\n</string>
     <string name="title_inapp_connection">Connection</string>
     <string name="title_inapp_inscription">Sign Up</string>
-
+    <string name="tv_must_fill1">Un email ou un numéro de téléphone doit obligatoirement être rempli pour pouvoir confirmer le compte.</string>
+    <string name="tv_must_fill2">Les champs avec "*" doivent obligatoirement être rempli.</string>
+    <string name="tv_send_auth">Pour renvoyer le mail/texto appuyer sur le boutton ci-dessous</string>
+    <string name="tv_auth_code">Entrer le code reçu par mail</string>
 </resources>

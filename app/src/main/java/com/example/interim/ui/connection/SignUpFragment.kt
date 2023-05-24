@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.UsersService
 import com.example.interim.models.User
+import java.util.regex.Pattern
 
 class SignUpFragment: Fragment(), OnCheckedChangeListener{
 
@@ -28,31 +29,6 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
         val radioGroup: RadioGroup = view.findViewById<RadioGroup>(R.id.radio_group)
 
         radioGroup.setOnCheckedChangeListener(this)
-
-        val selectedId: Int = radioGroup.checkedRadioButtonId
-
-        when(selectedId){
-            R.id.signUp_Interim -> {
-                selectedFragment = SignUpInterimFragment()
-            }
-            R.id.signUp_Employer -> {
-                selectedFragment = SignUpEmployerFragment()
-            }
-            R.id.signUp_Agency -> {
-                selectedFragment = SignUpEmployerFragment()
-            }
-        }
-        if(selectedFragment != null) requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
-            selectedFragment!!
-        ).commit()
-
-        /*
-        var connectButton = view.findViewById<Button>(R.id.connectionButton)
-
-        connectButton.setOnClickListener {
-            signUp(view, selectedId)
-        }
-        */
 
         return view
     }
@@ -81,56 +57,6 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
             selectedFragment!!
         ).commit()
-
-    }
-
-
-
-    private fun signUp(view: View, selectedId: Int) {
-        Log.d("signup", selectedId.toString())
-        when(selectedId){
-            R.id.signUp_Interim -> {
-                signUpInterim(view)
-            }
-            R.id.signUp_Employer -> {
-                signUpEmployer(view)
-            }
-            R.id.signUp_Agency -> {
-                signUpAgency(view)
-            }
-        }
-    }
-
-    private fun signUpAgency(view: View?) {
-
-    }
-
-    private fun signUpEmployer(view: View?) {
-
-    }
-
-    private fun signUpInterim(view: View) {
-        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
-        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
-        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
-        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
-        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
-        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
-
-        val user = User(
-            0,
-            lastName.text.toString(),
-            firstName.text.toString(),
-            email.text.toString(),
-            password.text.toString(),
-            phone.text.toString(),
-            birthday.text.toString()
-        )
-
-        val userService = UsersService()
-        userService.create(user)
-        Log.d("user created", userService.signIn(user.email, user.password).toString())
-
 
     }
 }
