@@ -9,12 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.UsersService
-import com.example.interim.models.User
+import com.example.interim.models.TemporaryWorker
 
 class InAppConnectionFragment: Fragment() {
 
@@ -49,9 +48,9 @@ class InAppConnectionFragment: Fragment() {
         if(email == "" || password == "") {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
-            val user: User? = usersService.signIn(email, password)
-            if(user != null){
-                saveSession(user)
+            val temporaryWorker: TemporaryWorker? = usersService.signIn(email, password)
+            if(temporaryWorker != null){
+                saveSession(temporaryWorker)
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -59,13 +58,13 @@ class InAppConnectionFragment: Fragment() {
         }
     }
 
-    private fun saveSession(user: User){
+    private fun saveSession(temporaryWorker: TemporaryWorker){
 
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
         val expirationTime = System.currentTimeMillis() + 864000000
 
         with (sharedPref.edit()) {
-            putLong("user_id", user.id)
+            putLong("user_id", temporaryWorker.id)
             putLong("expirationTime", expirationTime)
             commit()
         }

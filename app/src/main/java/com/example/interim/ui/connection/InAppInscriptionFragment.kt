@@ -29,7 +29,7 @@ class InAppInscriptionFragment: Fragment(), RadioGroup.OnCheckedChangeListener {
 
         when(selectedId){
             R.id.signUp_Interim -> {
-                selectedFragment = SignUpInterimFragment()
+                selectedFragment = SignUpTemporaryWorkerFragment()
             }
             R.id.signUp_Employer -> {
                 selectedFragment = SignUpEmployerFragment()
@@ -52,7 +52,7 @@ class InAppInscriptionFragment: Fragment(), RadioGroup.OnCheckedChangeListener {
             R.id.signUp_Interim -> {
                 Log.d("button selected", "interim")
 
-                selectedFragment = SignUpInterimFragment()
+                selectedFragment = SignUpTemporaryWorkerFragment()
             }
             R.id.signUp_Employer -> {
                 Log.d("button selected", "employeur")

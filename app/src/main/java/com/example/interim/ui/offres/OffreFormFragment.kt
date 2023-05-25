@@ -2,7 +2,6 @@ package com.example.interim.ui.offres
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.OffreService
-import com.example.interim.database.UsersService
 import com.example.interim.models.Offre
 
 class OffreFormFragment: Fragment(), View.OnClickListener {

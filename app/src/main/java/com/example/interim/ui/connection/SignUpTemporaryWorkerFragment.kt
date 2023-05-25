@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.interim.R
-import android.content.Intent
-import android.net.Uri
-import com.example.interim.models.User
 import java.util.regex.Pattern
-import kotlin.random.Random
 
 
-class SignUpInterimFragment : Fragment() {
+class SignUpTemporaryWorkerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +23,7 @@ class SignUpInterimFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_sign_up_interim, container, false)
+        val view = inflater.inflate(R.layout.fragment_sign_up_temporary_worker, container, false)
 
         val button = view.findViewById<View>(R.id.interimSignUpButton) as Button
 
@@ -43,15 +39,20 @@ class SignUpInterimFragment : Fragment() {
         val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
         val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
         val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
+        val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
+        val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
 
         if (checkSignUpInterim(view)){
             val user = Bundle()
+            user.putString("type", "TemporaryWorker")
             user.putString("lastName", lastName.text.toString())
             user.putString("firstName", firstName.text.toString())
             user.putString("email", email.text.toString())
             user.putString("password", password.text.toString())
             user.putString("phone", phone.text.toString())
             user.putString("birthday", birthday.text.toString())
+            user.putString("city", city.text.toString())
+            user.putString("nationality", nationality.text.toString())
 
             SignUpAuthentification().arguments = user
 
@@ -80,7 +81,7 @@ class SignUpInterimFragment : Fragment() {
             authentification = false
         } else if (!pattern.matcher(firstName.text.toString()).matches()){
             authentification = false
-            firstName.setBackgroundResource(androidx.appcompat.R.attr.editTextBackground)
+            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         } else {
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }

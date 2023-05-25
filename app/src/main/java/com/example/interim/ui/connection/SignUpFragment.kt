@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import androidx.fragment.app.Fragment
 import com.example.interim.R
-import com.example.interim.database.UsersService
-import com.example.interim.models.User
-import java.util.regex.Pattern
 
 class SignUpFragment: Fragment(), OnCheckedChangeListener{
 
@@ -39,7 +35,7 @@ class SignUpFragment: Fragment(), OnCheckedChangeListener{
             R.id.signUp_Interim -> {
                 Log.d("button selected", "interim")
 
-                selectedFragment = SignUpInterimFragment()
+                selectedFragment = SignUpTemporaryWorkerFragment()
             }
             R.id.signUp_Employer -> {
                 Log.d("button selected", "employeur")

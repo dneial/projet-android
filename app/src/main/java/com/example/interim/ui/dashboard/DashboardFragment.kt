@@ -7,19 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListView
 import android.widget.Toast
-import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.interim.R
-import com.example.interim.database.MaBaseOpenHelper
 import com.example.interim.database.UsersService
 import com.example.interim.databinding.FragmentDashboardBinding
-import com.example.interim.ui.offres.OffreFormFragment
 
 class DashboardFragment : Fragment() {
 

@@ -5,11 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.DataBase
-import com.example.interim.database.UsersService
 
 class ConnectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

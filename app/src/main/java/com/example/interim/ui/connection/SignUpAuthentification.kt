@@ -5,12 +5,12 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.interim.R
 import com.example.interim.database.UsersService
+import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.User
 import kotlin.random.Random
 
@@ -27,14 +27,21 @@ class SignUpAuthentification : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
 
-        val lastName = arguments?.getString("lastName")
-        val firstName = arguments?.getString("firstName")
-        val email = arguments?.getString("email")
-        val password = arguments?.getString("password")
-        val phone = arguments?.getString("phone")
-        val birthday = arguments?.getString("birthday")
+        var user : User? = null
+        var email : String = ""
+        var phone : String = ""
+        var role : String? = arguments?.getString("type")
 
-        val user = User(0, lastName!!, firstName!!, email!!, password!!, phone!!, birthday!!)
+        if (role == "TemporaryWorker") {
+            val lastName = arguments?.getString("lastName")
+            val firstName = arguments?.getString("firstName")
+            val email = arguments?.getString("email")
+            val password = arguments?.getString("password")
+            val phone = arguments?.getString("phone")
+            val birthday = arguments?.getString("birthday")
+
+            user = TemporaryWorker(0, lastName!!, firstName!!, email!!, password!!, phone!!, birthday!!)
+        }
 
         val code = generateRandomCode(6)
         Log.d("code", code)
@@ -47,7 +54,7 @@ class SignUpAuthentification : Fragment() {
         }
         view.findViewById<Button>(R.id.authSignUpButtonConfirm).setOnClickListener {
             if (view.findViewById<EditText>(R.id.authSignUpEditTextCode).text.toString() == code){
-                UsersService().create(user)
+                UsersService().create(user as TemporaryWorker)
                 //Go page accueil
             }
         }

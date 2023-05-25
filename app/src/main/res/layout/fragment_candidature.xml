@@ -6,7 +6,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context="ui.connection.SignUpInterimFragment">
+    tools:context="ui.connection.SignUpTemporaryWorkerFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

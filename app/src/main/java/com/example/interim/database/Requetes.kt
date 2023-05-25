@@ -16,7 +16,7 @@ object Requetes {
     const val COL_DATE_FIN: String = "date_fin";
     const val COL_REMUNERATION: String = "remuneration";
     const val COL_ID_OFFRE_ENTREPRISE: String = "id_entreprise";
-    const val COL_VILLE: String = "ville";
+    const val COL_CITY: String = "CITY";
 
 
     const val CREATE_TABLE_OFFRE: String = "CREATE TABLE $TABLE_OFFRE (" +
@@ -27,7 +27,7 @@ object Requetes {
             "$COL_DATE_DEBUT DATE," +
             "$COL_DATE_FIN DATE," +
             "$COL_REMUNERATION TEXT," +
-            "$COL_VILLE TEXT," +
+            "$COL_CITY TEXT," +
             "$COL_ID_OFFRE_ENTREPRISE INTEGER" +
             ");";
 
@@ -35,53 +35,55 @@ object Requetes {
     const val SELECT_ALL_OFFRE: String = "SELECT * FROM $TABLE_OFFRE;";
 
 
-    const val TABLE_USERS: String = "users";
-    const val COL_ID_USER: String = "id";
-    const val COL_NAME_USER: String = "name";
-    const val COL_LASTNAME_USER: String = "lastname";
-    const val COL_EMAIL_USER: String = "email";
-    const val COL_PASSWORD_USER: String = "password";
-    const val COL_PHONE_USER: String = "phone";
-    const val COL_ROLE_USER: String = "role";
-    const val COL_VILLE_USER: String = "ville";
-    const val COL_BIRTHDAY_USER: String = "birthday";
-    const val COL_NATIONALITY_USER: String = "nationality";
+    const val TABLE_TEMPORARYWORKERS: String = "TemporaryWorkers";
+    const val COL_ID_TEMPORARYWORKER: String = "id";
+    const val COL_NAME_TEMPORARYWORKER: String = "name";
+    const val COL_LASTNAME_TEMPORARYWORKER: String = "lastname";
+    const val COL_EMAIL_TEMPORARYWORKER: String = "email";
+    const val COL_PASSWORD_TEMPORARYWORKER: String = "password";
+    const val COL_PHONE_TEMPORARYWORKER: String = "phone";
+    const val COL_ROLE_TEMPORARYWORKER: String = "role";
+    const val COL_CITY_TEMPORARYWORKER: String = "CITY";
+    const val COL_BIRTHDAY_TEMPORARYWORKER: String = "birthday";
+    const val COL_NATIONALITY_TEMPORARYWORKER: String = "nationality";
+    const val COL_COMMENTARY_TEMPORARYWORKER: String = "nationality";
 
-    const val CREATE_TABLE_USERS: String = "CREATE TABLE $TABLE_USERS (" +
-            "$COL_ID_USER INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "$COL_NAME_USER TEXT," +
-            "$COL_LASTNAME_USER TEXT," +
-            "$COL_EMAIL_USER TEXT," +
-            "$COL_PASSWORD_USER TEXT," +
-            "$COL_PHONE_USER TEXT," +
-            "$COL_ROLE_USER TEXT, " +
-            "$COL_VILLE_USER TEXT," +
-            "$COL_BIRTHDAY_USER TEXT," +
-            "$COL_NATIONALITY_USER TEXT" +
+    const val CREATE_TABLE_TEMPORARYWORKER: String = "CREATE TABLE $TABLE_TEMPORARYWORKERS (" +
+            "$COL_ID_TEMPORARYWORKER INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "$COL_NAME_TEMPORARYWORKER TEXT," +
+            "$COL_LASTNAME_TEMPORARYWORKER TEXT," +
+            "$COL_EMAIL_TEMPORARYWORKER TEXT," +
+            "$COL_PASSWORD_TEMPORARYWORKER TEXT," +
+            "$COL_PHONE_TEMPORARYWORKER TEXT," +
+            "$COL_ROLE_TEMPORARYWORKER TEXT, " +
+            "$COL_CITY_TEMPORARYWORKER TEXT," +
+            "$COL_BIRTHDAY_TEMPORARYWORKER TEXT," +
+            "$COL_NATIONALITY_TEMPORARYWORKER TEXT" +
+            "$COL_COMMENTARY_TEMPORARYWORKER TEXT" +
             ");";
 
-    const val DROP_TABLE_USERS: String = "DROP TABLE IF EXISTS $TABLE_USERS;";
-    const val SELECT_ALL_USERS: String = "SELECT * FROM $TABLE_USERS;";
+    const val DROP_TABLE_TEMPORARYWORKERS: String = "DROP TABLE IF EXISTS $TABLE_TEMPORARYWORKERS;";
+    const val SELECT_ALL_TEMPORARYWORKERS: String = "SELECT * FROM $TABLE_TEMPORARYWORKERS;";
 
 
     const val TABLE_CANDIDATURE: String = "candidatures";
     const val COL_ID_CANDIDATURE: String = "id";
     const val COL_ID_OFFRE_CANDIDATURE: String = "id_offre";
-    const val COL_ID_USER_CANDIDATURE: String = "id_user";
+    const val COL_ID_TEMPORARYWORKER_CANDIDATURE: String = "id_TEMPORARYWORKER";
     const val COL_STATUS_CANDIDATURE: String = "status";
     const val COL_DATE_CANDIDATURE: String = "date";
 
     const val CREATE_TABLE_CANDIDATURE: String = "CREATE TABLE $TABLE_CANDIDATURE (" +
             "$COL_ID_CANDIDATURE INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_ID_OFFRE_CANDIDATURE INTEGER," +
-            "$COL_ID_USER_CANDIDATURE INTEGER," +
+            "$COL_ID_TEMPORARYWORKER_CANDIDATURE INTEGER," +
             "$COL_STATUS_CANDIDATURE TEXT," +
             "$COL_DATE_CANDIDATURE TEXT" +
             ");";
 
     const val DROP_TABLE_CANDIDATURE: String = "DROP TABLE IF EXISTS $TABLE_CANDIDATURE;";
     const val SELECT_ALL_CANDIDATURE: String = "SELECT * FROM $TABLE_CANDIDATURE;";
-    const val SELECT_CANDIDATURE_DATE_AND_STATUS_AND_OFFRE_TITLE_BY_ID_USER: String = "" +
+    const val SELECT_CANDIDATURE_DATE_AND_STATUS_AND_OFFRE_TITLE_BY_ID_TEMPORARYWORKER: String = "" +
             "SELECT $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE, " +
             "$TABLE_OFFRE.$COL_TITLE, " +
             "$TABLE_CANDIDATURE.$COL_DATE_CANDIDATURE, " +
@@ -89,7 +91,7 @@ object Requetes {
             "FROM $TABLE_CANDIDATURE " +
             "INNER JOIN $TABLE_OFFRE " +
             "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID " +
-            "WHERE $TABLE_CANDIDATURE.$COL_ID_USER_CANDIDATURE = ?;";
+            "WHERE $TABLE_CANDIDATURE.$COL_ID_TEMPORARYWORKER_CANDIDATURE = ?;";
 
 }
 
