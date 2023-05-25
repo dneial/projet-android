@@ -64,7 +64,7 @@ class InAppConnectionFragment: Fragment() {
         val expirationTime = System.currentTimeMillis() + 864000000
 
         with (sharedPref.edit()) {
-            putLong("user_id", temporaryWorker.id)
+            putLong("user_id", temporaryWorker.getId())
             putLong("expirationTime", expirationTime)
             commit()
         }

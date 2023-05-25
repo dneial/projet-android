@@ -44,6 +44,8 @@ class SignUpAuthentification : Fragment() {
             if (view.findViewById<EditText>(R.id.authSignUpEditTextCode).text.toString() == code){
                 if (role == "TemporaryWorker")
                     UsersService().create(user as TemporaryWorker)
+                else if (role == "TemporaryWorker")
+                    UsersService().create(user as Employer)
                 //Go page accueil
             }
         }

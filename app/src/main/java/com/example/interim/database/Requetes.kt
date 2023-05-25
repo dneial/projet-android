@@ -42,8 +42,7 @@ object Requetes {
     const val COL_EMAIL_TEMPORARYWORKER: String = "email";
     const val COL_PASSWORD_TEMPORARYWORKER: String = "password";
     const val COL_PHONE_TEMPORARYWORKER: String = "phone";
-    const val COL_ROLE_TEMPORARYWORKER: String = "role";
-    const val COL_CITY_TEMPORARYWORKER: String = "CITY";
+    const val COL_CITY_TEMPORARYWORKER: String = "city";
     const val COL_BIRTHDAY_TEMPORARYWORKER: String = "birthday";
     const val COL_NATIONALITY_TEMPORARYWORKER: String = "nationality";
     const val COL_COMMENTARY_TEMPORARYWORKER: String = "comment";
@@ -55,7 +54,6 @@ object Requetes {
             "$COL_EMAIL_TEMPORARYWORKER TEXT," +
             "$COL_PASSWORD_TEMPORARYWORKER TEXT," +
             "$COL_PHONE_TEMPORARYWORKER TEXT," +
-            "$COL_ROLE_TEMPORARYWORKER TEXT," +
             "$COL_CITY_TEMPORARYWORKER TEXT," +
             "$COL_BIRTHDAY_TEMPORARYWORKER TEXT," +
             "$COL_NATIONALITY_TEMPORARYWORKER TEXT," +
@@ -64,6 +62,44 @@ object Requetes {
 
     const val DROP_TABLE_TEMPORARYWORKERS: String = "DROP TABLE IF EXISTS $TABLE_TEMPORARYWORKERS;";
     const val SELECT_ALL_TEMPORARYWORKERS: String = "SELECT * FROM $TABLE_TEMPORARYWORKERS;";
+
+
+    const val TABLE_EMLPLOYERS: String = "TemporaryWorkers";
+    const val COL_ID_EMLPLOYER: String = "id";
+    const val COL_NAME_EMLPLOYER: String = "name";
+    const val COL_SERVICE_EMLPLOYER: String = "service";
+    const val COL_SUBSERVICE_EMLPLOYER: String = "subService";
+    const val COL_SIRET_EMLPLOYER: String = "SIRET";
+    const val COL_CONTACT_EMLPLOYER: String = "contact";
+    const val COL_SUBCONTACT_EMLPLOYER: String = "subContact";
+    const val COL_EMAIL_EMLPLOYER: String = "email";
+    const val COL_SUBEMAIL_EMLPLOYER: String = "secondEmail";
+    const val COL_PHONE_EMLPLOYER: String = "phone";
+    const val COL_SUBPHONE_EMLPLOYER: String = "subPhone";
+    const val COL_ADDRESS_EMLPLOYER: String = "address";
+    const val COL_PASSWORD_EMLPLOYER: String = "password";
+    const val COL_COMMENTARY_EMLPLOYER: String = "commentary";
+
+    const val CREATE_TABLE_EMPLOYER: String = "CREATE TABLE $TABLE_EMLPLOYERS (" +
+            "$COL_ID_EMLPLOYER INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "$COL_NAME_EMLPLOYER TEXT," +
+            "$COL_SERVICE_EMLPLOYER TEXT," +
+            "$COL_SUBSERVICE_EMLPLOYER TEXT," +
+            "$COL_SIRET_EMLPLOYER TEXT," +
+            "$COL_CONTACT_EMLPLOYER TEXT," +
+            "$COL_SUBCONTACT_EMLPLOYER TEXT," +
+            "$COL_EMAIL_EMLPLOYER TEXT," +
+            "$COL_SUBEMAIL_EMLPLOYER TEXT," +
+            "$COL_PHONE_EMLPLOYER TEXT," +
+            "$COL_SUBPHONE_EMLPLOYER TEXT" +
+            "$COL_ADDRESS_EMLPLOYER TEXT" +
+            "$COL_PASSWORD_EMLPLOYER TEXT" +
+            "$COL_COMMENTARY_EMLPLOYER TEXT" +
+            ");";
+
+    const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMLPLOYERS;";
+    const val SELECT_ALL_EMPLOYERS: String = "SELECT * FROM $TABLE_EMLPLOYERS;";
+
 
 
     const val TABLE_CANDIDATURE: String = "candidatures";

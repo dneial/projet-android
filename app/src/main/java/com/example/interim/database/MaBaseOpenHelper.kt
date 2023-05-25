@@ -25,6 +25,7 @@ null,
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
         db?.execSQL(Requetes.CREATE_TABLE_TEMPORARYWORKER)
+        db?.execSQL(Requetes.CREATE_TABLE_EMPLOYER)
         db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE_ENREGISTREE)
 
@@ -71,10 +72,10 @@ null,
         values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, "admin@admin.com")
         values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, "admin")
         values.put(Requetes.COL_PHONE_TEMPORARYWORKER, "0000000000")
-        values.put(Requetes.COL_ROLE_TEMPORARYWORKER, "admin")
         values.put(Requetes.COL_CITY_TEMPORARYWORKER, "Montpellier")
         values.put(Requetes.COL_BIRTHDAY_TEMPORARYWORKER, "France")
         values.put(Requetes.COL_NATIONALITY_TEMPORARYWORKER, "2000-01-01")
+        values.put(Requetes.COL_COMMENTARY_TEMPORARYWORKER, "vide")
         db?.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
 
     }

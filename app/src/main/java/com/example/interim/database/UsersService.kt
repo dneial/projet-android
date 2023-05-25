@@ -3,6 +3,7 @@ package com.example.interim.database
 import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
+import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 
 class UsersService() {
@@ -19,16 +20,53 @@ class UsersService() {
                 "${Requetes.COL_PHONE_TEMPORARYWORKER}, " +
                 "${Requetes.COL_BIRTHDAY_TEMPORARYWORKER}, " +
                 "${Requetes.COL_NATIONALITY_TEMPORARYWORKER}," +
-                "${Requetes.COL_CITY_TEMPORARYWORKER}" +
+                "${Requetes.COL_CITY_TEMPORARYWORKER}," +
+                "${Requetes.COL_COMMENTARY_TEMPORARYWORKER}" +
                 ") VALUES (" +
-                "'${temporaryWorker.lastName}', " +
-                "'${temporaryWorker.firstName}', " +
-                "'${temporaryWorker.email}', " +
-                "'${temporaryWorker.password}', " +
-                "'${temporaryWorker.phone}', " +
-                "'${temporaryWorker.birthday}'" +
-                "'${temporaryWorker.nationality}'" +
-                "'${temporaryWorker.city}'" +
+                "'${temporaryWorker.getLastName()}', " +
+                "'${temporaryWorker.getFirstName()}', " +
+                "'${temporaryWorker.getEmail()}', " +
+                "'${temporaryWorker.getPassword()}', " +
+                "'${temporaryWorker.getPhone()}', " +
+                "'${temporaryWorker.getBirthday()}'" +
+                "'${temporaryWorker.getNationality()}'" +
+                "'${temporaryWorker.getCity()}'" +
+                "'${temporaryWorker.getCommentary()}'" +
+                ");";
+
+        db.execSQL(query)
+    }
+
+    fun create(employer: Employer){
+        Log.d("create", "create: $employer")
+        val query = "INSERT INTO ${Requetes.TABLE_EMLPLOYERS} (" +
+                "${Requetes.COL_NAME_EMLPLOYER}, " +
+                "${Requetes.COL_SERVICE_EMLPLOYER}, " +
+                "${Requetes.COL_SUBSERVICE_EMLPLOYER}, " +
+                "${Requetes.COL_SIRET_EMLPLOYER}, " +
+                "${Requetes.COL_CONTACT_EMLPLOYER}, " +
+                "${Requetes.COL_SUBCONTACT_EMLPLOYER}, " +
+                "${Requetes.COL_EMAIL_EMLPLOYER}," +
+                "${Requetes.COL_SUBEMAIL_EMLPLOYER}," +
+                "${Requetes.COL_PHONE_EMLPLOYER}" +
+                "${Requetes.COL_SUBPHONE_EMLPLOYER}," +
+                "${Requetes.COL_ADDRESS_EMLPLOYER}," +
+                "${Requetes.COL_PASSWORD_EMLPLOYER}" +
+                "${Requetes.COL_COMMENTARY_EMLPLOYER}" +
+                ") VALUES (" +
+                "'${employer.getName()}', " +
+                "'${employer.getService()}', " +
+                "'${employer.getSubService()}', " +
+                "'${employer.getSIRET()}', " +
+                "'${employer.getContact()}', " +
+                "'${employer.getSubContact()}'" +
+                "'${employer.getEmail()}'" +
+                "'${employer.getSubEmail()}'" +
+                "'${employer.getPhone()}'" +
+                "'${employer.getSubPhone()}'" +
+                "'${employer.getAddress()}'" +
+                "'${employer.getPassword()}'" +
+                "'${employer.getCommentary()}'" +
                 ");";
 
         db.execSQL(query)
@@ -50,7 +88,6 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_ROLE_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_CITY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndex(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
@@ -76,7 +113,6 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ROLE_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
@@ -101,7 +137,6 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ROLE_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))

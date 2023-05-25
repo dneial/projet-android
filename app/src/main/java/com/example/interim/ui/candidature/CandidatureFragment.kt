@@ -44,13 +44,13 @@ class CandidatureFragment: Fragment() {
         val user: TemporaryWorker? = UsersService().getTemporaryWorker(user_id!!)
 
         if(user != null) {
-            view?.findViewById<EditText>(R.id.candidature_prenom_edit)?.setText(user.firstName)
-            view?.findViewById<EditText>(R.id.candidature_nom_edit)?.setText(user.lastName)
-            view?.findViewById<EditText>(R.id.candidature_email_edit)?.setText(user.email)
-            view?.findViewById<EditText>(R.id.candidature_phone_edit)?.setText(user.phone)
-            view?.findViewById<EditText>(R.id.candidature_ville_edit)?.setText(user.city)
-            view?.findViewById<EditText>(R.id.candidature_nationality_edit)?.setText(user.nationality)
-            view?.findViewById<EditText>(R.id.candidature_anniversaire_edit)?.setText(user.birthday)
+            view?.findViewById<EditText>(R.id.candidature_prenom_edit)?.setText(user.getFirstName())
+            view?.findViewById<EditText>(R.id.candidature_nom_edit)?.setText(user.getLastName())
+            view?.findViewById<EditText>(R.id.candidature_email_edit)?.setText(user.getEmail())
+            view?.findViewById<EditText>(R.id.candidature_phone_edit)?.setText(user.getPhone())
+            view?.findViewById<EditText>(R.id.candidature_ville_edit)?.setText(user.getCity())
+            view?.findViewById<EditText>(R.id.candidature_nationality_edit)?.setText(user.getNationality())
+            view?.findViewById<EditText>(R.id.candidature_anniversaire_edit)?.setText(user.getBirthday())
         }
     }
 
