@@ -41,6 +41,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
         val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
         val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
+        val commentary = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCommentary)
 
         if (checkSignUpInterim(view)){
             val user = Bundle()
@@ -53,6 +54,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             user.putString("birthday", birthday.text.toString())
             user.putString("city", city.text.toString())
             user.putString("nationality", nationality.text.toString())
+            user.putString("commentary", commentary.text.toString())
 
             SignUpAuthentification().arguments = user
 

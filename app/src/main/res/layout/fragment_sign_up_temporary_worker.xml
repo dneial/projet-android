@@ -163,12 +163,33 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewCommentary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/interimSignUpEditTextCity"
+            android:text="@string/tv_commentary"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/interimSignUpEditTextCommentary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/interimSignUpTextViewCommentary"
+            android:hint="@string/et_commentary"
+            android:inputType="textMultiLine"
+            android:maxLength="250"
+            android:maxLines="5"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
             android:id="@+id/interimSignUpTextViewCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_CV"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextCity"
+            android:layout_below="@+id/interimSignUpEditTextCommentary"
             android:layout_marginTop="8dp"/>
 
         <Button

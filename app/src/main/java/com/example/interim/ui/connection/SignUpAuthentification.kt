@@ -28,40 +28,45 @@ class SignUpAuthentification : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
 
         var user : User? = null
-        var email : String = ""
-        var phone : String = ""
+        var email = ""
+        var phone = ""
         var role : String? = arguments?.getString("type")
 
         if (role == "TemporaryWorker") {
             val lastName = arguments?.getString("lastName")
             val firstName = arguments?.getString("firstName")
-            val email = arguments?.getString("email")
+            email = arguments?.getString("email").toString()
             val password = arguments?.getString("password")
-            val phone = arguments?.getString("phone")
+            phone = arguments?.getString("phone").toString()
             val birthday = arguments?.getString("birthday")
+            val nationality = arguments?.getString("nationality")
+            val city = arguments?.getString("city")
+            val commentary = arguments?.getString("commentary")
 
-            user = TemporaryWorker(0, lastName!!, firstName!!, email!!, password!!, phone!!, birthday!!)
+            user = TemporaryWorker(0, firstName!!, lastName!!, email!!, password!!,
+                phone!!, birthday!!, nationality!!, city!!, commentary!!)
         }
 
         val code = generateRandomCode(6)
         Log.d("code", code)
         if (email != ""){
             sendMail(code, email)
-        } else { sendMessage(code, email) }
+        } else { sendMessage(code, phone) }
 
         view.findViewById<Button>(R.id.authSignUpButtonCancel).setOnClickListener {
             //Go page accueil
         }
         view.findViewById<Button>(R.id.authSignUpButtonConfirm).setOnClickListener {
             if (view.findViewById<EditText>(R.id.authSignUpEditTextCode).text.toString() == code){
-                UsersService().create(user as TemporaryWorker)
+                if (role == "TemporaryWorker")
+                    UsersService().create(user as TemporaryWorker)
                 //Go page accueil
             }
         }
         view.findViewById<Button>(R.id.authSignUpButtonResend).setOnClickListener {
             if (email != ""){
                 sendMail(code, email)
-            } else { sendMessage(code, email) }
+            } else { sendMessage(code, phone) }
             it.isClickable = false
         }
 

@@ -87,4 +87,6 @@
     <string name="tv_must_fill2">Les champs avec "*" doivent obligatoirement être rempli.</string>
     <string name="tv_send_auth">Pour renvoyer le mail/texto appuyer sur le boutton ci-dessous</string>
     <string name="tv_auth_code">Entrer le code reçu par mail</string>
+    <string name="tv_commentary">Commentaire</string>
+    <string name="et_commentary">Entrez votre commentaire</string>
 </resources>
