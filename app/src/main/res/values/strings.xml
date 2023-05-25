@@ -94,4 +94,8 @@
     <string name="candidatures">Candidatures</string>
     <string name="offres">Offres</string>
     <string name="tabs">tabs</string>
+    <string name="date_label">"Fait le "</string>
+    <string name="etat_label">"Status: "</string>
+    <string name="title_candidature_detail">Candidature</string>
+    <string name="dashboard_search_label">Rechercher</string>
 </resources>

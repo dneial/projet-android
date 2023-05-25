@@ -35,19 +35,24 @@ class HomeFragment : Fragment() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Log.d("tab", tab?.position.toString())
                 viewPager.currentItem = tab?.position!!
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                Log.d("tab", tab?.position.toString())
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                Log.d("tab", tab?.position.toString())
             }
         })
 
+
+        viewPager.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    tabLayout.selectTab(tabLayout.getTabAt(position))
+                }
+            }
+        )
 
         return view
 

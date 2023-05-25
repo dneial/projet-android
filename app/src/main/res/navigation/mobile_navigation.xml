@@ -9,7 +9,14 @@
         android:id="@+id/navigation_home"
         android:name="com.example.interim.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home_user" />
+        tools:layout="@layout/fragment_home_user" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_offres"
+            app:destination="@id/navigation_offres" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_candidature_detail"
+            app:destination="@id/navigation_candidature_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -56,7 +63,10 @@
         android:label="Créer une offre"
         tools:layout="@layout/offre_form">
 
-        </fragment>
+        <action
+            android:id="@+id/action_navigation_create_offre_to_navigation_offres"
+            app:destination="@id/navigation_offres" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_compte"
@@ -66,7 +76,7 @@
 
     <fragment
         android:id="@+id/navigation_candidature"
-        android:name="com.example.interim.ui.candidature.CandidatureFragment"
+        android:name="com.example.interim.ui.candidature.CandidatureFormFragment"
         android:label="@string/title_candidature"
         tools:layout="@layout/fragment_candidature_form" >
         <argument
@@ -103,6 +113,19 @@
             android:id="@+id/action_navigation_inapp_inscription_to_navigation_offres"
             app:destination="@id/navigation_offres" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_candidature_detail"
+        android:name="com.example.interim.ui.candidature.CandidatureFragment"
+        android:label="@string/title_candidature_detail"
+        tools:layout="@layout/fragment_candidature" >
+        <argument
+            android:name="candidature_id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+
 
 
 </navigation>
