@@ -14,7 +14,6 @@ class Offre(
     var ville: String? = ""
 ): Parcelable {
 
-
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),

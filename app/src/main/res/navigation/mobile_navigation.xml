@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.interim.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home_user" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -68,11 +68,17 @@
         android:id="@+id/navigation_candidature"
         android:name="com.example.interim.ui.candidature.CandidatureFragment"
         android:label="@string/title_candidature"
-        tools:layout="@layout/fragment_candidature" >
+        tools:layout="@layout/fragment_candidature_form" >
         <argument
             android:name="offre_id"
             app:argType="long"
             android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_navigation_candidature_to_navigation_offres"
+            app:destination="@id/navigation_offres" />
+        <action
+            android:id="@+id/action_navigation_candidature_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment

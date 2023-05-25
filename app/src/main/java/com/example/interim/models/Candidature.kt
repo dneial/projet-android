@@ -1,6 +1,7 @@
 package com.example.interim.models
 
 import android.content.ContentValues
+import com.example.interim.database.Requetes
 
 class Candidature (
     var id: Long,
@@ -21,19 +22,24 @@ class Candidature (
 
     fun toContentValues(): ContentValues {
         val values = ContentValues()
-        values.put("id_offre", id_offre)
-        values.put("id_user", id_candidat)
-        values.put("status", status)
-        values.put("date", date)
+        values.put(Requetes.COL_ID_OFFRE_CANDIDATURE, id_offre)
+        values.put(Requetes.COL_ID_TEMPORARYWORKER_CANDIDATURE, id_candidat)
+        values.put(Requetes.COL_STATUS_CANDIDATURE, status)
+        values.put(Requetes.COL_DATE_CANDIDATURE, date)
         return values
     }
 
-    data class CandidatureView (
+    data class CandidatureUserView (
         val id: Long,
         val offre_titre: String,
         val date: String,
         val status: String
-    ) {
+    )
 
-    }
+    data class CandidatureEmployerView (
+        val id: Long,
+        val candidat_name: String,
+        val date: String,
+        val status: String
+        )
 }

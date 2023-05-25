@@ -24,8 +24,9 @@ null,
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
-        db?.execSQL(Requetes.CREATE_TABLE_USERS)
+        db?.execSQL(Requetes.CREATE_TABLE_TEMPORARYWORKER)
         db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
+        db?.execSQL(Requetes.CREATE_TABLE_OFFRE_ENREGISTREE)
 
         create_default_offres(db)
         create_default_user(db)
@@ -39,7 +40,7 @@ null,
         values.put(Requetes.COL_DATE_DEBUT, "2023-06-01")
         values.put(Requetes.COL_DATE_FIN, "2023-12-31")
         values.put(Requetes.COL_REMUNERATION, 50000)
-        values.put(Requetes.COL_VILLE, "Montpellier")
+        values.put(Requetes.COL_CITY, "Montpellier")
         db?.insert(Requetes.TABLE_OFFRE, null, values)
 
         values.clear()
@@ -49,7 +50,7 @@ null,
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
         values.put(Requetes.COL_DATE_FIN, "2024-06-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
-        values.put(Requetes.COL_VILLE, "Montpellier")
+        values.put(Requetes.COL_CITY, "Montpellier")
         db?.insert(Requetes.TABLE_OFFRE, null, values)
 
         values.clear()
@@ -59,27 +60,27 @@ null,
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
         values.put(Requetes.COL_DATE_FIN, "2024-06-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
-        values.put(Requetes.COL_VILLE, "Paris")
+        values.put(Requetes.COL_CITY, "Paris")
         db?.insert(Requetes.TABLE_OFFRE, null, values)
     }
 
     private fun create_default_user(db: SQLiteDatabase?){
         val values = ContentValues()
-        values.put(Requetes.COL_NAME_USER, "admin")
-        values.put(Requetes.COL_LASTNAME_USER, "admin")
-        values.put(Requetes.COL_EMAIL_USER, "admin@admin.com")
-        values.put(Requetes.COL_PASSWORD_USER, "admin")
-        values.put(Requetes.COL_PHONE_USER, "0000000000")
-        values.put(Requetes.COL_ROLE_USER, "admin")
-        values.put(Requetes.COL_VILLE_USER, "Montpellier")
-        values.put(Requetes.COL_NATIONALITY_USER, "France")
-        values.put(Requetes.COL_BIRTHDAY_USER, "2000-01-01")
-        db?.insert(Requetes.TABLE_USERS, null, values)
+        values.put(Requetes.COL_NAME_TEMPORARYWORKER, "admin")
+        values.put(Requetes.COL_LASTNAME_TEMPORARYWORKER, "admin")
+        values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, "admin@admin.com")
+        values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, "admin")
+        values.put(Requetes.COL_PHONE_TEMPORARYWORKER, "0000000000")
+        values.put(Requetes.COL_ROLE_TEMPORARYWORKER, "admin")
+        values.put(Requetes.COL_CITY_TEMPORARYWORKER, "Montpellier")
+        values.put(Requetes.COL_BIRTHDAY_TEMPORARYWORKER, "France")
+        values.put(Requetes.COL_NATIONALITY_TEMPORARYWORKER, "2000-01-01")
+        db?.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
 
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
-        db?.execSQL(Requetes.DROP_TABLE_USERS);
+        db?.execSQL(Requetes.TABLE_TEMPORARYWORKERS);
         db?.execSQL(Requetes.DROP_TABLE_CANDIDATURE);
         onCreate(db);
     }

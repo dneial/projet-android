@@ -17,12 +17,12 @@ class UsersService() {
                 "${Requetes.COL_EMAIL_TEMPORARYWORKER}, " +
                 "${Requetes.COL_PASSWORD_TEMPORARYWORKER}, " +
                 "${Requetes.COL_PHONE_TEMPORARYWORKER}, " +
-                "${Requetes.COL_BIRTHDAY_TEMPORARYWORKER}" +
-                "${Requetes.COL_NATIONALITY_TEMPORARYWORKER}" +
+                "${Requetes.COL_BIRTHDAY_TEMPORARYWORKER}, " +
+                "${Requetes.COL_NATIONALITY_TEMPORARYWORKER}," +
                 "${Requetes.COL_CITY_TEMPORARYWORKER}" +
                 ") VALUES (" +
-                "'${temporaryWorker.firstName}', " +
                 "'${temporaryWorker.lastName}', " +
+                "'${temporaryWorker.firstName}', " +
                 "'${temporaryWorker.email}', " +
                 "'${temporaryWorker.password}', " +
                 "'${temporaryWorker.phone}', " +
@@ -112,5 +112,6 @@ class UsersService() {
 
         return temporaryWorkers;
     }
+
 
 }

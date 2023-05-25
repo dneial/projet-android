@@ -17,6 +17,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
+import com.example.interim.database.OffreService
 import com.example.interim.databinding.FragmentOffreBinding
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
@@ -87,7 +88,12 @@ class OffreFragment : Fragment() {
     }
 
     private fun enregistrer_offre(offre: Offre) {
-        TODO("Not yet implemented")
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
+        val user_id = sharedPref?.getLong("user_id", -1)
+        OffreService().enregistrer(user_id!!, offre.id).toString()
+
+
+
     }
 
     private fun bind_offre(root: View, offre: Offre) {

@@ -68,13 +68,6 @@ class DashboardFragment : Fragment() {
 
         val user_id = sharedPref.getLong("user_id", -1)
         var role = ""
-        if(user_id != -1L){
-            role = UsersService().getRole(user_id)
-        }
-        if(role != "employeur")
-            button.visibility = View.GONE
-        else
-            button.visibility = View.VISIBLE
 
 
 
@@ -96,14 +89,6 @@ class DashboardFragment : Fragment() {
 
         if(user_id == -1L){
             Toast.makeText(requireContext(), "Veuillez vous connecter", Toast.LENGTH_SHORT).show()
-            return false
-        }
-
-        val role = user_id?.let { UsersService().getRole(it) }
-        Log.d("role", role.toString())
-
-        if(role != "employeur"){
-            Toast.makeText(requireContext(), "Vous n'avez pas le droit de créér une offre'", Toast.LENGTH_SHORT).show()
             return false
         }
 

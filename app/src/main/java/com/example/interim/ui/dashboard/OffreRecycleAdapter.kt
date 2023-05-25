@@ -17,6 +17,7 @@ import com.example.interim.models.Offre
 class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapter<OffreRecycleAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         val cardView: CardView = view.findViewById(R.id.card_view)
         val nameView: TextView = view.findViewById(R.id.titre)
         val metierView: TextView = view.findViewById(R.id.metier)
