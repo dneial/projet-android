@@ -25,7 +25,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_sign_up_temporary_worker, container, false)
 
-        val button = view.findViewById<View>(R.id.interimSignUpButton) as Button
+        val button = view.findViewById<Button>(R.id.interimSignUpButton)
 
         button.setOnClickListener { signUpInterim(view) }
 
@@ -67,7 +67,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
     }
 
     private fun checkSignUpInterim(view: View) : Boolean{
-        var authentification : Boolean = true
+        var correct : Boolean = true
         val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
         val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
         val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
@@ -80,9 +80,9 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
         if (firstName.text.toString() == "" ){
             firstName.setBackgroundResource(R.drawable.outline_warning)
-            authentification = false
+            correct = false
         } else if (!pattern.matcher(firstName.text.toString()).matches()){
-            authentification = false
+            correct = false
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         } else {
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
@@ -90,17 +90,17 @@ class SignUpTemporaryWorkerFragment : Fragment() {
 
         if (lastName.text.toString() == ""){
             lastName.setBackgroundResource(R.drawable.outline_warning)
-            authentification = false
+            correct = false
         } else if (!pattern.matcher(lastName.text.toString()).matches()){
             lastName.setBackgroundResource(R.drawable.outline_warning)
-            authentification = false
+            correct = false
         } else {
             lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (password.text.toString() == ""){
             password.setBackgroundResource(R.drawable.outline_warning)
-            authentification = false
+            correct = false
         } else {
             password.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
@@ -121,26 +121,26 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             email.setBackgroundResource(R.drawable.outline_warning)
             phone.setBackgroundResource(R.drawable.outline_warning)
             Log.d("password/email false", email.background.toString() + phone.background.toString())
-            authentification = false
+            correct = false
         } else {
             pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
             if (email.text.toString() != "" && !pattern.matcher(email.text.toString()).matches()){
                 email.setBackgroundResource(R.drawable.outline_warning)
-                authentification = false
+                correct = false
             } else { email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
             if (phone.text.toString() != "" && phone.text.toString().length != 10){
                 phone.setBackgroundResource(R.drawable.outline_warning)
-                authentification = false
+                correct = false
             }else { phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
         }
 
         pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
         if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
             birthday.setBackgroundResource(R.drawable.outline_warning)
-            authentification = false
+            correct = false
         } else { birthday.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        return authentification
+        return correct
     }
 }

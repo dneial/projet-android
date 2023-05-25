@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.interim.R
 import com.example.interim.database.UsersService
+import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.User
 import kotlin.random.Random
@@ -27,31 +28,14 @@ class SignUpAuthentification : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
 
-        var user : User? = null
-        var email = ""
-        var phone = ""
-        var role : String? = arguments?.getString("type")
+        var user = generateUser()
+        val role = arguments?.getString("type")
 
-        if (role == "TemporaryWorker") {
-            val lastName = arguments?.getString("lastName")
-            val firstName = arguments?.getString("firstName")
-            email = arguments?.getString("email").toString()
-            val password = arguments?.getString("password")
-            phone = arguments?.getString("phone").toString()
-            val birthday = arguments?.getString("birthday")
-            val nationality = arguments?.getString("nationality")
-            val city = arguments?.getString("city")
-            val commentary = arguments?.getString("commentary")
-
-            user = TemporaryWorker(0, firstName!!, lastName!!, email!!, password!!,
-                phone!!, birthday!!, nationality!!, city!!, commentary!!)
-        }
-
-        val code = generateRandomCode(6)
+        var code = generateRandomCode(6)
         Log.d("code", code)
-        if (email != ""){
-            sendMail(code, email)
-        } else { sendMessage(code, phone) }
+        if (user?.getEmail() != ""){
+            sendMail(code, user!!.getEmail())
+        } else { sendMessage(code, user!!.getPhone()) }
 
         view.findViewById<Button>(R.id.authSignUpButtonCancel).setOnClickListener {
             //Go page accueil
@@ -64,16 +48,52 @@ class SignUpAuthentification : Fragment() {
             }
         }
         view.findViewById<Button>(R.id.authSignUpButtonResend).setOnClickListener {
-            if (email != ""){
-                sendMail(code, email)
-            } else { sendMessage(code, phone) }
-            it.isClickable = false
+            code = generateRandomCode(6)
+            Log.d("code", code)
+            if (user?.getEmail() != ""){
+                sendMail(code, user!!.getEmail())
+            } else { sendMessage(code, user!!.getPhone()) }
         }
 
         return view
     }
 
-    fun generateRandomCode(codeLength : Int): String {
+    private fun generateUser(): User {
+        val user: User
+        if (arguments?.getString("type") == "TemporaryWorker") {
+            val lastName = arguments?.getString("lastName")
+            val firstName = arguments?.getString("firstName")
+            val email = arguments?.getString("email").toString()
+            val password = arguments?.getString("password")
+            val phone = arguments?.getString("phone").toString()
+            val birthday = arguments?.getString("birthday")
+            val nationality = arguments?.getString("nationality")
+            val city = arguments?.getString("city")
+            val commentary = arguments?.getString("commentary")
+
+            user = TemporaryWorker(0, firstName!!, lastName!!, email!!, password!!,
+                phone!!, birthday!!, nationality!!, city!!, commentary!!)
+        } else {
+            val name = arguments?.getString("name")
+            val service = arguments?.getString("service")
+            val subService = arguments?.getString("subService").toString()
+            val SIRET = arguments?.getString("SIRET")
+            val contact = arguments?.getString("contact").toString()
+            val subContact = arguments?.getString("subContact")
+            val email = arguments?.getString("email")
+            val secondEmail = arguments?.getString("secondEmail")
+            val phone = arguments?.getString("phone")
+            val subPhone= arguments?.getString("subPhone")
+            val address = arguments?.getString("address")
+            val commentary = arguments?.getString("commentary")
+            val password = arguments?.getString("password")
+            user = Employer(0, name!!, service!!, subService!!, SIRET!!, contact!!, subContact!!,
+                email!!, secondEmail!!, phone!!, subPhone!!, address!!, commentary!!, password!!)
+        }
+        return user!!
+    }
+
+    private fun generateRandomCode(codeLength : Int): String {
         val stringBuilder = StringBuilder()
 
         repeat(codeLength) {

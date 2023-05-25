@@ -208,10 +208,30 @@
             android:importantForAutofill="no" />
 
         <TextView
-            android:id="@+id/employerSignUpTextViewAddress"
+            android:id="@+id/employerSignUpTextViewCommentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/employerSignUpEditTextPhone2"
+            android:text="@string/tv_commentary"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/employerSignUpEditTextCommentary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/employerSignUpTextViewCommentary"
+            android:inputType="textMultiLine"
+            android:maxLength="250"
+            android:maxLines="5"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/employerSignUpTextViewAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employerSignUpEditTextCommentary"
             android:text="@string/tv_address"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -244,7 +264,7 @@
             android:importantForAutofill="no" />
 
         <Button
-            android:id="@+id/employerSignUpbutton"
+            android:id="@+id/employerSignUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/employerSignUpEditTextPassword"

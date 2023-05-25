@@ -11,4 +11,12 @@ class TemporaryWorker(
     var nationality: String = "",
     var city: String = "",
     var commentary: String = ""
-) : User()
+) : User() {
+    override fun getEmail(): String {
+        return this.email
+    }
+
+    override fun getPhone(): String {
+        return this.phone
+    }
+}
