@@ -77,7 +77,7 @@ class CandidatureFormFragment: Fragment() {
             offre!!,
             user!!,
             dateFormated,
-            "En cours"
+            "En attente"
         )
 
         candidature = CandidatureService().create(candidature)

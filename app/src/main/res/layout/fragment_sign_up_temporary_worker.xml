@@ -193,7 +193,7 @@
             android:layout_marginTop="8dp"/>
 
         <Button
-            android:id="@+id/interimSignUpButtonUploadCV"
+            android:id="@+id/interim_btn_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/interimSignUpTextViewCV"
@@ -203,7 +203,7 @@
             android:id="@+id/interimSignUpTextViewPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/interimSignUpButtonUploadCV"
+            android:layout_below="@+id/interim_btn_cv"
             android:text="@string/tv_password"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>

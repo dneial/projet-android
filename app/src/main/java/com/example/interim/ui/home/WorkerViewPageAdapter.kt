@@ -1,12 +1,9 @@
 package com.example.interim.ui.home
 
-import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class MyViewPageAdapter(fragment: Fragment) :
+class WorkerViewPageAdapter(fragment: Fragment) :
     FragmentStateAdapter(fragment) {
 
     companion object {

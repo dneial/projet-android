@@ -52,9 +52,7 @@
         <action
             android:id="@+id/action_navigation_offres_to_navigation_candidature"
             app:destination="@id/navigation_candidature" />
-        <action
-            android:id="@+id/action_navigation_offres_to_navigation_inapp_connection"
-            app:destination="@id/navigation_inapp_connection" />
+
     </fragment>
 
     <fragment
@@ -91,28 +89,6 @@
             app:destination="@id/navigation_home" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_inapp_connection"
-        android:name="com.example.interim.ui.connection.InAppConnectionFragment"
-        android:label="@string/title_inapp_connection"
-        tools:layout="@layout/popup_login" >
-        <action
-            android:id="@+id/action_navigation_inapp_connection_to_navigation_inapp_inscription"
-            app:destination="@id/navigation_inapp_inscription" />
-        <action
-            android:id="@+id/action_navigation_inapp_connection_to_navigation_offres"
-            app:destination="@id/navigation_offres" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_inapp_inscription"
-        android:name="com.example.interim.ui.connection.InAppInscriptionFragment"
-        android:label="@string/title_inapp_inscription"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_navigation_inapp_inscription_to_navigation_offres"
-            app:destination="@id/navigation_offres" />
-    </fragment>
 
     <fragment
         android:id="@+id/navigation_candidature_detail"

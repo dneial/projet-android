@@ -14,6 +14,7 @@ import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.services.UsersService
 import com.example.interim.models.TemporaryWorker
+import com.example.interim.models.User
 
 class ConnectionFragment: Fragment() {
 
@@ -61,9 +62,10 @@ class ConnectionFragment: Fragment() {
         if(email == "" || password == "") {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
-            val temporaryWorker: TemporaryWorker? = usersService.signIn(email, password)
-            if(temporaryWorker != null){
-                saveSession(temporaryWorker)
+            val user: User? = usersService.signIn(email, password)
+            Log.d("ConnectionFragment", user.toString())
+            if(user != null){
+                saveSession(user)
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -71,13 +73,14 @@ class ConnectionFragment: Fragment() {
         }
     }
 
-    private fun saveSession(temporaryWorker: TemporaryWorker){
+    private fun saveSession(user: User){
 
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
         val expirationTime = System.currentTimeMillis() + 864000000
 
         with (sharedPref.edit()) {
-            putLong("user_id", temporaryWorker.getId())
+            putLong("user_id", user.getId())
+            putString("user_role", user.getRole())
             putLong("expirationTime", expirationTime)
             commit()
         }
