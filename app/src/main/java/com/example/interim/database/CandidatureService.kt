@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
+import com.example.interim.services.UsersService
 
 class CandidatureService {
     var db: SQLiteDatabase = DataBase.db

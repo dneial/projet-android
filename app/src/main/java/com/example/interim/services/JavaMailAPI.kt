@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.widget.Toast
-import com.example.interim.ui.connection.SignUpAuthentification
 import java.util.Properties
 import javax.mail.Authenticator
 import javax.mail.Message

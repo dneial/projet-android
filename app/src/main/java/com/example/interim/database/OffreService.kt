@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.models.Offre
+import com.example.interim.services.UsersService
 
 class OffreService() {
 

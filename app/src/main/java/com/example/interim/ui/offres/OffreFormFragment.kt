@@ -10,9 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.OffreService
-import com.example.interim.database.UsersService
 import com.example.interim.models.Offre
-import com.example.interim.models.User
+import com.example.interim.services.UsersService
 
 class OffreFormFragment: Fragment(), View.OnClickListener {
 
