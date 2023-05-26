@@ -21,7 +21,7 @@ class Employer(
         return email
     }
 
-     fun setEmail(email: String) {
+    fun setEmail(email: String) {
         this.email = email
     }
 
@@ -29,7 +29,7 @@ class Employer(
         return phone
     }
 
-     fun setPhone(phone: String) {
+    fun setPhone(phone: String) {
         this.phone = phone
     }
 
