@@ -7,6 +7,7 @@ import com.example.interim.database.DataBase
 import com.example.interim.database.Requetes
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
+import com.example.interim.models.User
 
 class UsersService() {
 
@@ -25,33 +26,57 @@ class UsersService() {
     }
 
     @SuppressLint("Range")
-    fun signIn(email: String, password: String): TemporaryWorker? {
-        val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE " +
-                "${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
+    fun signIn(email: String, password: String): User? {
+        var query = "SELECT * " +
+                "FROM ${Requetes.TABLE_TEMPORARYWORKERS} "+
+                " WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
                 "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
 
         val selectionArgs = arrayOf(email, password)
-        val cursor = db.rawQuery(query, selectionArgs)
-        var temporaryWorker: TemporaryWorker? = null
+        var cursor = db.rawQuery(query, selectionArgs)
+        var user : User? = null
 
         if(cursor.moveToFirst()){
-            temporaryWorker = TemporaryWorker(
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
+            user = TemporaryWorker(
+                cursor.getLong(cursor.getColumnIndex(Requetes.COL_ID_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_NAME_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_PHONE_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_CITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndex(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
             )
             cursor.close()
+        }else{
+            query = "SELECT * " +
+                    "FROM ${Requetes.TABLE_EMPLOYER} "+
+                    " WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND " +
+                    "${Requetes.COL_PASSWORD_EMPLOYER} = ?"
+
+            cursor = db.rawQuery(query, selectionArgs)
+            if(cursor.moveToFirst()){
+                user = Employer(
+                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
+                )
+                cursor.close()
+            }
         }
-
-        return temporaryWorker
-
+        return user
     }
 
     @SuppressLint("Range")
@@ -131,6 +156,7 @@ class UsersService() {
         cursor.close()
         return employer
     }
+
 
 
 }

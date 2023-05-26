@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/search_bar">
+
+    <!-- Search Bar -->
+    <include layout="@layout/search_bar"/>
+
+    <TextView
+        android:id="@+id/advancedFiltersTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Advanced Filters"
+        android:textStyle="bold"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/advancedFiltersLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Advanced Filters -->
+            <include layout="@layout/advanced_filters" />
+
+            <!-- Add a button to trigger advanced search -->
+            <Button
+                android:id="@+id/advancedSearchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply Filters" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+

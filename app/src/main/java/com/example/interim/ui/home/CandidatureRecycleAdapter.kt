@@ -23,7 +23,6 @@ class CandidatureRecycleAdapter(private val values: List<Candidature>) : Recycle
         val cardView: CardView = view.findViewById(R.id.candidature_card_view)
 
         fun bind(item: Candidature) {
-            Log.d("CandidatureRecycleAdapter", "bind: ${item.id}")
             cardView.id = item.id.toInt()
             cardView.findViewById<TextView>(R.id.titre).text = item.offre.title
             cardView.findViewById<TextView>(R.id.date).text = item.date
@@ -48,7 +47,6 @@ class CandidatureRecycleAdapter(private val values: List<Candidature>) : Recycle
         holder.bind(values[position])
         holder.cardView.setOnClickListener {
             val candidatureId = it.id
-
             it.findNavController().navigate(
                 R.id.action_navigation_home_to_navigation_candidature_detail,
 

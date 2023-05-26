@@ -2,18 +2,18 @@ package com.example.interim.ui.home
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.interim.R
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {
 
-    private lateinit var adapter: MyViewPageAdapter
+    private lateinit var adapter: FragmentStateAdapter
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -24,13 +24,19 @@ class HomeFragment : Fragment() {
     ): View {
 
         val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)!!
+        val user_role = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getString("user_role", "worker")!!
 
 
         val view = inflater.inflate(R.layout.fragment_home_tabs, container, false)
 
         tabLayout = view.findViewById(R.id.home_tabs)
         viewPager = view.findViewById(R.id.home_view_pager)
-        adapter = MyViewPageAdapter(fragment = this)
+
+        adapter = if(user_role == "worker")
+            WorkerViewPageAdapter(fragment = this)
+        else
+            EmployerViewPageAdapter(fragment = this)
+
         viewPager.adapter = adapter
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

@@ -16,6 +16,10 @@ class TemporaryWorker(
     private var commentary: String = ""
 ) : User() {
 
+    override fun getRole(): String {
+        return "worker"
+    }
+
     override fun getEmail(): String {
         return email
     }
@@ -32,7 +36,7 @@ class TemporaryWorker(
         this.phone = phone
     }
 
-    fun getId(): Long {
+    override fun getId(): Long {
         return id
     }
 

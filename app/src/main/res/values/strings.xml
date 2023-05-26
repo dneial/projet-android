@@ -96,4 +96,7 @@
     <string name="etat_label">"Status: "</string>
     <string name="title_candidature_detail">Candidature</string>
     <string name="dashboard_search_label">Rechercher</string>
+    <string name="btn_show_cv">Voir CV</string>
+    <string name="button_show_lm">Voir Lettre de Motivation</string>
+    <string name="info_worker">Afficher informations sur le candidat</string>
 </resources>

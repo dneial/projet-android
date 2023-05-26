@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.interim.R
 import com.example.interim.databinding.FragmentCandidaturesBinding
-import com.example.interim.ui.dashboard.OffreRecycleAdapter
 
 class UserCandidaturesFragment: Fragment() {
 
@@ -23,17 +25,17 @@ class UserCandidaturesFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        Log.d("UserCandidaturesFragment", "onCreateView")
-
         val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)!!
-        val factory = HomeViewModelFactory(user_id)
+        val user_role = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getString("user_role", "worker")!!
+
+        val factory = HomeViewModelFactory(user_id, user_role)
+
         val homeViewModel =
-            ViewModelProvider(this, factory)[CandidaturesViewModel::class.java]
+            ViewModelProvider(this, factory)[UserCandidaturesViewModel::class.java]
 
         _binding = FragmentCandidaturesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        Log.d("owner", viewLifecycleOwner.toString())
         val listView: RecyclerView = binding.candidatureListView
         homeViewModel.candidatures.observe(viewLifecycleOwner) {
             val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
@@ -45,6 +47,15 @@ class UserCandidaturesFragment: Fragment() {
         }
 
         homeViewModel.refresh()
+
+        val searchButton = binding.root.findViewById<Button>(R.id.searchButton)
+        val searchInput = binding.root.findViewById<EditText>(R.id.searchBarEditText)
+        searchButton.setOnClickListener {
+            homeViewModel.filterByText(
+                searchInput.text.toString()
+            )
+        }
+
         return root
     }
 

@@ -1,6 +1,7 @@
 package com.example.interim.ui.offres
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.example.interim.database.OffreService
 import com.example.interim.databinding.FragmentOffreBinding
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
+import com.example.interim.ui.connection.ConnectionActivity
 import java.util.Date
 
 class OffreFragment : Fragment() {
@@ -71,12 +73,10 @@ class OffreFragment : Fragment() {
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
 
         val user_id = sharedPref?.getLong("user_id", -1)
-        Log.d("user_id", user_id.toString())
 
         if(user_id == -1L) {
-            findNavController().navigate(
-                R.id.action_navigation_offres_to_navigation_inapp_connection,
-            )
+            val intent = Intent(activity, ConnectionActivity::class.java)
+            startActivity(intent)
             return
         }
 
@@ -92,6 +92,12 @@ class OffreFragment : Fragment() {
     private fun enregistrer_offre(offre: Offre) {
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
         val user_id = sharedPref?.getLong("user_id", -1)
+        if(user_id == -1L) {
+            val intent = Intent(activity, ConnectionActivity::class.java)
+            startActivity(intent)
+            return
+        }
+
         val enregistree = OffreService().enregistrer(user_id!!, offre.id)
 
         var msg: String

@@ -14,7 +14,7 @@
 
 
         <include
-            layout="@layout/search_bar" />
+            layout="@layout/offre_search_bar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"

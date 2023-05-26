@@ -123,6 +123,14 @@ object Requetes {
             "WHERE $TABLE_CANDIDATURE.$COL_ID_TEMPORARYWORKER_CANDIDATURE = ?;";
 
 
+    const val SELECT_CANDIDATURE_BY_ID_EMPLOYER: String = "" +
+            "SELECT * " +
+            "FROM $TABLE_CANDIDATURE " +
+            "INNER JOIN $TABLE_OFFRE " +
+            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID_OFFRE " +
+            "WHERE $TABLE_OFFRE.$COL_ID_OFFRE_EMPLOYER = ?;";
+
+
 
     const val TABLE_OFFRE_ENREGISTREE: String = "offres_enregistrees";
     const val COL_ID_OFFRE_ENREGISTREE: String = "id_offre";

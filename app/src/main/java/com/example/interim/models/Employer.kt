@@ -20,6 +20,11 @@ class Employer(
     private var password: String = ""
 ) : User() {
 
+    override fun getRole(): String {
+        return "employer"
+    }
+
+
     override fun getEmail(): String {
         return email
     }
@@ -38,7 +43,7 @@ class Employer(
 
     // Getters and Setters for other properties
 
-    fun getId(): Long {
+    override fun getId(): Long {
         return id
     }
 
