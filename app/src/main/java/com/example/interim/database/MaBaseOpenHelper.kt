@@ -29,8 +29,8 @@ null,
         db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE_ENREGISTREE)
 
-        create_default_offres(db)
         create_default_user(db)
+        create_default_offres(db)
     }
 
     private fun create_default_offres(db: SQLiteDatabase?) {
@@ -42,6 +42,7 @@ null,
         values.put(Requetes.COL_DATE_FIN, "2023-12-31")
         values.put(Requetes.COL_REMUNERATION, 50000)
         values.put(Requetes.COL_CITY, "Montpellier")
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
         db?.insert(Requetes.TABLE_OFFRE, null, values)
 
         values.clear()
@@ -49,9 +50,10 @@ null,
         values.put(Requetes.COL_METIER, "Marketing")
         values.put(Requetes.COL_DESCRIPTION,"We are seeking an experienced marketing manager to lead our team")
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
-        values.put(Requetes.COL_DATE_FIN, "2024-06-30")
+        values.put(Requetes.COL_DATE_FIN, "2024-08-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Montpellier")
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
         db?.insert(Requetes.TABLE_OFFRE, null, values)
 
         values.clear()
@@ -59,9 +61,10 @@ null,
         values.put(Requetes.COL_METIER, "Sales")
         values.put(Requetes.COL_DESCRIPTION,"We are seeking an experienced sales manager to lead our team")
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
-        values.put(Requetes.COL_DATE_FIN, "2024-06-30")
+        values.put(Requetes.COL_DATE_FIN, "2024-08-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Paris")
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
         db?.insert(Requetes.TABLE_OFFRE, null, values)
     }
 
@@ -77,12 +80,33 @@ null,
         values.put(Requetes.COL_NATIONALITY_TEMPORARYWORKER, "2000-01-01")
         values.put(Requetes.COL_COMMENTARY_TEMPORARYWORKER, "vide")
         db?.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
+        values.clear()
+
+        values.put(Requetes.COL_NAME_EMPLOYER, "employer")
+        values.put(Requetes.COL_SERVICE_EMPLOYER, "admin")
+        values.put(Requetes.COL_SUBSERVICE_EMPLOYER, "admin")
+        values.put(Requetes.COL_SIRET_EMPLOYER, "123")
+        values.put(Requetes.COL_CONTACT_EMPLOYER, "admin")
+        values.put(Requetes.COL_SUBCONTACT_EMPLOYER, "admin")
+        values.put(Requetes.COL_EMAIL_EMPLOYER, "employer@employer.com")
+        values.put(Requetes.COL_SUBEMAIL_EMPLOYER, "employer2@employer.com")
+        values.put(Requetes.COL_PHONE_EMPLOYER, "0123456789")
+        values.put(Requetes.COL_SUBPHONE_EMPLOYER, "9876543210")
+        values.put(Requetes.COL_ADDRESS_EMPLOYER, "Montpellier")
+        values.put(Requetes.COL_PASSWORD_EMPLOYER, "toto")
+        values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
+        db?.insert(Requetes.TABLE_EMPLOYER, null, values)
+        values.clear()
 
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        Log.d("DB", "onUpgrade")
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
-        db?.execSQL(Requetes.TABLE_TEMPORARYWORKERS);
+        db?.execSQL(Requetes.DROP_TABLE_TEMPORARYWORKERS);
         db?.execSQL(Requetes.DROP_TABLE_CANDIDATURE);
+        db?.execSQL(Requetes.DROP_TABLE_EMPLOYERS);
+        db?.execSQL(Requetes.DROP_TABLE_OFFRE_ENREGISTREE);
+
         onCreate(db);
     }
 }

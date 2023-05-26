@@ -15,16 +15,17 @@ import com.example.interim.database.CandidatureService
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
 
-class CandidatureRecycleAdapter(private val values: List<Candidature.CandidatureUserView>) : RecyclerView.Adapter<CandidatureRecycleAdapter.ViewHolder>() {
+class CandidatureRecycleAdapter(private val values: List<Candidature>) : RecyclerView.Adapter<CandidatureRecycleAdapter.ViewHolder>() {
 
     var CandidatureService: CandidatureService = CandidatureService()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cardView: CardView = view.findViewById(R.id.candidature_card_view)
 
-        fun bind(item: Candidature.CandidatureUserView) {
+        fun bind(item: Candidature) {
+            Log.d("CandidatureRecycleAdapter", "bind: ${item.id}")
             cardView.id = item.id.toInt()
-            cardView.findViewById<TextView>(R.id.titre).text = item.offre_titre
+            cardView.findViewById<TextView>(R.id.titre).text = item.offre.title
             cardView.findViewById<TextView>(R.id.date).text = item.date
             cardView.findViewById<TextView>(R.id.status).text = item.status
         }
@@ -62,7 +63,6 @@ class CandidatureRecycleAdapter(private val values: List<Candidature.Candidature
                     }
                 }
             )
-            Log.d("CandidatureRecycleAdapter", "onBindViewHolder: ${it.id}")
         }
     }
 }

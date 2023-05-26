@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.OffreService
+import com.example.interim.database.UsersService
 import com.example.interim.models.Offre
+import com.example.interim.models.User
 
 class OffreFormFragment: Fragment(), View.OnClickListener {
 
@@ -61,6 +63,8 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
             return
         }
 
+        val employer = UsersService().getEmployer(user_id)
+
         var offre = Offre(
             offre_title,
             offre_metier,
@@ -69,7 +73,8 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
             fin_date,
             offre_remuneration,
             user_id,
-            offre_ville
+            offre_ville,
+            employer!!
         )
 
 

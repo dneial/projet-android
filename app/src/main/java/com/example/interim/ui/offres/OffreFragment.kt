@@ -48,7 +48,8 @@ class OffreFragment : Fragment() {
 
         val root: View = binding.root
 
-        val offre: Offre = arguments?.getParcelable("offre")!!
+        val offreId: Long = arguments?.getLong("offre_id")!!
+        val offre = OffreService().getOffre(offreId)!!
 
         bind_offre(root, offre)
 

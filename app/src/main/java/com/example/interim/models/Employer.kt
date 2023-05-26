@@ -1,5 +1,8 @@
 package com.example.interim.models
 
+import android.content.ContentValues
+import com.example.interim.database.Requetes
+
 class Employer(
     private var id: Long = 0,
     private var name: String = "",
@@ -129,5 +132,43 @@ class Employer(
 
     fun setPassword(password: String) {
         this.password = password
+    }
+
+    fun toContentValues(): ContentValues {
+        val values = ContentValues()
+        values.put(Requetes.COL_NAME_EMPLOYER, name)
+        values.put(Requetes.COL_SERVICE_EMPLOYER, service)
+        values.put(Requetes.COL_SUBSERVICE_EMPLOYER, subService)
+        values.put(Requetes.COL_SIRET_EMPLOYER, SIRET)
+        values.put(Requetes.COL_CONTACT_EMPLOYER, contact)
+        values.put(Requetes.COL_SUBCONTACT_EMPLOYER, subContact)
+        values.put(Requetes.COL_EMAIL_EMPLOYER, email)
+        values.put(Requetes.COL_SUBEMAIL_EMPLOYER, subEmail)
+        values.put(Requetes.COL_PHONE_EMPLOYER, phone)
+        values.put(Requetes.COL_SUBPHONE_EMPLOYER, subPhone)
+        values.put(Requetes.COL_ADDRESS_EMPLOYER, address)
+        values.put(Requetes.COL_PASSWORD_EMPLOYER, password)
+        values.put(Requetes.COL_COMMENTARY_EMPLOYER,commentary)
+        return values
+    }
+
+    override fun toString(): String {
+        val builder = StringBuilder()
+        builder.append("Employer [id=").append(id)
+        builder.append(", name=").append(name)
+        builder.append(", service=").append(service)
+        builder.append(", subService=").append(subService)
+        builder.append(", SIRET=").append(SIRET)
+        builder.append(", contact=").append(contact)
+        builder.append(", subContact=").append(subContact)
+        builder.append(", email=").append(email)
+        builder.append(", subEmail=").append(subEmail)
+        builder.append(", phone=").append(phone)
+        builder.append(", subPhone=").append(subPhone)
+        builder.append(", address=").append(address)
+        builder.append(", commentary=").append(commentary)
+
+        return builder.toString()
+
     }
 }

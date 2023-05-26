@@ -14,72 +14,24 @@ class UsersService() {
 
     fun create(temporaryWorker: TemporaryWorker){
         Log.d("create", "create: $temporaryWorker")
-        val query = "INSERT INTO ${Requetes.TABLE_TEMPORARYWORKERS} (" +
-                "${Requetes.COL_LASTNAME_TEMPORARYWORKER}, " +
-                "${Requetes.COL_NAME_TEMPORARYWORKER}, " +
-                "${Requetes.COL_EMAIL_TEMPORARYWORKER}, " +
-                "${Requetes.COL_PASSWORD_TEMPORARYWORKER}, " +
-                "${Requetes.COL_PHONE_TEMPORARYWORKER}, " +
-                "${Requetes.COL_BIRTHDAY_TEMPORARYWORKER}, " +
-                "${Requetes.COL_NATIONALITY_TEMPORARYWORKER}," +
-                "${Requetes.COL_CITY_TEMPORARYWORKER}," +
-                "${Requetes.COL_COMMENTARY_TEMPORARYWORKER}" +
-                ") VALUES (" +
-                "'${temporaryWorker.getLastName()}', " +
-                "'${temporaryWorker.getFirstName()}', " +
-                "'${temporaryWorker.getEmail()}', " +
-                "'${temporaryWorker.getPassword()}', " +
-                "'${temporaryWorker.getPhone()}', " +
-                "'${temporaryWorker.getBirthday()}'" +
-                "'${temporaryWorker.getNationality()}'" +
-                "'${temporaryWorker.getCity()}'" +
-                "'${temporaryWorker.getCommentary()}'" +
-                ");";
-
-        db.execSQL(query)
+        val values = temporaryWorker.toContentValues()
+        db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
     }
 
     fun create(employer: Employer){
         Log.d("create", "create: $employer")
-        val query = "INSERT INTO ${Requetes.TABLE_EMLPLOYERS} (" +
-                "${Requetes.COL_NAME_EMLPLOYER}, " +
-                "${Requetes.COL_SERVICE_EMLPLOYER}, " +
-                "${Requetes.COL_SUBSERVICE_EMLPLOYER}, " +
-                "${Requetes.COL_SIRET_EMLPLOYER}, " +
-                "${Requetes.COL_CONTACT_EMLPLOYER}, " +
-                "${Requetes.COL_SUBCONTACT_EMLPLOYER}, " +
-                "${Requetes.COL_EMAIL_EMLPLOYER}," +
-                "${Requetes.COL_SUBEMAIL_EMLPLOYER}," +
-                "${Requetes.COL_PHONE_EMLPLOYER}" +
-                "${Requetes.COL_SUBPHONE_EMLPLOYER}," +
-                "${Requetes.COL_ADDRESS_EMLPLOYER}," +
-                "${Requetes.COL_PASSWORD_EMLPLOYER}" +
-                "${Requetes.COL_COMMENTARY_EMLPLOYER}" +
-                ") VALUES (" +
-                "'${employer.getName()}', " +
-                "'${employer.getService()}', " +
-                "'${employer.getSubService()}', " +
-                "'${employer.getSIRET()}', " +
-                "'${employer.getContact()}', " +
-                "'${employer.getSubContact()}'" +
-                "'${employer.getEmail()}'" +
-                "'${employer.getSubEmail()}'" +
-                "'${employer.getPhone()}'" +
-                "'${employer.getSubPhone()}'" +
-                "'${employer.getAddress()}'" +
-                "'${employer.getPassword()}'" +
-                "'${employer.getCommentary()}'" +
-                ");";
-
-        db.execSQL(query)
+        val values = employer.toContentValues()
+        db.insert(Requetes.TABLE_EMPLOYER, null, values)
     }
 
     @SuppressLint("Range")
     fun signIn(email: String, password: String): TemporaryWorker? {
         val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE " +
-                "${Requetes.COL_EMAIL_TEMPORARYWORKER} = '$email' AND ${Requetes.COL_PASSWORD_TEMPORARYWORKER} = '$password';"
+                "${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
+                "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
 
-        val cursor = db.rawQuery(query, null)
+        val selectionArgs = arrayOf(email, password)
+        val cursor = db.rawQuery(query, selectionArgs)
         var temporaryWorker: TemporaryWorker? = null
 
         if(cursor.moveToFirst()){
@@ -122,13 +74,12 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
             );
         }
-
+        cursor.close()
         return temporaryWorker
     }
 
 
     fun readAll(): ArrayList<TemporaryWorker> {
-        val query = Requetes.SELECT_ALL_TEMPORARYWORKERS;
         val sortOrder = "${Requetes.COL_ID_TEMPORARYWORKER} DESC"
         val cursor = db.query(Requetes.TABLE_TEMPORARYWORKERS, null, null, null, null, null, sortOrder);
         val temporaryWorkers = ArrayList<TemporaryWorker>();
@@ -151,6 +102,34 @@ class UsersService() {
         cursor.close();
 
         return temporaryWorkers;
+    }
+
+    fun getEmployer(employerId: Long): Employer? {
+        val query = "SELECT * FROM ${Requetes.TABLE_EMPLOYER} WHERE ${Requetes.COL_ID_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(employerId.toString())
+        val cursor = db.rawQuery(query, selectionArgs)
+        var employer: Employer? = null
+
+        if(cursor.moveToFirst()){
+            employer = Employer(
+                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
+            );
+        }
+        cursor.close()
+        return employer
     }
 
 

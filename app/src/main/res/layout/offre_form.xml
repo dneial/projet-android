@@ -20,75 +20,7 @@
                 android:text="@string/creer_offre"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <EditText
-                android:id="@+id/edit_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/offre_name" />
-
-            <EditText
-                android:id="@+id/edit_profession"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/offre_metier" />
-
-            <EditText
-                android:id="@+id/edit_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/offre_desc"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/edit_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/offre_address" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/offre_debut" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/offre_fin" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <DatePicker
-                    android:id="@+id/date_start"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <DatePicker
-                    android:id="@+id/date_end"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/edit_salary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/offre_remuneration"
-                android:inputType="numberDecimal" />
+            <include layout="@layout/advanced_filters" />
 
             <Button
                 android:id="@+id/submit_button"

@@ -47,8 +47,8 @@
         android:label="@string/title_offres"
         tools:layout="@layout/fragment_offre" >
         <argument
-            android:name="offre"
-            app:argType="com.example.interim.models.Offre" />
+            android:name="offre_id"
+            app:argType="long" />
         <action
             android:id="@+id/action_navigation_offres_to_navigation_candidature"
             app:destination="@id/navigation_candidature" />
