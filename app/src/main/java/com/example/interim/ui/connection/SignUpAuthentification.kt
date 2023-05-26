@@ -1,5 +1,6 @@
 package com.example.interim.ui.connection
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.services.UsersService
 import com.example.interim.models.Employer
@@ -29,6 +31,8 @@ class SignUpAuthentification : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
 
+        val intent = Intent(requireContext(), MainActivity::class.java)
+
         val user = generateUser()
         val role = arguments?.getString("type")
 
@@ -39,7 +43,7 @@ class SignUpAuthentification : Fragment() {
         } else { sendMessage(code, user.getPhone()) }
 
         view.findViewById<Button>(R.id.authSignUpButtonCancel).setOnClickListener {
-            //Go page accueil
+            startActivity(intent)
         }
         view.findViewById<Button>(R.id.authSignUpButtonConfirm).setOnClickListener {
             if (view.findViewById<EditText>(R.id.authSignUpEditTextCode).text.toString() == code){
@@ -47,7 +51,7 @@ class SignUpAuthentification : Fragment() {
                     UsersService().create(user as TemporaryWorker)
                 else if (role == "Employer")
                     UsersService().create(user as Employer)
-                //Go page accueil
+                startActivity(intent)
             }
         }
         view.findViewById<Button>(R.id.authSignUpButtonResend).setOnClickListener {
@@ -113,6 +117,6 @@ class SignUpAuthentification : Fragment() {
         Log.d("Authentification", "Email: $mail     Code: $code")
     }
 
-    private fun sendMessage(code : String,  mail : String){
+    private fun sendMessage(code : String,  phone : String){
     }
 }

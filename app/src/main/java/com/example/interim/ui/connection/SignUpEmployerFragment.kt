@@ -61,9 +61,10 @@ class SignUpEmployerFragment : Fragment() {
             user.putString("password", password.text.toString())
             user.putString("commentary", commentary.text.toString())
 
-            SignUpAuthentification().arguments = user
+            val targetFragment = SignUpAuthentification()
+            targetFragment.arguments = user
 
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, SignUpAuthentification()).commit()
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, targetFragment).commit()
 
             Log.d("signUpEmployer", "Send authentification")
         } else {
