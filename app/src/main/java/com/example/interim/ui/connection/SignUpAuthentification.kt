@@ -1,5 +1,6 @@
 package com.example.interim.ui.connection
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -52,6 +53,7 @@ class SignUpAuthentification : Fragment() {
                 else if (role == "Employer")
                     UsersService().create(user as Employer)
                 UsersService().signIn(user.getEmail(), user.getPassword())
+                saveSession(user)
                 startActivity(intent)
             }
         }
@@ -119,5 +121,17 @@ class SignUpAuthentification : Fragment() {
     }
 
     private fun sendMessage(code : String,  phone : String){
+    }
+
+    private fun saveSession(user: User){
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
+        val expirationTime = System.currentTimeMillis() + 864000000
+
+        with (sharedPref.edit()) {
+            putLong("user_id", user.getId())
+            putString("user_role", user.getRole())
+            putLong("expirationTime", expirationTime)
+            commit()
+        }
     }
 }

@@ -19,8 +19,6 @@ class ConnectionActivity : AppCompatActivity() {
         val database: Unit = DataBase.init(this)
         val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE)
 
-
-        Log.d("sharedPref at connection", sharedPref?.all.toString())
         val userId = sharedPref.getLong("user_id", -1)
         val storedExpirationTime = sharedPref.getLong("expirationTime", 0)
 

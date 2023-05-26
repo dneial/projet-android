@@ -74,7 +74,6 @@ class ConnectionFragment: Fragment() {
     }
 
     private fun saveSession(user: User){
-
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
         val expirationTime = System.currentTimeMillis() + 864000000
 
