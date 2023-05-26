@@ -20,6 +20,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_desister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Désister"/>
@@ -30,6 +31,7 @@
             android:text="Modifier"/>
 
         <Button
+            android:id="@+id/btn_contacter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contacter employeur" />

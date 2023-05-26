@@ -13,14 +13,19 @@ class DashboardViewModel() : ViewModel() {
     var offreService: OffreService = OffreService()
 
     private val _offres = MutableLiveData<List<Offre>>().apply {
+
         value = offreService.readAll()
+
     }
 
 
     val offres: LiveData<List<Offre>> = _offres
 
     fun refresh() {
+
         _offres.value = offreService.readAll()
+        (_offres.value as ArrayList<Offre>).map { o -> Log.d("offre_deb et offre_fin", o.employer?.getId().toString())}
+
     }
 
     fun filterByCity(ville: String) {
@@ -39,7 +44,6 @@ class DashboardViewModel() : ViewModel() {
     }
 
     fun filterByValues(values: ContentValues) {
-        (_offres.value as ArrayList<Offre>).map { o -> Log.d("offre_deb et offre_fin", o.date_debut.toString() + " " + o.date_fin.toString())}
 
         _offres.value = offreService.filter(values)
     }

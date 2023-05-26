@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
-import com.example.interim.models.TemporaryWorker
-import com.example.interim.models.User
 
 class CandidatureService {
     var db: SQLiteDatabase = DataBase.db
@@ -17,7 +15,6 @@ class CandidatureService {
         val inserted_id =
             db.insert(Requetes.TABLE_CANDIDATURE, null, values)
 
-        Log.d("inserted_id", inserted_id.toString())
         candidature.id = inserted_id
 
         return candidature
@@ -26,11 +23,13 @@ class CandidatureService {
     @SuppressLint("Range")
     fun readAllByUser(user_id: Long): ArrayList<Candidature> {
         val candidatures = ArrayList<Candidature>()
-
+        val userService: UsersService = UsersService()
         val cursor = db.rawQuery(Requetes.SELECT_CANDIDATURE_BY_ID_TEMPORARYWORKER, arrayOf(user_id.toString()))
 
         if (cursor.moveToFirst()) {
             do {
+                val emp_id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_EMPLOYER))
+                val employer = userService.getEmployer(emp_id)
                 val offre = Offre(
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_TITLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_METIER)),
@@ -38,18 +37,20 @@ class CandidatureService {
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_DEBUT)),
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
-                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY))
+                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY)),
+                    employer!!
                 )
-                val user = UsersService().getTemporaryWorker(user_id)
+                val user = userService.getTemporaryWorker(user_id)
 
                 val candidature = Candidature(
-                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID)),
+                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_CANDIDATURE)),
                     offre,
                     user!!,
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_STATUS_CANDIDATURE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_CANDIDATURE))
                 )
+                Log.d("candidature", candidature.id.toString())
                 candidatures.add(candidature)
             } while (cursor.moveToNext())
         }
@@ -58,12 +59,15 @@ class CandidatureService {
     }
 
     fun getCandidature(candidature_id: Long): Candidature {
-        val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
         val selectionArgs = arrayOf(candidature_id.toString())
-        val cursor = db.rawQuery(Requetes.GET_OFFRE_BY_CANDIDATURE_ID, selectionArgs)
+        val cursor = db.rawQuery(Requetes.GET_CANDIDATURE_BY_ID, selectionArgs)
         var offre: Offre? = null
         var candidature: Candidature? = null
+        val userService: UsersService = UsersService()
+
         if (cursor.moveToFirst()) {
+            val emp_id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_EMPLOYER))
+            val employer = userService.getEmployer(emp_id)
             offre = Offre(
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_TITLE)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_METIER)),
@@ -71,10 +75,11 @@ class CandidatureService {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_DEBUT)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY))
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY)),
+                employer!!
             )
-            val user = UsersService().getTemporaryWorker(cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER)))
+            val user = userService.getTemporaryWorker(cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER_CANDIDATURE)))
 
             candidature = Candidature(
                 cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_CANDIDATURE)),
@@ -86,5 +91,11 @@ class CandidatureService {
         }
         cursor.close()
         return candidature!!
+    }
+
+    fun delete(candidatureId: Long) {
+        val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
+        val selectionArgs = arrayOf(candidatureId.toString())
+        db.delete(Requetes.TABLE_CANDIDATURE, selection, selectionArgs)
     }
 }

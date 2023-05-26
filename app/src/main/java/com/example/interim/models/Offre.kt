@@ -1,7 +1,9 @@
 package com.example.interim.models
 
+import android.content.ContentValues
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.interim.database.Requetes
 
 class Offre(
     var title: String?,
@@ -11,20 +13,10 @@ class Offre(
     var date_fin: String?,
     var remuneration: String?,
     var id: Long,
-    var ville: String? = ""
-): Parcelable {
+    var ville: String? = "",
+    var employer: Employer
+) {
 
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readLong(),
-        parcel.readString()
-    ) {
-    }
 
     override fun toString(): String {
         return "Offre(name='$title', " +
@@ -35,29 +27,18 @@ class Offre(
                 "remuneration='$remuneration')"
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(title)
-        parcel.writeString(metier)
-        parcel.writeString(description)
-        parcel.writeString(date_debut)
-        parcel.writeString(date_fin)
-        parcel.writeString(remuneration)
-        parcel.writeLong(id)
-        parcel.writeString(ville)
-    }
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Offre> {
-        override fun createFromParcel(parcel: Parcel): Offre {
-            return Offre(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Offre?> {
-            return arrayOfNulls(size)
-        }
+    fun toContentValues(): ContentValues {
+        val values = ContentValues()
+        values.put(Requetes.COL_TITLE, title)
+        values.put(Requetes.COL_METIER, metier)
+        values.put(Requetes.COL_DESCRIPTION, description)
+        values.put(Requetes.COL_DATE_DEBUT, date_debut)
+        values.put(Requetes.COL_DATE_FIN, date_fin)
+        values.put(Requetes.COL_REMUNERATION, remuneration)
+        values.put(Requetes.COL_CITY, ville)
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, employer?.getId())
+        return values
     }
 
 

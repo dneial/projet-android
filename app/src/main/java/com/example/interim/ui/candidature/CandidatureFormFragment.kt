@@ -16,6 +16,7 @@ import com.example.interim.database.OffreService
 import com.example.interim.database.UsersService
 import com.example.interim.models.Candidature
 import com.example.interim.models.TemporaryWorker
+import java.text.SimpleDateFormat
 import java.util.Date
 
 class CandidatureFormFragment: Fragment() {
@@ -58,7 +59,12 @@ class CandidatureFormFragment: Fragment() {
 
 
         val Date = Date()
-        val date = Date.toString().substring(0, 10)
+        val dateFormated = SimpleDateFormat("yyyy-MM-dd").format(Date)
+        // get date in format 'yyyy-mm-dd'
+
+
+        Log.d("Candidature", "Date: $dateFormated")
+
 
         val user_id =
             activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", 0)
@@ -70,13 +76,11 @@ class CandidatureFormFragment: Fragment() {
             0,
             offre!!,
             user!!,
-            date,
+            dateFormated,
             "En cours"
         )
 
         candidature = CandidatureService().create(candidature)
-
-        Log.d("Candidature", "Candidature created: ${candidature.toString()}")
 
         val navController = findNavController()
 
@@ -88,7 +92,7 @@ class CandidatureFormFragment: Fragment() {
             navController.navigate(
                 R.id.action_navigation_candidature_to_navigation_offres,
                 Bundle().apply {
-                    putParcelable("offre", offre)
+                    putLong("offre_id", offre.id)
                 }
             )
         } else {
@@ -96,7 +100,7 @@ class CandidatureFormFragment: Fragment() {
             navController.navigate(
                 R.id.action_navigation_candidature_to_navigation_offres,
                 Bundle().apply {
-                    putParcelable("offre", offre)
+                    putLong("offre_id", offre.id)
                 }
 
             )

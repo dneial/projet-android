@@ -54,7 +54,9 @@ class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapte
                     R.id.navigation_offres,
 
                     Bundle().apply {
-                        putParcelable("offre", offre)
+                        if (offre != null) {
+                            putLong("offre_id", offre.id)
+                        }
                     },
                     navOptions { // Use the Kotlin DSL for building NavOptions
                         anim {
