@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.interim.R
-import com.example.interim.database.UsersService
 import com.example.interim.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {

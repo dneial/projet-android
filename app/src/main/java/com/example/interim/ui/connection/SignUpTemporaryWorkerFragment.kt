@@ -56,14 +56,15 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             user.putString("nationality", nationality.text.toString())
             user.putString("commentary", commentary.text.toString())
 
-            SignUpAuthentification().arguments = user
+            val targetFragment = SignUpAuthentification()
+            targetFragment.arguments = user
 
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, SignUpAuthentification()).commit()
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, targetFragment).commit()
 
             Log.d("signUpInterim", "Send authentification")
+        } else {
+            Log.d("signUpInterim", "Inscription invalide")
         }
-
-        Log.d("signUpInterim", "Inscription invalide")
     }
 
     private fun checkSignUpInterim(view: View) : Boolean{

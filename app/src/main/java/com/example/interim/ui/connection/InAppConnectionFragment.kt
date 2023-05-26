@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.interim.MainActivity
 import com.example.interim.R
-import com.example.interim.database.UsersService
+import com.example.interim.services.UsersService
 import com.example.interim.models.TemporaryWorker
 
 class InAppConnectionFragment: Fragment() {

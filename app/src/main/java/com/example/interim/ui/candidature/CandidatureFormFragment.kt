@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
 import com.example.interim.database.OffreService
-import com.example.interim.database.UsersService
+import com.example.interim.services.UsersService
 import com.example.interim.models.Candidature
 import com.example.interim.models.TemporaryWorker
 import java.util.Date

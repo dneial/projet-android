@@ -10,7 +10,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
-import com.example.interim.database.UsersService
+import com.example.interim.services.UsersService
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
 import com.example.interim.models.TemporaryWorker

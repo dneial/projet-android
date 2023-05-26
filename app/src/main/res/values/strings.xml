@@ -26,8 +26,6 @@
     <string name="confirm">Confirmer</string>
     <string name="cancel">Annuler</string>
     <string name="resend">Renvoyer</string>
-
-    <!--Sign-Up-->
     <string name="tv_company_name">Nom de l\'entreprise *</string>
     <string name="et_company_name">Entrez le nom de l\'entreprise</string>
     <string name="tv_departement_service">Nom du service/département</string>

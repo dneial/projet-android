@@ -66,10 +66,9 @@ class SignUpEmployerFragment : Fragment() {
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.connectionFragmentContainer, SignUpAuthentification()).commit()
 
             Log.d("signUpEmployer", "Send authentification")
+        } else {
+            Log.d("signUpEmployer", "Inscription invalide")
         }
-
-        Log.d("signUpEmployer", "Inscription invalide")
-
     }
 
     private fun checkSignUpEmployer(view: View): Boolean{

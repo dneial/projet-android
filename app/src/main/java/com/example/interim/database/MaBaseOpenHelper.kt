@@ -25,7 +25,7 @@ null,
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE)
         db?.execSQL(Requetes.CREATE_TABLE_TEMPORARYWORKER)
-        db?.execSQL(Requetes.CREATE_TABLE_EMPLOYER)
+        //db?.execSQL(Requetes.CREATE_TABLE_EMPLOYER)
         db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE_ENREGISTREE)
 

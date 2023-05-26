@@ -1,8 +1,10 @@
-package com.example.interim.database
+package com.example.interim.services
 
 import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
+import com.example.interim.database.DataBase
+import com.example.interim.database.Requetes
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 
@@ -82,15 +84,16 @@ class UsersService() {
 
         if(cursor.moveToFirst()){
             temporaryWorker = TemporaryWorker(
-                cursor.getLong(cursor.getColumnIndex(Requetes.COL_ID_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_NAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_CITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
             )
             cursor.close()
         }
@@ -113,9 +116,10 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
             );
         }
 
@@ -137,9 +141,10 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
             );
             temporaryWorkers.add(temporaryWorker);
         }

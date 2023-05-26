@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.interim.R
-import com.example.interim.database.UsersService
+import com.example.interim.services.UsersService
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.User
+import com.teamcreative.javamailapidemo.JavaMailAPI
 import kotlin.random.Random
 
 class SignUpAuthentification : Fragment() {
@@ -28,14 +29,14 @@ class SignUpAuthentification : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
 
-        var user = generateUser()
+        val user = generateUser()
         val role = arguments?.getString("type")
 
         var code = generateRandomCode(6)
         Log.d("code", code)
-        if (user?.getEmail() != ""){
-            sendMail(code, user!!.getEmail())
-        } else { sendMessage(code, user!!.getPhone()) }
+        if (user.getEmail() != ""){
+            sendMail(code, user.getEmail())
+        } else { sendMessage(code, user.getPhone()) }
 
         view.findViewById<Button>(R.id.authSignUpButtonCancel).setOnClickListener {
             //Go page accueil
@@ -44,7 +45,7 @@ class SignUpAuthentification : Fragment() {
             if (view.findViewById<EditText>(R.id.authSignUpEditTextCode).text.toString() == code){
                 if (role == "TemporaryWorker")
                     UsersService().create(user as TemporaryWorker)
-                else if (role == "TemporaryWorker")
+                else if (role == "Employer")
                     UsersService().create(user as Employer)
                 //Go page accueil
             }
@@ -52,9 +53,9 @@ class SignUpAuthentification : Fragment() {
         view.findViewById<Button>(R.id.authSignUpButtonResend).setOnClickListener {
             code = generateRandomCode(6)
             Log.d("code", code)
-            if (user?.getEmail() != ""){
-                sendMail(code, user!!.getEmail())
-            } else { sendMessage(code, user!!.getPhone()) }
+            if (user.getEmail() != ""){
+                sendMail(code, user.getEmail())
+            } else { sendMessage(code, user.getPhone()) }
         }
 
         return view
@@ -62,12 +63,13 @@ class SignUpAuthentification : Fragment() {
 
     private fun generateUser(): User {
         val user: User
+        Log.d("Authentification", arguments?.getString("type")!!)
         if (arguments?.getString("type") == "TemporaryWorker") {
             val lastName = arguments?.getString("lastName")
             val firstName = arguments?.getString("firstName")
-            val email = arguments?.getString("email").toString()
+            val email = arguments?.getString("email")
             val password = arguments?.getString("password")
-            val phone = arguments?.getString("phone").toString()
+            val phone = arguments?.getString("phone")
             val birthday = arguments?.getString("birthday")
             val nationality = arguments?.getString("nationality")
             val city = arguments?.getString("city")
@@ -78,9 +80,9 @@ class SignUpAuthentification : Fragment() {
         } else {
             val name = arguments?.getString("name")
             val service = arguments?.getString("service")
-            val subService = arguments?.getString("subService").toString()
+            val subService = arguments?.getString("subService")
             val SIRET = arguments?.getString("SIRET")
-            val contact = arguments?.getString("contact").toString()
+            val contact = arguments?.getString("contact")
             val subContact = arguments?.getString("subContact")
             val email = arguments?.getString("email")
             val secondEmail = arguments?.getString("secondEmail")
@@ -92,7 +94,7 @@ class SignUpAuthentification : Fragment() {
             user = Employer(0, name!!, service!!, subService!!, SIRET!!, contact!!, subContact!!,
                 email!!, secondEmail!!, phone!!, subPhone!!, address!!, commentary!!, password!!)
         }
-        return user!!
+        return user
     }
 
     private fun generateRandomCode(codeLength : Int): String {
@@ -107,6 +109,8 @@ class SignUpAuthentification : Fragment() {
     }
 
     private fun sendMail(code : String,  mail : String){
+        JavaMailAPI(requireContext(), mail, "Interim authentification", "Your code is $code").execute()
+        Log.d("Authentification", "Email: $mail     Code: $code")
     }
 
     private fun sendMessage(code : String,  mail : String){

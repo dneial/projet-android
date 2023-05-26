@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.interim.MainActivity
 import com.example.interim.R
-import com.example.interim.database.UsersService
+import com.example.interim.services.UsersService
 import com.example.interim.models.TemporaryWorker
 
 class ConnectionFragment: Fragment() {
