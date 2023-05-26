@@ -49,7 +49,7 @@ null,
         values.put(Requetes.COL_METIER, "Marketing")
         values.put(Requetes.COL_DESCRIPTION,"We are seeking an experienced marketing manager to lead our team")
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
-        values.put(Requetes.COL_DATE_FIN, "2024-06-30")
+        values.put(Requetes.COL_DATE_FIN, "2024-08-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Montpellier")
         db?.insert(Requetes.TABLE_OFFRE, null, values)
@@ -59,7 +59,7 @@ null,
         values.put(Requetes.COL_METIER, "Sales")
         values.put(Requetes.COL_DESCRIPTION,"We are seeking an experienced sales manager to lead our team")
         values.put(Requetes.COL_DATE_DEBUT, "2023-07-01")
-        values.put(Requetes.COL_DATE_FIN, "2024-06-30")
+        values.put(Requetes.COL_DATE_FIN, "2024-08-30")
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Paris")
         db?.insert(Requetes.TABLE_OFFRE, null, values)
@@ -80,9 +80,13 @@ null,
 
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        Log.d("DB", "onUpgrade")
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
-        db?.execSQL(Requetes.TABLE_TEMPORARYWORKERS);
+        db?.execSQL(Requetes.DROP_TABLE_TEMPORARYWORKERS);
         db?.execSQL(Requetes.DROP_TABLE_CANDIDATURE);
+        db?.execSQL(Requetes.DROP_TABLE_EMPLOYERS);
+        db?.execSQL(Requetes.DROP_TABLE_OFFRE_ENREGISTREE);
+
         onCreate(db);
     }
 }

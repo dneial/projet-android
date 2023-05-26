@@ -1,5 +1,8 @@
 package com.example.interim.models
 
+import android.content.ContentValues
+import com.example.interim.database.Requetes
+
 class TemporaryWorker(
     private var id: Long = 0,
     private var firstName: String = "",
@@ -91,5 +94,19 @@ class TemporaryWorker(
 
     fun setCommentary(commentary: String) {
         this.commentary = commentary
+    }
+
+    fun toContentValues(): ContentValues {
+        var values = ContentValues()
+        values.put(Requetes.COL_NAME_TEMPORARYWORKER, firstName)
+        values.put(Requetes.COL_LASTNAME_TEMPORARYWORKER, lastName)
+        values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, email)
+        values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, password)
+        values.put(Requetes.COL_PHONE_TEMPORARYWORKER, phone)
+        values.put(Requetes.COL_BIRTHDAY_TEMPORARYWORKER, birthday)
+        values.put(Requetes.COL_CITY_TEMPORARYWORKER, city)
+        values.put(Requetes.COL_NATIONALITY_TEMPORARYWORKER, nationality)
+        values.put(Requetes.COL_COMMENTARY_TEMPORARYWORKER, commentary)
+        return values
     }
 }

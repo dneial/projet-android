@@ -63,10 +63,13 @@ class CandidatureFormFragment: Fragment() {
         val user_id =
             activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", 0)
 
+        val offre = OffreService().getOffre(offreId)
+        val user = UsersService().getTemporaryWorker(user_id!!)
+
         var candidature = Candidature(
             0,
-            offreId,
-            user_id!!,
+            offre!!,
+            user!!,
             date,
             "En cours"
         )
@@ -74,8 +77,6 @@ class CandidatureFormFragment: Fragment() {
         candidature = CandidatureService().create(candidature)
 
         Log.d("Candidature", "Candidature created: ${candidature.toString()}")
-
-        val offre = OffreService().getOffre(offreId)
 
         val navController = findNavController()
 

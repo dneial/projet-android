@@ -7,6 +7,7 @@ import com.example.interim.models.Offre
 
 object Requetes {
 
+
     const val TABLE_OFFRE: String = "offres";
     const val COL_ID: String = "id";
     const val COL_TITLE: String = "title";
@@ -35,7 +36,7 @@ object Requetes {
     const val SELECT_ALL_OFFRE: String = "SELECT * FROM $TABLE_OFFRE;";
 
 
-    const val TABLE_TEMPORARYWORKERS: String = "TemporaryWorkers";
+    const val TABLE_TEMPORARYWORKERS: String = "TemporaryWorkers2";
     const val COL_ID_TEMPORARYWORKER: String = "id";
     const val COL_NAME_TEMPORARYWORKER: String = "name";
     const val COL_LASTNAME_TEMPORARYWORKER: String = "lastname";
@@ -119,11 +120,8 @@ object Requetes {
 
     const val DROP_TABLE_CANDIDATURE: String = "DROP TABLE IF EXISTS $TABLE_CANDIDATURE;";
     const val SELECT_ALL_CANDIDATURE: String = "SELECT * FROM $TABLE_CANDIDATURE;";
-    const val SELECT_CANDIDATURE_DATE_AND_STATUS_AND_OFFRE_TITLE_BY_ID_TEMPORARYWORKER: String = "" +
-            "SELECT $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE, " +
-            "$TABLE_OFFRE.$COL_TITLE, " +
-            "$TABLE_CANDIDATURE.$COL_DATE_CANDIDATURE, " +
-            "$TABLE_CANDIDATURE.$COL_STATUS_CANDIDATURE " +
+    const val SELECT_CANDIDATURE_BY_ID_TEMPORARYWORKER: String = "" +
+            "SELECT * " +
             "FROM $TABLE_CANDIDATURE " +
             "INNER JOIN $TABLE_OFFRE " +
             "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID " +
@@ -152,6 +150,8 @@ object Requetes {
             "$COL_ID_USER_ENREGISTREE INTEGER," +
             "PRIMARY KEY ($COL_ID_OFFRE_ENREGISTREE, $COL_ID_USER_ENREGISTREE));";
 
+    const val DROP_TABLE_OFFRE_ENREGISTREE: String = "DROP TABLE IF EXISTS $TABLE_OFFRE_ENREGISTREE;";
+
     const val OFFRE_ENREGISTREE_GET_BY_USER_ID: String = "" +
             "SELECT * " +
             "FROM $TABLE_OFFRE_ENREGISTREE " +
@@ -166,6 +166,8 @@ object Requetes {
             "INNER JOIN $TABLE_CANDIDATURE " +
             "ON $TABLE_OFFRE.$COL_ID = $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE " +
             "WHERE $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE = ?;";
+
+
 }
 
 

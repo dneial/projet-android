@@ -1,6 +1,7 @@
 package com.example.interim.ui.dashboard
 
-import android.content.Context
+import android.content.ContentValues
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,9 +23,26 @@ class DashboardViewModel() : ViewModel() {
         _offres.value = offreService.readAll()
     }
 
-    fun filter(ville: String) {
+    fun filterByCity(ville: String) {
         // TODO: filtre par ville
         if(ville != "Montpellier") _offres.value = offreService.readAll()
         else _offres.value = offreService.filter(ville)
     }
+
+    fun filterByText(text: String) {
+        _offres.value = offreService.readAll().filter { offre ->
+            offre.title!!.contains(text, true) ||
+            offre.description!!.contains(text, true) ||
+            offre.metier!!.contains(text, true)
+        }
+
+    }
+
+    fun filterByValues(values: ContentValues) {
+        (_offres.value as ArrayList<Offre>).map { o -> Log.d("offre_deb et offre_fin", o.date_debut.toString() + " " + o.date_fin.toString())}
+
+        _offres.value = offreService.filter(values)
+    }
+
+
 }

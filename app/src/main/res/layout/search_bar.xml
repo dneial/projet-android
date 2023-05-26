@@ -28,7 +28,9 @@
 
     </LinearLayout>
 
+
     <TextView
+        android:id="@+id/advancedFiltersTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Advanced Filters"
@@ -37,23 +39,33 @@
         android:paddingTop="8dp"
         android:paddingBottom="4dp" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:paddingBottom="50dp"
+        >
 
-        <!-- Advanced Filters -->
-        <include layout="@layout/advanced_filters" />
-
-        <!-- Add a button to trigger advanced search -->
-        <Button
-            android:id="@+id/advancedSearchButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/advancedFiltersLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apply Filters" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <!-- Advanced Filters -->
+            <include layout="@layout/advanced_filters" />
+
+            <!-- Add a button to trigger advanced search -->
+            <Button
+                android:id="@+id/advancedSearchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply Filters" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>
 

@@ -26,18 +26,17 @@ class CandidatureFragment: Fragment() {
         val candidature_id = arguments?.getLong("candidature_id")
 
         val candidatureService = CandidatureService()
-        val pair: Pair<Offre, Candidature> = candidatureService.getOffreByCandidatureId(candidature_id!!)
-        val offre = pair.first
-        val candidature = pair.second
+        val candidature = candidatureService.getCandidature(candidature_id!!)
 
         Log.d("status",candidature.status)
-        bind_view(view, offre, candidature)
+        bind_view(view, candidature)
 
         return view
     }
 
-    private fun bind_view(view: View, offre: Offre, candidature: Candidature) {
+    private fun bind_view(view: View, candidature: Candidature) {
         val title = view.findViewById<android.widget.TextView>(R.id.offre_title)
+        val offre = candidature.offre
         title.text = offre.title
 
         val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)

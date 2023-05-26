@@ -12,29 +12,8 @@ class UsersService() {
 
     fun create(temporaryWorker: TemporaryWorker){
         Log.d("create", "create: $temporaryWorker")
-        val query = "INSERT INTO ${Requetes.TABLE_TEMPORARYWORKERS} (" +
-                "${Requetes.COL_LASTNAME_TEMPORARYWORKER}, " +
-                "${Requetes.COL_NAME_TEMPORARYWORKER}, " +
-                "${Requetes.COL_EMAIL_TEMPORARYWORKER}, " +
-                "${Requetes.COL_PASSWORD_TEMPORARYWORKER}, " +
-                "${Requetes.COL_PHONE_TEMPORARYWORKER}, " +
-                "${Requetes.COL_BIRTHDAY_TEMPORARYWORKER}, " +
-                "${Requetes.COL_NATIONALITY_TEMPORARYWORKER}," +
-                "${Requetes.COL_CITY_TEMPORARYWORKER}," +
-                "${Requetes.COL_COMMENTARY_TEMPORARYWORKER}" +
-                ") VALUES (" +
-                "'${temporaryWorker.getLastName()}', " +
-                "'${temporaryWorker.getFirstName()}', " +
-                "'${temporaryWorker.getEmail()}', " +
-                "'${temporaryWorker.getPassword()}', " +
-                "'${temporaryWorker.getPhone()}', " +
-                "'${temporaryWorker.getBirthday()}'" +
-                "'${temporaryWorker.getNationality()}'" +
-                "'${temporaryWorker.getCity()}'" +
-                "'${temporaryWorker.getCommentary()}'" +
-                ");";
-
-        db.execSQL(query)
+        val values = temporaryWorker.toContentValues()
+        db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
     }
 
     fun create(employer: Employer){
@@ -75,9 +54,11 @@ class UsersService() {
     @SuppressLint("Range")
     fun signIn(email: String, password: String): TemporaryWorker? {
         val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE " +
-                "${Requetes.COL_EMAIL_TEMPORARYWORKER} = '$email' AND ${Requetes.COL_PASSWORD_TEMPORARYWORKER} = '$password';"
+                "${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
+                "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
 
-        val cursor = db.rawQuery(query, null)
+        val selectionArgs = arrayOf(email, password)
+        val cursor = db.rawQuery(query, selectionArgs)
         var temporaryWorker: TemporaryWorker? = null
 
         if(cursor.moveToFirst()){
@@ -118,7 +99,7 @@ class UsersService() {
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
             );
         }
-
+        cursor.close()
         return temporaryWorker
     }
 
