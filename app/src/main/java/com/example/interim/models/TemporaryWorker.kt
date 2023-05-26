@@ -60,7 +60,7 @@ class TemporaryWorker(
         this.lastName = lastName
     }
 
-    fun getPassword(): String {
+    override fun getPassword(): String {
         return password
     }
 

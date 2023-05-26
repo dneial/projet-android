@@ -51,6 +51,7 @@ class SignUpAuthentification : Fragment() {
                     UsersService().create(user as TemporaryWorker)
                 else if (role == "Employer")
                     UsersService().create(user as Employer)
+                UsersService().signIn(user.getEmail(), user.getPassword())
                 startActivity(intent)
             }
         }

@@ -131,7 +131,7 @@ class Employer(
         this.commentary = commentary
     }
 
-    fun getPassword(): String {
+    override fun getPassword(): String {
         return password
     }
 
