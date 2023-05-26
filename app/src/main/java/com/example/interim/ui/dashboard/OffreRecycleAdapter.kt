@@ -51,7 +51,7 @@ class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapte
             val offre = values.find { it.id.toInt() == offreId }
 
                 it.findNavController().navigate(
-                    R.id.action_navigation_dashboard_to_navigation_offres,
+                    R.id.navigation_offres,
 
                     Bundle().apply {
                         putParcelable("offre", offre)

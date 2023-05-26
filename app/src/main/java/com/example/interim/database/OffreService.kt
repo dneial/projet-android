@@ -1,9 +1,11 @@
 package com.example.interim.database
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.models.Offre
+import java.sql.SQLException
 
 class OffreService() {
 
@@ -97,39 +99,9 @@ class OffreService() {
 
 
     fun getEnregistresByUser(user_id: Long): ArrayList<Offre> {
-        val sortOrder = "${Requetes.COL_ID_OFFRE_ENREGISTREE} DESC"
-        val selection = "${Requetes.COL_ID_USER_ENREGISTREE} = ?"
         val selectionArgs = arrayOf(user_id.toString())
-        val cursor = db.query(Requetes.TABLE_OFFRE_ENREGISTREE, arrayOf(Requetes.COL_ID_OFFRE_ENREGISTREE), selection, selectionArgs, null, null, sortOrder)
-        val offres = ArrayList<Long>();
-
-        while (cursor.moveToNext()) {
-            val offre = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_ENREGISTREE));
-            offres.add(offre);
-        }
-
-        cursor.close();
-        Log.d("offres ids", offres.toString())
-        return readAllIn(offres);
-    }
-
-    private fun readAllIn(ids: ArrayList<Long>): ArrayList<Offre> {
-        val selection = "${Requetes.COL_ID} in (?)"
-        val selectionArgs = arrayOf(ids.toString())
-
-        val cursor = db.query(
-            Requetes.TABLE_OFFRE,
-            null,
-            selection,
-            selectionArgs,
-            null,
-            null,
-            null
-        );
-
-
         val offres = ArrayList<Offre>();
-
+        val cursor = db.rawQuery(Requetes.OFFRE_ENREGISTREE_GET_BY_USER_ID, selectionArgs)
         while (cursor.moveToNext()) {
             val offre = Offre(
                 cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_TITLE)),
@@ -143,18 +115,25 @@ class OffreService() {
             );
             offres.add(offre);
         }
+
         cursor.close();
-        Log.d("offres enregistrees", offres.toString())
+        Log.d("offres", offres.toString())
         return offres;
     }
+
 
     fun enregistrer(user_id: Long, offre_id: Long): Long {
         val values = ContentValues().apply {
             put(Requetes.COL_ID_USER_ENREGISTREE, user_id)
             put(Requetes.COL_ID_OFFRE_ENREGISTREE, offre_id)
         }
-
-        return db.insert(Requetes.TABLE_OFFRE_ENREGISTREE, null, values)
+        var id = -1L
+        try {
+            id = db.insertOrThrow(Requetes.TABLE_OFFRE_ENREGISTREE, null, values)
+        } catch (e: SQLiteConstraintException) {
+            Log.d("error", e.toString())
+        }
+        return id
     }
 
     fun getOffre(offreId: Long): Offre? {

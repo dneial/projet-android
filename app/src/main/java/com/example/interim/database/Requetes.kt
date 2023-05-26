@@ -153,9 +153,21 @@ object Requetes {
             "PRIMARY KEY ($COL_ID_OFFRE_ENREGISTREE, $COL_ID_USER_ENREGISTREE));";
 
     const val OFFRE_ENREGISTREE_GET_BY_USER_ID: String = "" +
-            "SELECT $COL_ID_OFFRE_ENREGISTREE " +
+            "SELECT * " +
             "FROM $TABLE_OFFRE_ENREGISTREE " +
+            "INNER JOIN $TABLE_OFFRE " +
+            "ON $TABLE_OFFRE_ENREGISTREE.$COL_ID_OFFRE_ENREGISTREE = $TABLE_OFFRE.$COL_ID " +
             "WHERE $COL_ID_USER_ENREGISTREE = ?;";
+
+
+    const val GET_OFFRE_BY_CANDIDATURE_ID: String = "" +
+            "SELECT * " +
+            "FROM $TABLE_OFFRE " +
+            "INNER JOIN $TABLE_CANDIDATURE " +
+            "ON $TABLE_OFFRE.$COL_ID = $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE " +
+            "WHERE $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE = ?;";
 }
+
+
 
 

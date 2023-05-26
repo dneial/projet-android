@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
@@ -90,9 +91,15 @@ class OffreFragment : Fragment() {
     private fun enregistrer_offre(offre: Offre) {
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
         val user_id = sharedPref?.getLong("user_id", -1)
-        OffreService().enregistrer(user_id!!, offre.id).toString()
+        val enregistree = OffreService().enregistrer(user_id!!, offre.id)
 
+        var msg: String
+        if(enregistree == -1L)
+            msg = "L'offre a déjà été enregistrée"
+        else
+            msg = "L'offre a bien été enregistrée"
 
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
 
     }
 

@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.interim.MainActivity
 import com.example.interim.R
+import com.example.interim.ui.connection.ConnectionActivity
 
 class CompteFragment : Fragment(){
     override fun onCreateView(
@@ -27,6 +28,9 @@ class CompteFragment : Fragment(){
                 this?.putLong("user_id", -1)
                 this?.apply()
             }
+
+            val intent = Intent(activity, ConnectionActivity::class.java)
+            startActivity(intent)
 
         }
 

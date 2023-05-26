@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+    <include layout="@layout/offre_detail" />
+
+    <TextView
+        android:id="@+id/date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_label"
+        android:layout_below="@id/offre_detail"
+        />
+
+    <TextView
+        android:id="@+id/dateCandidature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/offre_detail"
+        android:layout_toEndOf="@id/date_label"
+        />
+
+    <TextView
+        android:id="@+id/etat_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/etat_label"
+        android:layout_below="@id/date_label"
+        />
+
+    <TextView
+        android:id="@+id/etatCandidature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_label"
+        android:layout_toEndOf="@id/etat_label"
+        />
+
+</RelativeLayout>

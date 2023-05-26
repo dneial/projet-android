@@ -45,7 +45,23 @@ class CandidatureRecycleAdapter(private val values: List<Candidature.Candidature
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(values[position])
-        holder.cardView.setOnClickListener { it ->
+        holder.cardView.setOnClickListener {
+            val candidatureId = it.id
+
+            it.findNavController().navigate(
+                R.id.action_navigation_home_to_navigation_candidature_detail,
+
+                Bundle().apply {
+                    putLong("candidature_id", candidatureId.toLong())
+                },
+
+                navOptions { // Use the Kotlin DSL for building NavOptions
+                    anim {
+                        enter = android.R.animator.fade_in
+                        exit = android.R.animator.fade_out
+                    }
+                }
+            )
             Log.d("CandidatureRecycleAdapter", "onBindViewHolder: ${it.id}")
         }
     }
