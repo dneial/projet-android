@@ -16,13 +16,13 @@ class UsersService() {
     fun create(temporaryWorker: TemporaryWorker){
         Log.d("create", "create: $temporaryWorker")
         val values = temporaryWorker.toContentValues()
-        db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
+        temporaryWorker.setId(db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values))
     }
 
     fun create(employer: Employer){
         Log.d("create", "create: $employer")
         val values = employer.toContentValues()
-        db.insert(Requetes.TABLE_EMPLOYER, null, values)
+        Employer(db.insert(Requetes.TABLE_EMPLOYER, null, values))
     }
 
     @SuppressLint("Range")

@@ -29,11 +29,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/candidature_prenom_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/candidature_prenom_edit"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/candidature_nom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_last_name"
-            android:layout_below="@+id/candidature_prenom_edit"
+            android:layout_below="@+id/candidature_prenom_warning"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -47,15 +56,24 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/candidature_nom_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/candidature_nom_edit"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/candidature_anniversaire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_birthday"
-            android:layout_below="@+id/candidature_nom_edit"
+            android:text="@string/tv_birthday_with_asterisk"
+            android:layout_below="@+id/candidature_nom_warning"
             android:layout_marginTop="8dp"/>
 
         <EditText
-            android:id="@+id/candidature_anniversaire_edit"
+            android:id="@+id/candidature_birthday_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/candidature_anniversaire"
@@ -65,47 +83,20 @@
             android:importantForAutofill="no" />
 
         <TextView
-            android:id="@+id/candidature_email"
+            android:id="@+id/candidature_birthday_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_email"
-            android:layout_below="@+id/candidature_anniversaire_edit"
-            android:layout_marginTop="8dp"/>
-
-        <EditText
-            android:id="@+id/candidature_email_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/candidature_email"
-            android:hint="@string/et_email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
-
-        <TextView
-            android:id="@+id/candidateure_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_phone"
-            android:layout_below="@+id/candidature_email_edit"
-            android:layout_marginTop="8dp"/>
-
-        <EditText
-            android:id="@+id/candidature_phone_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/candidateure_phone"
-            android:hint="@string/et_phone"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:layout_below="@+id/candidature_birthday_edit"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/candidature_nationality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_nationality"
-            android:layout_below="@+id/candidature_phone_edit"
+            android:text="@string/tv_nationality_with_asterisk"
+            android:layout_below="@+id/candidature_birthday_warning"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -119,29 +110,35 @@
             android:importantForAutofill="no" />
 
         <TextView
-            android:id="@+id/candidature_ville"
+            android:id="@+id/candidature_nationality_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_city"
             android:layout_below="@+id/candidature_nationality_edit"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/candidature_cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_CV_with_asterisk"
+            android:layout_below="@+id/candidature_nationality_warning"
             android:layout_marginTop="8dp"/>
 
-        <EditText
-            android:id="@+id/candidature_ville_edit"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/candidature_cv_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/candidature_ville"
-            android:hint="@string/et_city"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:layout_below="@+id/candidature_cv"
+            android:text="@string/button_upload_file"/>
 
         <TextView
             android:id="@+id/candidature_lettre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_LettreMotivation"
-            android:layout_below="@+id/candidature_ville_edit"
+            android:layout_below="@+id/candidature_cv_button"
             android:layout_marginTop="8dp"/>
 
 
@@ -152,27 +149,11 @@
             android:layout_below="@+id/candidature_lettre"
             android:text="@string/lettre_motivation"/>
 
-        <TextView
-            android:id="@+id/candidature_cv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_CV"
-            android:layout_below="@+id/candidature_lettre_button"
-            android:layout_marginTop="8dp"/>
-
-        <Button
-            android:id="@+id/candidature_cv_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/candidature_cv"
-            android:text="@string/button_upload_file"/>
-
-
         <Button
             android:id="@+id/candidature_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/candidature_cv_button"
+            android:layout_below="@+id/candidature_lettre_button"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="200dp"
             android:text="@string/candidature_button"

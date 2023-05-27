@@ -55,7 +55,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextFirstName"/>
 
         <TextView
@@ -84,7 +83,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextLastName"/>
 
         <TextView
@@ -113,7 +111,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextBirthday"/>
 
 
@@ -143,7 +140,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextEmail"/>
 
         <TextView
@@ -172,7 +168,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextPhone"/>
 
         <TextView
@@ -201,7 +196,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextNationality"/>
 
         <TextView
@@ -230,7 +224,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextCity"/>
 
         <TextView
@@ -296,7 +289,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/interimSignUpEditTextPassword"/>
 
         <Button

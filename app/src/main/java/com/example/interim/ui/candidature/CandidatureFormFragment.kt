@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
@@ -18,6 +19,7 @@ import com.example.interim.models.Candidature
 import com.example.interim.models.TemporaryWorker
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.regex.Pattern
 
 class CandidatureFormFragment: Fragment() {
 
@@ -33,7 +35,10 @@ class CandidatureFormFragment: Fragment() {
 
 
         val postulerButton = view.findViewById<Button>(R.id.candidature_button)
-        postulerButton.setOnClickListener { postuler(offre_id) }
+        postulerButton.setOnClickListener {
+        if (checkSignUpInterim(view))
+            postuler(offre_id)
+        }
 
         bind_info(view)
         
@@ -47,11 +52,8 @@ class CandidatureFormFragment: Fragment() {
         if(user != null) {
             view?.findViewById<EditText>(R.id.candidature_prenom_edit)?.setText(user.getFirstName())
             view?.findViewById<EditText>(R.id.candidature_nom_edit)?.setText(user.getLastName())
-            view?.findViewById<EditText>(R.id.candidature_email_edit)?.setText(user.getEmail())
-            view?.findViewById<EditText>(R.id.candidature_phone_edit)?.setText(user.getEmail())
-            view?.findViewById<EditText>(R.id.candidature_ville_edit)?.setText(user.getCity())
             view?.findViewById<EditText>(R.id.candidature_nationality_edit)?.setText(user.getNationality())
-            view?.findViewById<EditText>(R.id.candidature_anniversaire_edit)?.setText(user.getBirthday())
+            view?.findViewById<EditText>(R.id.candidature_birthday_edit)?.setText(user.getBirthday())
         }
     }
 
@@ -105,5 +107,63 @@ class CandidatureFormFragment: Fragment() {
 
             )
         }
+    }
+
+    private fun checkSignUpInterim(view: View) : Boolean{
+        var correct : Boolean = true
+        val lastName = view.findViewById<EditText>(R.id.candidature_nom_edit)
+        val firstName = view.findViewById<EditText>(R.id.candidature_prenom_edit)
+        val birthday = view.findViewById<EditText>(R.id.candidature_birthday_edit)
+        val nationality = view.findViewById<EditText>(R.id.candidature_nationality_edit)
+
+        val lastNameWarning = view.findViewById<TextView>(R.id.candidature_nom_warning)
+        val firstNameWarning = view.findViewById<TextView>(R.id.candidature_prenom_warning)
+        val birthdayWarning = view.findViewById<TextView>(R.id.candidature_birthday_warning)
+        val nationalityWarning = view.findViewById<TextView>(R.id.candidature_nationality_warning)
+
+        var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
+        if (firstName.text.toString() == "" ){
+            firstName.setBackgroundResource(R.drawable.outline_warning)
+            firstNameWarning.visibility = View.VISIBLE
+            correct = false
+        } else if (!pattern.matcher(firstName.text.toString()).matches()){
+            firstNameWarning.visibility = View.VISIBLE
+            correct = false
+            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        } else {
+            firstNameWarning.visibility = View.GONE
+            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (lastName.text.toString() == ""){
+            lastNameWarning.visibility = View.VISIBLE
+            lastName.setBackgroundResource(R.drawable.outline_warning)
+            correct = false
+        } else if (!pattern.matcher(lastName.text.toString()).matches()){
+            lastNameWarning.visibility = View.VISIBLE
+            lastName.setBackgroundResource(R.drawable.outline_warning)
+            correct = false
+        } else {
+            lastNameWarning.visibility = View.GONE
+            lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        if (nationality.text.toString() != "" && !pattern.matcher(nationality.text.toString()).matches()){
+            nationality.setBackgroundResource(R.drawable.outline_warning)
+            nationalityWarning.visibility = View.VISIBLE
+        } else {
+            nationalityWarning.visibility = View.GONE
+            nationality.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        }
+
+        pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
+        if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
+            birthday.setBackgroundResource(R.drawable.outline_warning)
+            birthdayWarning.visibility = View.VISIBLE
+            correct = false
+        } else { birthdayWarning.visibility = View.GONE
+            birthday.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+
+        return correct
     }
 }

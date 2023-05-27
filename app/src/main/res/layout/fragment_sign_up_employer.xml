@@ -43,7 +43,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextCompanyName"/>
 
         <TextView
@@ -72,7 +71,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextDepartmentName"/>
 
         <TextView
@@ -101,7 +99,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextSubDepartmentName"/>
 
         <TextView
@@ -130,7 +127,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextEntityNumber"/>
 
         <TextView
@@ -159,7 +155,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextContactPerson1"/>
 
         <TextView
@@ -188,7 +183,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextContactPerson2"/>
 
         <TextView
@@ -217,7 +211,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextEmail1"/>
 
         <TextView
@@ -246,7 +239,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextEmail2"/>
 
         <TextView
@@ -275,7 +267,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextPhone1"/>
 
         <TextView
@@ -304,7 +295,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextPhone2"/>
 
         <TextView
@@ -332,7 +322,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextAddress"/>
 
         <TextView
@@ -380,7 +369,6 @@
             android:textColor="@color/red"
             android:text="@string/warning_form"
             android:visibility="gone"
-            android:textSize="20dp"
             android:layout_below="@+id/employerSignUpEditTextPassword"/>
 
         <Button

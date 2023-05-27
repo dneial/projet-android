@@ -53,15 +53,19 @@
     <string name="et_last_name">Simula</string>
     <string name="tv_birthday">Date de naissance</string>
     <string name="et_birthday">JJ/MM/AAAA</string>
+    <string name="tv_birthday_with_asterisk">Date de naissance *</string>
+
     <string name="et_email">mon.mail@gmail.com</string>
     <string name="tv_email">Email</string>
     <string name="et_phone">XX XX XX XX XX</string>
     <string name="tv_phone">Numéro de téléphone</string>
     <string name="tv_nationality">Nationalité</string>
+    <string name="tv_nationality_with_asterisk">Nationality *</string>
     <string name="et_nationality">Français</string>
     <string name="tv_city">Ville</string>
     <string name="et_city">Montpellier</string>
     <string name="tv_CV">CV</string>
+    <string name="tv_CV_with_asterisk">CV *</string>
     <string name="button_upload_file">Charger un fichier</string>
     <string name="tv_password">Mot de passe *</string>
     <string name="et_password">Entrez votre mot de passe</string>
@@ -102,4 +106,5 @@
     <string name="first_name">Prenom</string>
     <string name="last_name">Nom</string>
     <string name="warning_form">Ce champ est incorrect</string>
+    <string name="warning_sign_in">Ce champ est incorrect</string>
 </resources>
