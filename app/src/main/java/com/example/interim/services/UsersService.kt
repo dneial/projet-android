@@ -1,6 +1,7 @@
 package com.example.interim.services
 
 import android.annotation.SuppressLint
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.database.DataBase
@@ -40,17 +41,7 @@ class UsersService() {
         var user : User? = null
 
         if(cursor.moveToFirst()){
-            user = TemporaryWorker(
-                cursor.getLong(cursor.getColumnIndex(Requetes.COL_ID_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_NAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_EMAIL_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_CITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndex(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
-            )
+            user = cursorToWorker(cursor)
             cursor.close()
         }else{
             query = "SELECT * " +
@@ -60,25 +51,11 @@ class UsersService() {
 
             cursor = db.rawQuery(query, selectionArgs)
             if(cursor.moveToFirst()){
-                user = Employer(
-                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
-                )
+                user = cursorToEmployer(cursor)
                 cursor.close()
             }
         }
+        Log.d("signIn", "signIn: $user")
         return user
     }
 
@@ -89,20 +66,10 @@ class UsersService() {
         var temporaryWorker: TemporaryWorker? = null
 
         if(cursor.moveToFirst()){
-            temporaryWorker = TemporaryWorker(
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
-            );
+            temporaryWorker = cursorToWorker(cursor)
         }
         cursor.close()
+        Log.d("getTemporaryWorker", temporaryWorker.toString())
         return temporaryWorker
     }
 
@@ -113,19 +80,7 @@ class UsersService() {
         val temporaryWorkers = ArrayList<TemporaryWorker>();
 
         while (cursor.moveToNext()) {
-            val temporaryWorker = TemporaryWorker(
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_TEMPORARYWORKER))
-            );
-            temporaryWorkers.add(temporaryWorker);
+            temporaryWorkers.add(cursorToWorker(cursor));
         }
         cursor.close();
 
@@ -139,25 +94,65 @@ class UsersService() {
         var employer: Employer? = null
 
         if(cursor.moveToFirst()){
-            employer = Employer(
-                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
-                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
-            );
+            employer = cursorToEmployer(cursor)
         }
         cursor.close()
         return employer
+    }
+
+    private fun cursorToWorker(cursor: Cursor): TemporaryWorker {
+        val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER))
+        val name = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_TEMPORARYWORKER))
+        val lastname = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_LASTNAME_TEMPORARYWORKER))
+        val email = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_TEMPORARYWORKER))
+        val password = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_TEMPORARYWORKER))
+        val phone = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_TEMPORARYWORKER))
+        val city = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER))
+        val birthday = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER))
+        val nationality = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
+
+        return TemporaryWorker(
+            id=id,
+            firstName=name,
+            lastName=lastname,
+            email=email,
+            password=password,
+            phone=phone,
+            city=city,
+            birthday=birthday,
+            nationality=nationality
+        )
+    }
+    private fun cursorToEmployer(cursor: Cursor): Employer? {
+        val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER))
+        val name = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER))
+        val service = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER))
+        val subService = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER))
+        val siret = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER))
+        val contact = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER))
+        val subContact = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER))
+        val email = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER))
+        val subEmail = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER))
+        val phone = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER))
+        val address = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER))
+        val comment = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
+        val password = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER))
+
+         return Employer(
+            id=id,
+            name=name,
+            service=service,
+            subService=subService,
+            SIRET=siret,
+            contact=contact,
+            subContact=subContact,
+            email=email,
+            subEmail=subEmail,
+            phone=phone,
+            address=address,
+            commentary=comment,
+            password=password
+        )
     }
 
 

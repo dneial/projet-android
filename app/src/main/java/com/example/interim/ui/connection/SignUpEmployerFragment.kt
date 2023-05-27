@@ -108,6 +108,7 @@ class SignUpEmployerFragment : Fragment() {
         val addressPattern = Pattern.compile("^\\d*[\\w\\s',.-]+ \\d+ [\\w\\s',.-]+$")
         val phonePattern = Pattern.compile("^\\d{10}$")
 
+
         if (name.text.toString() == "") {
             name.setBackgroundResource(R.drawable.outline_warning)
             nameWarning.visibility = View.VISIBLE

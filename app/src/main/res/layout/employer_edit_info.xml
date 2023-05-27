@@ -27,10 +27,21 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_name_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_name_edit"/>
+
+
+        <TextView
             android:id="@+id/company_metier_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_name_edit"
+            android:layout_below="@+id/company_name_error"
             android:text="@string/tv_departement_service"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -46,10 +57,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_metier_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_metier_edit"/>
+
+        <TextView
             android:id="@+id/company_sous_metier_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_metier_edit"
+            android:layout_below="@+id/company_metier_error"
             android:text="@string/tv_sub_departement_service"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -65,10 +86,21 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_sous_metier_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_sous_metier_edit"/>
+
+
+        <TextView
             android:id="@+id/company_siret_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_sous_metier_edit"
+            android:layout_below="@+id/company_sous_metier_error"
             android:text="@string/tv_company_id"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -84,10 +116,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_siret_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_siret_edit"/>
+
+        <TextView
             android:id="@+id/company_name1_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_siret_edit"
+            android:layout_below="@+id/company_siret_error"
             android:text="@string/tv_contact_name_1"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -103,10 +145,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_name1_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_name1_edit"/>
+
+        <TextView
             android:id="@+id/company_name2_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_name1_edit"
+            android:layout_below="@+id/company_name1_error"
             android:text="@string/tv_contact_name_2"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -122,10 +174,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_name2_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_name2_edit"/>
+
+        <TextView
             android:id="@+id/company_email1_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_name2_edit"
+            android:layout_below="@+id/company_name2_error"
             android:text="@string/tv_mail_1"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -141,10 +203,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_email1_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_email1_edit"/>
+
+        <TextView
             android:id="@+id/company_email2_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_email1_edit"
+            android:layout_below="@+id/company_email1_error"
             android:text="@string/tv_mail_2"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -160,10 +232,22 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_email2_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_email2_edit"/>
+
+
+
+        <TextView
             android:id="@+id/company_phone1_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_email2_edit"
+            android:layout_below="@+id/company_email2_error"
             android:text="@string/tv_phone_1"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -179,10 +263,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_phone1_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_phone1_edit"/>
+
+        <TextView
             android:id="@+id/company_phone2_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_phone1_edit"
+            android:layout_below="@+id/company_phone1_error"
             android:text="@string/tv_phone_2"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -198,10 +292,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/company_phone2_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_phone2_edit"/>
+
+        <TextView
             android:id="@+id/company_comment_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_phone2_edit"
+            android:layout_below="@+id/company_phone2_error"
             android:text="@string/tv_commentary"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -234,6 +338,16 @@
             android:inputType="text"
             android:hint="@string/et_address"
             android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_address_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/company_address_edit"/>
 
     </RelativeLayout>
 </ScrollView>

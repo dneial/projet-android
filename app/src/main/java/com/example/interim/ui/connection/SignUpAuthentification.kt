@@ -84,6 +84,7 @@ class SignUpAuthentification : Fragment() {
 
             user = TemporaryWorker(0, firstName!!, lastName!!, email!!, password!!,
                 phone!!, birthday!!, nationality!!, city!!, commentary!!)
+
         } else {
             val name = arguments?.getString("name")
             val service = arguments?.getString("service")

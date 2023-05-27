@@ -113,4 +113,19 @@ class TemporaryWorker(
         values.put(Requetes.COL_COMMENTARY_TEMPORARYWORKER, commentary)
         return values
     }
+
+
+    override fun toString(): String {
+        val builder = StringBuilder()
+        builder.append("Worker [id=").append(id)
+        builder.append(", firstName=").append(firstName)
+        builder.append(", lastName=").append(lastName)
+        builder.append(", email=").append(email)
+        builder.append(", password=").append(password)
+        builder.append(", ville=").append(city)
+        builder.append(", bday=").append(birthday)
+        builder.append(", nat=").append(nationality)
+        builder.append(", phone=").append(phone).append("]")
+        return builder.toString()
+    }
 }

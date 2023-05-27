@@ -34,12 +34,13 @@ class WorkerEditInfoFragment(): Fragment() {
         val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)
         user = UsersService().getTemporaryWorker(user_id!!)!!
 
+        bind_info(view)
+
         val confirm_button = view.findViewById<View>(R.id.confirm_button)
         confirm_button.setOnClickListener {
             editWorker(view)
         }
 
-        bind_info(view)
 
         return view
     }
@@ -48,7 +49,7 @@ class WorkerEditInfoFragment(): Fragment() {
         view?.findViewById<EditText>(R.id.worker_prenom_edit)?.setText(user.getFirstName())
         view?.findViewById<EditText>(R.id.worker_nom_edit)?.setText(user.getLastName())
         view?.findViewById<EditText>(R.id.worker_email_edit)?.setText(user.getEmail())
-        view?.findViewById<EditText>(R.id.worker_phone_edit)?.setText(user.getEmail())
+        view?.findViewById<EditText>(R.id.worker_phone_edit)?.setText(user.getPhone())
         view?.findViewById<EditText>(R.id.worker_ville_edit)?.setText(user.getCity())
         view?.findViewById<EditText>(R.id.worker_nationality_edit)?.setText(user.getNationality())
         view?.findViewById<EditText>(R.id.worker_anniversaire_edit)?.setText(user.getBirthday())
