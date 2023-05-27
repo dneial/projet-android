@@ -16,13 +16,16 @@ class UsersService() {
     fun create(temporaryWorker: TemporaryWorker){
         Log.d("create", "create: $temporaryWorker")
         val values = temporaryWorker.toContentValues()
-        temporaryWorker.setId(db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values))
+        val id = db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
+        temporaryWorker.setId(id)
     }
 
     fun create(employer: Employer){
         Log.d("create", "create: $employer")
         val values = employer.toContentValues()
-        Employer(db.insert(Requetes.TABLE_EMPLOYER, null, values))
+        val id = db.insert(Requetes.TABLE_EMPLOYER, null, values)
+        employer.setId(id)
+
     }
 
     @SuppressLint("Range")
@@ -137,26 +140,49 @@ class UsersService() {
 
         if(cursor.moveToFirst()){
             employer = Employer(
-                    cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER )),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBSERVICE_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SIRET_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CONTACT_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBCONTACT_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBEMAIL_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PHONE_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SUBPHONE_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
             );
         }
         cursor.close()
         return employer
     }
 
+
+    fun getUser(user_id: Long): User? {
+        var user: User? = getTemporaryWorker(user_id)
+        if(user == null){
+            user = getEmployer(user_id)
+        }
+        return user
+    }
+
+    fun updateTemporaryWorker(user: TemporaryWorker) {
+        val values = user.toContentValues()
+        val selection = "${Requetes.COL_ID_TEMPORARYWORKER} = ?"
+        val selectionArgs = arrayOf(user.getId().toString())
+        db.update(Requetes.TABLE_TEMPORARYWORKERS, values, selection, selectionArgs)
+
+    }
+
+    fun updateEmployer(user: Employer) {
+        val values = user.toContentValues()
+        val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(user.getId().toString())
+        db.update(Requetes.TABLE_EMPLOYER, values, selection, selectionArgs)
+    }
 
 
 }

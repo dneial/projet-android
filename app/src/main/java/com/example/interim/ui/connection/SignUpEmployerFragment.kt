@@ -106,6 +106,7 @@ class SignUpEmployerFragment : Fragment() {
         val emailPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\$")
         val siretPattern = Pattern.compile("^\\d{14}$")
         val addressPattern = Pattern.compile("^\\d*[\\w\\s',.-]+ \\d+ [\\w\\s',.-]+$")
+        val phonePattern = Pattern.compile("^\\d{10}$")
 
         if (name.text.toString() == "") {
             name.setBackgroundResource(R.drawable.outline_warning)
@@ -171,7 +172,7 @@ class SignUpEmployerFragment : Fragment() {
         } else { secondEmailWarning.visibility = View.GONE
             secondEmail.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        if (phone.text.toString() != "" && !textPattern.matcher(phone.text.toString()).matches()){
+        if (phone.text.toString() != "" && !phonePattern.matcher(phone.text.toString()).matches()){
             phone.setBackgroundResource(R.drawable.outline_warning)
             phoneWarning.visibility = View.VISIBLE
             correct = false

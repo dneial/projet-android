@@ -61,6 +61,7 @@ class ConnectionFragment: Fragment() {
         val warning = view?.findViewById<TextView>(R.id.identificationWarningTextView)
 
         if(email == "" || password == "") {
+            warning?.visibility = View.VISIBLE
             Log.d("ConnectionFragment", "email or password empty")
         } else {
             val user: User? = usersService.signIn(email, password)

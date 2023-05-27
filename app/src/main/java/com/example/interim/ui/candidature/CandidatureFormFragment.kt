@@ -36,8 +36,8 @@ class CandidatureFormFragment: Fragment() {
 
         val postulerButton = view.findViewById<Button>(R.id.candidature_button)
         postulerButton.setOnClickListener {
-        if (checkSignUpInterim(view))
-            postuler(offre_id)
+            if (checkSignUpInterim(view))
+                postuler(offre_id)
         }
 
         bind_info(view)
@@ -119,24 +119,16 @@ class CandidatureFormFragment: Fragment() {
         val nationalityWarning = view.findViewById<TextView>(R.id.candidature_nationality_warning)
 
         var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
-        if (firstName.text.toString() == "" ){
+        if (firstName.text.toString() == "" || !pattern.matcher(firstName.text.toString()).matches()){
             firstName.setBackgroundResource(R.drawable.outline_warning)
             firstNameWarning.visibility = View.VISIBLE
             correct = false
-        } else if (!pattern.matcher(firstName.text.toString()).matches()){
-            firstNameWarning.visibility = View.VISIBLE
-            correct = false
-            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         } else {
             firstNameWarning.visibility = View.GONE
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (lastName.text.toString() == ""){
-            lastNameWarning.visibility = View.VISIBLE
-            lastName.setBackgroundResource(R.drawable.outline_warning)
-            correct = false
-        } else if (!pattern.matcher(lastName.text.toString()).matches()){
+        if (lastName.text.toString() == "" || !pattern.matcher(lastName.text.toString()).matches()){
             lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
@@ -145,7 +137,7 @@ class CandidatureFormFragment: Fragment() {
             lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (nationality.text.toString() != "" && !pattern.matcher(nationality.text.toString()).matches()){
+        if (nationality.text.toString() == "" || !pattern.matcher(nationality.text.toString()).matches()){
             nationality.setBackgroundResource(R.drawable.outline_warning)
             nationalityWarning.visibility = View.VISIBLE
         } else {
@@ -154,7 +146,7 @@ class CandidatureFormFragment: Fragment() {
         }
 
         pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
-        if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
+        if (nationality.text.toString() == "" || (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches())){
             birthday.setBackgroundResource(R.drawable.outline_warning)
             birthdayWarning.visibility = View.VISIBLE
             correct = false
