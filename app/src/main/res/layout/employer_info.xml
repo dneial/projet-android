@@ -1,0 +1,221 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.connection.SignUpEmployerFragment"
+    android:id="@+id/employer_info">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/company_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_name"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_name_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_metier_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_name"
+            android:text="@string/tv_departement_service"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_metier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_metier_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_sous_metier_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_metier"
+            android:text="@string/tv_sub_departement_service"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_sous_metier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_sous_metier_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_siret_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_sous_metier"
+            android:text="@string/company_id"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_siret"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_siret_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_name1_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_siret"
+            android:text="@string/tv_contact_name_1"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_name1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_name1_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_name2_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_name1"
+            android:text="@string/tv_contact_name_2"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_name2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_name2_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_email1_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_name2"
+            android:text="@string/mail_1"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_email1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_email1_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_email2_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_email1"
+            android:text="@string/tv_mail_2"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_email2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_email2_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_phone1_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_email2"
+            android:text="@string/tv_phone_1"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_phone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_phone1_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_phone2_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_phone1"
+            android:text="@string/tv_phone_2"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_phone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_phone2_label"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_comment_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_phone2"
+            android:text="@string/tv_commentary"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_comment_label"
+            android:inputType="textMultiLine"
+            android:maxLength="250"
+            android:maxLines="5"
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/company_address_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_comment"
+            android:text="@string/address"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/company_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_address_label"
+            android:importantForAutofill="no"/>
+
+</RelativeLayout>
+</LinearLayout>

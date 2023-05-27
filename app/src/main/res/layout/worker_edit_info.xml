@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/worker_prenom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_first_name" />
+
+        <EditText
+            android:id="@+id/worker_prenom_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_prenom"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_nom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_prenom_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_last_name" />
+
+        <EditText
+            android:id="@+id/worker_nom_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_nom"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_anniversaire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_nom_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_birthday" />
+
+        <EditText
+            android:id="@+id/worker_anniversaire_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_anniversaire"
+            android:hint="@string/et_birthday"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_anniversaire_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_email" />
+
+        <EditText
+            android:id="@+id/worker_email_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_email"
+            android:hint="@string/et_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_email_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_phone" />
+
+        <EditText
+            android:id="@+id/worker_phone_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_nationality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_phone_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_nationality" />
+
+        <EditText
+            android:id="@+id/worker_nationality_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_nationality"
+            android:hint="@string/et_nationality"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/worker_ville"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_nationality_edit"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_city" />
+
+        <EditText
+            android:id="@+id/worker_ville_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/worker_ville"
+            android:hint="@string/et_city"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

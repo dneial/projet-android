@@ -122,4 +122,5 @@ class OffreFragment : Fragment() {
 
     }
 
+
 }

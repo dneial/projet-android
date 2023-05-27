@@ -47,12 +47,34 @@ class MainActivity : AppCompatActivity(), LocationListener {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,
+                R.id.navigation_compte
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        navView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.navigation_home -> {
+                    clearStackAndNavigateTo(R.id.navigation_home)
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    clearStackAndNavigateTo(R.id.navigation_dashboard)
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    clearStackAndNavigateTo(R.id.navigation_notifications)
+                    true
+                }
+                R.id.navigation_compte -> {
+                    clearStackAndNavigateTo(R.id.navigation_compte)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // demander authorisation pour la localisation
         manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
@@ -163,5 +185,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 Log.d("permission", "denied")
             }
         }
+    }
+
+    private fun clearStackAndNavigateTo(destinationId: Int) {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController.popBackStack(navController.graph.startDestinationId, false);
+        navController.navigate(destinationId)
     }
 }

@@ -64,7 +64,6 @@ class ConnectionFragment: Fragment() {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
             val user: User? = usersService.signIn(email, password)
-            Log.d("ConnectionFragment", user.toString())
             if(user != null){
                 warning?.visibility = View.GONE
                 saveSession(user)

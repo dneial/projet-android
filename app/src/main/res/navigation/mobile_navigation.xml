@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home_user" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_offres"
-            app:destination="@id/navigation_offres" />
+            app:destination="@id/navigation_offre" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_candidature_detail"
             app:destination="@id/navigation_candidature_detail" />
@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_offres"
-            app:destination="@id/navigation_offres"
+            app:destination="@id/navigation_offre"
             app:popUpToInclusive="true"
             app:popUpToSaveState="true"/>
         <action
@@ -42,13 +42,16 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
-        android:id="@+id/navigation_offres"
+        android:id="@+id/navigation_offre"
         android:name="com.example.interim.ui.offres.OffreFragment"
         android:label="@string/title_offres"
         tools:layout="@layout/fragment_offre" >
         <argument
             android:name="offre_id"
             app:argType="long" />
+        <argument
+            android:name="android.support.PARENT_ACTIVITY"
+            android:defaultValue="com.example.MainActivity" />
         <action
             android:id="@+id/action_navigation_offres_to_navigation_candidature"
             app:destination="@id/navigation_candidature" />
@@ -63,7 +66,7 @@
 
         <action
             android:id="@+id/action_navigation_create_offre_to_navigation_offres"
-            app:destination="@id/navigation_offres" />
+            app:destination="@id/navigation_offre" />
     </fragment>
 
     <fragment
@@ -83,7 +86,7 @@
             android:defaultValue="-1L" />
         <action
             android:id="@+id/action_navigation_candidature_to_navigation_offres"
-            app:destination="@id/navigation_offres" />
+            app:destination="@id/navigation_offre" />
         <action
             android:id="@+id/action_navigation_candidature_to_navigation_home"
             app:destination="@id/navigation_home" />
