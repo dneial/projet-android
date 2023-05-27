@@ -101,4 +101,5 @@
     <string name="info_worker">Afficher informations sur le candidat</string>
     <string name="first_name">Prenom</string>
     <string name="last_name">Nom</string>
+    <string name="warning_form">Ce champ est incorrect</string>
 </resources>

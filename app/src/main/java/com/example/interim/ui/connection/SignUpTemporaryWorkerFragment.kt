@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import java.util.regex.Pattern
@@ -78,69 +79,97 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
         val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
 
+        val lastNameWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningFirstName)
+        val firstNameWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningLastName)
+        val emailWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningEmail)
+        val passwordWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningPassword)
+        val phoneWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningPhone)
+        val birthdayWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningBirthday)
+        val cityWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningCity)
+        val nationalityWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningNationality)
+
         var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
         if (firstName.text.toString() == "" ){
             firstName.setBackgroundResource(R.drawable.outline_warning)
+            firstNameWarning.visibility = View.VISIBLE
             correct = false
         } else if (!pattern.matcher(firstName.text.toString()).matches()){
+            firstNameWarning.visibility = View.VISIBLE
             correct = false
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         } else {
+            firstNameWarning.visibility = View.GONE
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (lastName.text.toString() == ""){
+            lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
         } else if (!pattern.matcher(lastName.text.toString()).matches()){
+            lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
         } else {
+            lastNameWarning.visibility = View.GONE
             lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (password.text.toString() == ""){
             password.setBackgroundResource(R.drawable.outline_warning)
+            passwordWarning.visibility = View.VISIBLE
             correct = false
         } else {
+            passwordWarning.visibility = View.GONE
             password.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (city.text.toString() != "" && !pattern.matcher(city.text.toString()).matches()){
             city.setBackgroundResource(R.drawable.outline_warning)
+            cityWarning.visibility = View.VISIBLE
         } else {
+            cityWarning.visibility = View.GONE
             city.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (nationality.text.toString() != "" && !pattern.matcher(nationality.text.toString()).matches()){
             nationality.setBackgroundResource(R.drawable.outline_warning)
+            nationalityWarning.visibility = View.VISIBLE
         } else {
+            nationalityWarning.visibility = View.GONE
             nationality.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
         if (email.text.toString() == "" && phone.text.toString() == ""){
             email.setBackgroundResource(R.drawable.outline_warning)
             phone.setBackgroundResource(R.drawable.outline_warning)
-            Log.d("password/email false", email.background.toString() + phone.background.toString())
+            emailWarning.visibility = View.VISIBLE
+            phoneWarning.visibility = View.VISIBLE
             correct = false
         } else {
             pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
             if (email.text.toString() != "" && !pattern.matcher(email.text.toString()).matches()){
                 email.setBackgroundResource(R.drawable.outline_warning)
+                emailWarning.visibility = View.VISIBLE
                 correct = false
-            } else { email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+            } else { emailWarning.visibility = View.GONE
+                email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
             if (phone.text.toString() != "" && phone.text.toString().length != 10){
                 phone.setBackgroundResource(R.drawable.outline_warning)
+                phoneWarning.visibility = View.VISIBLE
                 correct = false
-            }else { phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+            }else { phoneWarning.visibility = View.GONE
+                phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
         }
 
         pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
         if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
             birthday.setBackgroundResource(R.drawable.outline_warning)
+            birthdayWarning.visibility = View.VISIBLE
             correct = false
-        } else { birthday.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
+        } else { birthdayWarning.visibility = View.GONE
+            birthday.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
         return correct
     }

@@ -49,12 +49,22 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextFirstName"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_last_name"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextFirstName"
+            android:layout_below="@+id/interimSignUpTextViewWarningFirstName"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -68,12 +78,22 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextLastName"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewBirthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_birthday"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextLastName"
+            android:layout_below="@+id/interimSignUpTextViewWarningLastName"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -87,12 +107,23 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningBirthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextBirthday"/>
+
+
+        <TextView
             android:id="@+id/interimSignUpTextViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_email"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextBirthday"
+            android:layout_below="@+id/interimSignUpTextViewWarningBirthday"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -106,12 +137,22 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextEmail"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_phone"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextEmail"
+            android:layout_below="@+id/interimSignUpTextViewWarningEmail"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -125,12 +166,22 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextPhone"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewNationality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_nationality"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextPhone"
+            android:layout_below="@+id/interimSignUpTextViewWarningPhone"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -144,12 +195,22 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningNationality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextNationality"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_city"
             android:textSize="20dp"
-            android:layout_below="@+id/interimSignUpEditTextNationality"
+            android:layout_below="@+id/interimSignUpTextViewWarningNationality"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -163,10 +224,20 @@
             android:importantForAutofill="no" />
 
         <TextView
+            android:id="@+id/interimSignUpTextViewWarningCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextCity"/>
+
+        <TextView
             android:id="@+id/interimSignUpTextViewCommentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/interimSignUpEditTextCity"
+            android:layout_below="@+id/interimSignUpTextViewWarningCity"
             android:text="@string/tv_commentary"
             android:textSize="20dp"
             android:layout_marginTop="8dp"/>
@@ -218,11 +289,21 @@
             android:minHeight="48dp"
             android:importantForAutofill="no" />
 
+        <TextView
+            android:id="@+id/interimSignUpTextViewWarningPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/interimSignUpEditTextPassword"/>
+
         <Button
             android:id="@+id/interimSignUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/interimSignUpEditTextPassword"
+            android:layout_below="@+id/interimSignUpTextViewWarningPassword"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="200dp"
             android:text="@string/button_sign_up"
