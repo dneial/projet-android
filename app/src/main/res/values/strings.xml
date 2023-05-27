@@ -99,4 +99,6 @@
     <string name="btn_show_cv">Voir CV</string>
     <string name="button_show_lm">Voir Lettre de Motivation</string>
     <string name="info_worker">Afficher informations sur le candidat</string>
+    <string name="first_name">Prenom</string>
+    <string name="last_name">Nom</string>
 </resources>

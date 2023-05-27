@@ -11,8 +11,30 @@
             android:layout_height="wrap_content"
             android:text="@string/info_worker"/>
 
-    <include
-        layout="@layout/worker_information"
-        android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/worker_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
 
+    <include
+        layout="@layout/worker_information"/>
+
+
+    <Button
+        android:id="@+id/interim_btn_cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/interim_phone"
+        android:text="@string/btn_show_cv" />
+
+    <Button
+        android:id="@+id/interim_btn_lm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/interim_btn_cv"
+        android:layout_marginBottom="200dp"
+        android:text="@string/button_show_lm" />
+    </LinearLayout>
 </LinearLayout>

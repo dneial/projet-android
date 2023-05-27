@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/candidatures_fragment_holder"
-            android:name="com.example.interim.ui.home.UserCandidaturesFragment"/>
+            android:name="com.example.interim.ui.home.user_view.UserCandidaturesFragment"/>
     </FrameLayout>
 
     <FrameLayout
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/offres_enregistrees_fragment_holder"
-            android:name="com.example.interim.ui.home.UserOffresEnregistreesFragment"/>
+            android:name="com.example.interim.ui.home.user_view.UserOffresEnregistreesFragment"/>
 
     </FrameLayout>
 

@@ -1,4 +1,4 @@
-package com.example.interim.ui.home
+package com.example.interim.ui.home.user_view
 
 import android.content.Context
 import android.os.Bundle
@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.interim.R
 import com.example.interim.databinding.FragmentCandidaturesBinding
+import com.example.interim.ui.home.CandidatureRecycleAdapter
+import com.example.interim.ui.home.HomeViewModelFactory
 
-class EmployerCandidaturesFragment: Fragment() {
+class UserCandidaturesFragment: Fragment() {
 
     private var _binding: FragmentCandidaturesBinding? = null
     private val binding get() = _binding!!
@@ -26,14 +28,14 @@ class EmployerCandidaturesFragment: Fragment() {
 
         val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)!!
         val user_role = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getString("user_role", "worker")!!
+
         val factory = HomeViewModelFactory(user_id, user_role)
+
         val homeViewModel =
-            ViewModelProvider(this, factory)[EmployerCandidaturesViewModel::class.java]
+            ViewModelProvider(this, factory)[UserCandidaturesViewModel::class.java]
 
         _binding = FragmentCandidaturesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        homeViewModel.refresh( )
 
         val listView: RecyclerView = binding.candidatureListView
         homeViewModel.candidatures.observe(viewLifecycleOwner) {
@@ -45,11 +47,14 @@ class EmployerCandidaturesFragment: Fragment() {
             listView.clipToPadding = false
         }
 
+        homeViewModel.refresh()
 
         val searchButton = binding.root.findViewById<Button>(R.id.searchButton)
         val searchInput = binding.root.findViewById<EditText>(R.id.searchBarEditText)
         searchButton.setOnClickListener {
-
+            homeViewModel.filterByText(
+                searchInput.text.toString()
+            )
         }
 
         return root

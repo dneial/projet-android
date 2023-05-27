@@ -1,4 +1,4 @@
-package com.example.interim.ui.home
+package com.example.interim.ui.home.employer_view
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -16,7 +16,7 @@ class EmployerViewPageAdapter(fragment: Fragment) :
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> EmployerCandidaturesFragment()
-            1 -> UserOffresEnregistreesFragment()
+            1 -> EmployerOffresFragment()
             else -> EmployerCandidaturesFragment()
         }
     }

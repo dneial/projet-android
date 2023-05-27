@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.interim.R
+import com.example.interim.ui.home.employer_view.EmployerViewPageAdapter
+import com.example.interim.ui.home.user_view.WorkerViewPageAdapter
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {

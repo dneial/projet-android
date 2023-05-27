@@ -38,7 +38,7 @@ class EmployerCandidatureFragment: Fragment() {
         candidature = candidatureService.getCandidature(candidature_id!!)
 
         val info_btn = view.findViewById<Button>(R.id.info_worker_btn)
-        val info_layout = view.findViewById<View>(R.id.worker_info)
+        val info_layout = view.findViewById<View>(R.id.worker_info_layout)
 
         info_btn.setOnClickListener {
             if(info_layout.visibility == View.GONE) {
@@ -50,7 +50,22 @@ class EmployerCandidatureFragment: Fragment() {
             }
         }
 
+        bind_worker_info(info_layout)
         return view
+    }
+
+    private fun bind_worker_info(infoLayout: View?) {
+        val worker_name = infoLayout?.findViewById<TextView>(R.id.interim_prenom)
+        val worker_last_name = infoLayout?.findViewById<TextView>(R.id.interim_last_name)
+        val worker_email = infoLayout?.findViewById<TextView>(R.id.interim_email)
+        val worker_phone = infoLayout?.findViewById<TextView>(R.id.interim_phone)
+        val worker_birthday = infoLayout?.findViewById<TextView>(R.id.interim_birthday)
+
+        worker_name?.text = candidature.user?.getFirstName()
+        worker_last_name?.text = candidature.user?.getLastName()
+        worker_email?.text = candidature.user?.getEmail()
+        worker_phone?.text = candidature.user?.getPhone()
+        worker_birthday?.text = candidature.user?.getBirthday()
     }
 
     private fun showContactInfoDialog() {

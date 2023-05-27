@@ -1,4 +1,4 @@
-package com.example.interim.ui.home
+package com.example.interim.ui.home.employer_view
 
 import android.content.Context
 import android.os.Bundle
@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.interim.databinding.FragmentCandidaturesBinding
 import com.example.interim.databinding.FragmentOffresEnregistreesBinding
 import com.example.interim.ui.dashboard.OffreRecycleAdapter
+import com.example.interim.ui.home.HomeViewModelFactory
 
-class UserOffresEnregistreesFragment: Fragment() {
+class EmployerOffresFragment: Fragment() {
 
     private var _binding: FragmentOffresEnregistreesBinding? = null
     private val binding get() = _binding!!
@@ -30,7 +30,7 @@ class UserOffresEnregistreesFragment: Fragment() {
 
         val factory = HomeViewModelFactory(user_id, user_role)
         val homeViewModel =
-            ViewModelProvider(this, factory)[OffresEnregistreesViewModel::class.java]
+            ViewModelProvider(this, factory)[OffresPublieesViewModel::class.java]
 
         _binding = FragmentOffresEnregistreesBinding.inflate(inflater, container, false)
         val root: View = binding.root

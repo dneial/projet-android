@@ -151,6 +151,8 @@ object Requetes {
             "WHERE $COL_ID_USER_ENREGISTREE = ?;";
 
 
+
+
     const val GET_CANDIDATURE_BY_ID: String = "" +
             "SELECT * " +
             "FROM $TABLE_OFFRE " +

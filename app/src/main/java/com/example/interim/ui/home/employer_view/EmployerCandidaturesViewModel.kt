@@ -1,4 +1,4 @@
-package com.example.interim.ui.home
+package com.example.interim.ui.home.employer_view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

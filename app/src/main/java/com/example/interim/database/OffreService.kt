@@ -208,4 +208,29 @@ class OffreService() {
         cursor.close();
         return offres;
     }
+
+    fun getPublieesByEmployer(userId: Long): List<Offre>? {
+        val selection = "${Requetes.COL_ID_OFFRE_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(userId.toString())
+        val offres = ArrayList<Offre>();
+        val cursor = db.query(Requetes.TABLE_OFFRE, null, selection, selectionArgs, null, null, null);
+        while (cursor.moveToNext()) {
+            val employer = UsersService().getEmployer(userId)
+
+            val offre = Offre(
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_TITLE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_METIER)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DESCRIPTION)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_DEBUT)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_FIN)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION)),
+                cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY)),
+                employer!!
+            );
+            offres.add(offre);
+        }
+        cursor.close();
+        return offres;
+    }
 }
