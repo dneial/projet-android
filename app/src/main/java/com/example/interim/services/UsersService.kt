@@ -16,13 +16,16 @@ class UsersService() {
     fun create(temporaryWorker: TemporaryWorker){
         Log.d("create", "create: $temporaryWorker")
         val values = temporaryWorker.toContentValues()
-        db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
+        val id = db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
+        temporaryWorker.setId(id)
     }
 
     fun create(employer: Employer){
         Log.d("create", "create: $employer")
         val values = employer.toContentValues()
-        db.insert(Requetes.TABLE_EMPLOYER, null, values)
+        val id = db.insert(Requetes.TABLE_EMPLOYER, null, values)
+        employer.setId(id)
+
     }
 
     @SuppressLint("Range")
@@ -157,6 +160,29 @@ class UsersService() {
         return employer
     }
 
+
+    fun getUser(user_id: Long): User? {
+        var user: User? = getTemporaryWorker(user_id)
+        if(user == null){
+            user = getEmployer(user_id)
+        }
+        return user
+    }
+
+    fun updateTemporaryWorker(user: TemporaryWorker) {
+        val values = user.toContentValues()
+        val selection = "${Requetes.COL_ID_TEMPORARYWORKER} = ?"
+        val selectionArgs = arrayOf(user.getId().toString())
+        db.update(Requetes.TABLE_TEMPORARYWORKERS, values, selection, selectionArgs)
+
+    }
+
+    fun updateEmployer(user: Employer) {
+        val values = user.toContentValues()
+        val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(user.getId().toString())
+        db.update(Requetes.TABLE_EMPLOYER, values, selection, selectionArgs)
+    }
 
 
 }

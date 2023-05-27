@@ -84,21 +84,18 @@ class CandidatureFormFragment: Fragment() {
 
         val navController = findNavController()
 
-        val fragInStack = navController.popBackStack(R.id.navigation_candidature, false)
-
+        val fragInStack = navController.popBackStack(R.id.navigation_offre, false)
 
         if(fragInStack) {
-            Log.d("Candidature", "Popped candidature from back stack")
             navController.navigate(
-                R.id.action_navigation_candidature_to_navigation_offres,
+                R.id.navigation_offre,
                 Bundle().apply {
                     putLong("offre_id", offre.id)
                 }
             )
         } else {
-            Log.d("Candidature", "not popped")
             navController.navigate(
-                R.id.action_navigation_candidature_to_navigation_offres,
+                R.id.navigation_offre,
                 Bundle().apply {
                     putLong("offre_id", offre.id)
                 }

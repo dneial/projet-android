@@ -129,47 +129,5 @@ class OffreFragment : Fragment() {
 
     }
 
-    private fun showLoginPopup(anchorView: View, root: View) {
-        Log.d("popup", "showLoginPopup")
-        // Inflate the popup layout
-        val popupView = layoutInflater.inflate(R.layout.popup_login, null)
-
-        // Create the popup window
-        val popupWindow = PopupWindow(
-            popupView,
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            true
-        )
-
-        // Set an elevation value for the popup window
-        popupWindow.elevation = 10f
-
-        // Find the login and sign-up buttons
-        val loginButton = popupView.findViewById<Button>(R.id.connectionButton)
-        val signupButton = popupView.findViewById<TextView>(R.id.signUpTextView)
-
-        // Set click listeners for the buttons
-        loginButton.setOnClickListener {
-            // Handle login button click
-            popupWindow.dismiss()
-            // Perform login action
-        }
-
-        signupButton.setOnClickListener {
-            // Handle sign-up button click
-            popupWindow.dismiss()
-            // Perform sign-up action
-        }
-
-        // Show the popup window anchored to the specified view
-        popupWindow.showAtLocation(
-            anchorView,
-            Gravity.CENTER,
-            0,
-            0
-        )
-    }
-
 
 }

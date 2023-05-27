@@ -101,5 +101,12 @@
     <string name="info_worker">Afficher informations sur le candidat</string>
     <string name="first_name">Prenom</string>
     <string name="last_name">Nom</string>
+    <string name="company_name">Nom de l\'entreprise</string>
+    <string name="company_id">SIRET</string>
+    <string name="mail_1">Adresse e-mail 1</string>
+    <string name="address">Adresse</string>
+    <string name="btn_modifier_infos">Modifier les informations</string>
+    <string name="btn_edit">Confirmer modifications</string>
+    <string name="btn_deconnextion">Se déconnecter</string>
     <string name="warning_form">Ce champ est incorrect</string>
 </resources>

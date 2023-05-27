@@ -12,10 +12,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.interim.MainActivity
 import com.example.interim.R
+import com.example.interim.models.TemporaryWorker
 import com.example.interim.services.UsersService
+import com.example.interim.ui.candidature.EmployerCandidatureFragment
+import com.example.interim.ui.candidature.UserCandidatureFragment
 import com.example.interim.ui.connection.ConnectionActivity
 
-class CompteFragment : Fragment(){
+class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback, EmployerEditInfoFragment.NestedFragmentCallback {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,6 +27,7 @@ class CompteFragment : Fragment(){
 
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)!!
         val user_id = sharedPref.getLong("user_id", -1)
+        val user_role =  sharedPref.getString("user_role", "worker")
 
         if(user_id == -1L) {
             val intent = Intent(activity, ConnectionActivity::class.java)
@@ -32,8 +36,8 @@ class CompteFragment : Fragment(){
 
         val view = inflater.inflate(R.layout.fragment_compte, container, false)
 
-        val button = view.findViewById<View>(R.id.btnDeconnexion) as Button
-        button.setOnClickListener {
+        val deconnect_button = view.findViewById<View>(R.id.btnDeconnexion) as Button
+        deconnect_button.setOnClickListener {
             with(sharedPref.edit()) {
                 this?.putLong("user_id", -1)
                 this?.apply()
@@ -41,30 +45,81 @@ class CompteFragment : Fragment(){
 
             val intent = Intent(activity, ConnectionActivity::class.java)
             startActivity(intent)
-
         }
 
-        val user_info_layout = view.findViewById<View>(R.id.worker_info)!!
-        bind_user_info(user_info_layout, user_id)
+
+        lateinit var fragment: Fragment
+        if (user_role != null) {
+            Log.d("CompteFragment", user_role)
+        }
+
+        when(user_role){
+            "worker" -> {
+                fragment = WorkerProfileFragment()
+            }
+            "employer" -> {
+                fragment = EmployerProfileFragment()
+            }
+        }
+
+        var fragmentContainer = view.findViewById<ViewGroup>(R.id.fragment_container)
+
+        var fragmentTransaction = childFragmentManager.beginTransaction()
+        fragmentTransaction.replace(fragmentContainer.id, fragment)
+        fragmentTransaction.commit()
+
+
+        val btn_modifier = view.findViewById<Button>(R.id.btn_modifier)
+
+        btn_modifier.setOnClickListener {
+            if(btn_modifier.visibility == View.VISIBLE) {
+                btn_modifier.visibility = View.GONE
+            }
+            if(deconnect_button.visibility == View.VISIBLE) {
+                deconnect_button.visibility = View.GONE
+            }
+            when(user_role){
+                "worker" -> {
+                    fragment = WorkerEditInfoFragment()
+                }
+                "employer" -> {
+                    fragment = EmployerEditInfoFragment()
+                }
+            }
+
+            fragmentContainer = view.findViewById(R.id.fragment_container)
+            fragmentTransaction = childFragmentManager.beginTransaction()
+            fragmentTransaction.replace(fragmentContainer.id, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
         return view
     }
 
-    private fun bind_user_info(userInfoLayout: View, user_id: Long) {
-        val user = UsersService().getTemporaryWorker(user_id)!!
-
-        val worker_name = userInfoLayout.findViewById<TextView>(R.id.interim_prenom)
-        val worker_last_name = userInfoLayout.findViewById<TextView>(R.id.interim_last_name)
-        val worker_email = userInfoLayout.findViewById<TextView>(R.id.interim_email)
-        val worker_phone = userInfoLayout.findViewById<TextView>(R.id.interim_phone)
-        val worker_birthday = userInfoLayout.findViewById<TextView>(R.id.interim_birthday)
-
-        worker_name.text = user.getFirstName()
-        worker_last_name.text = user.getLastName()
-        worker_email.text = user.getEmail()
-        worker_phone.text = user.getPhone()
-        worker_birthday.text = user.getBirthday()
-
+    override fun onWorkerActionTriggered() {
+        recoverView(WorkerProfileFragment())
     }
+
+    override fun onEmployerActionTriggered() {
+        recoverView(EmployerProfileFragment())
+    }
+
+    private fun recoverView(fragment: Fragment) {
+        val btn_modifier = view?.findViewById<Button>(R.id.btn_modifier)!!
+        val btn_deconnect = view?.findViewById<Button>(R.id.btnDeconnexion)!!
+
+        if (btn_modifier.visibility == View.GONE) {
+            btn_modifier.visibility = View.VISIBLE
+        }
+        if (btn_deconnect.visibility == View.GONE) {
+            btn_deconnect.visibility = View.VISIBLE
+        }
+        val fragmentContainer = view?.findViewById<ViewGroup>(R.id.fragment_container)
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+        fragmentTransaction.replace(fragmentContainer!!.id, fragment)
+        fragmentTransaction.commit()
+    }
+
 
 }

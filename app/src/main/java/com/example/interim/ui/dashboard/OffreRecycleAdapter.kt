@@ -1,8 +1,6 @@
 package com.example.interim.ui.dashboard
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +49,7 @@ class OffreRecycleAdapter(private val values: List<Offre>) : RecyclerView.Adapte
             val offre = values.find { it.id.toInt() == offreId }
 
                 it.findNavController().navigate(
-                    R.id.navigation_offres,
+                    R.id.navigation_offre,
 
                     Bundle().apply {
                         if (offre != null) {

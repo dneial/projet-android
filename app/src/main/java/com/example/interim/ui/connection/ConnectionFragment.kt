@@ -63,7 +63,6 @@ class ConnectionFragment: Fragment() {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
             val user: User? = usersService.signIn(email, password)
-            Log.d("ConnectionFragment", user.toString())
             if(user != null){
                 saveSession(user)
                 val intent = Intent(activity, MainActivity::class.java)
