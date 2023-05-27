@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.interim.R
@@ -88,23 +89,23 @@ class SignUpEmployerFragment : Fragment() {
         val address = view.findViewById<EditText>(R.id.employerSignUpEditTextAddress)
         val password = view.findViewById<EditText>(R.id.employerSignUpEditTextPassword)
 
-        val nameWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextCompanyName)
-        val serviceWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextDepartmentName)
-        val subServiceWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextSubDepartmentName)
-        val SIRETWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextEntityNumber)
-        val contactWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextContactPerson1)
-        val subContactWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextContactPerson2)
-        val emailWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextEmail1)
-        val secondEmailWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextEmail2)
-        val phoneWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextPhone1)
-        val subPhoneWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextPhone2)
-        val addressWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextAddress)
-        val passwordWarning = view.findViewById<EditText>(R.id.employerSignUpEditTextPassword)
+        val nameWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningCompanyName)
+        val serviceWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningDepartmentName)
+        val subServiceWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningSubDepartmentName)
+        val SIRETWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningEntityNumber)
+        val contactWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningContactPerson1)
+        val subContactWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningContactPerson2)
+        val emailWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningEmail1)
+        val secondEmailWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningEmail2)
+        val phoneWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningPhone1)
+        val subPhoneWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningPhone2)
+        val addressWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningAddress)
+        val passwordWarning = view.findViewById<TextView>(R.id.employerSignUpTextViewWarningPassword)
 
         val textPattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
         val emailPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\$")
         val siretPattern = Pattern.compile("^\\d{14}$")
-        val addressPattern = Pattern.compile("^\\d* [\\w\\s',.-]+ \\d+ [\\w\\s',.-]+$")
+        val addressPattern = Pattern.compile("^\\d*[\\w\\s',.-]+ \\d+ [\\w\\s',.-]+$")
 
         if (name.text.toString() == "") {
             name.setBackgroundResource(R.drawable.outline_warning)

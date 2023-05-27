@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.interim.R
@@ -34,15 +36,15 @@ class SignUpTemporaryWorkerFragment : Fragment() {
     }
 
     private fun signUpInterim(view: View){
-        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
-        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
-        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
-        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
-        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
-        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
-        val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
-        val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
-        val commentary = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCommentary)
+        val lastName = view.findViewById<EditText>(R.id.interimSignUpEditTextFirstName)
+        val firstName = view.findViewById<EditText>(R.id.interimSignUpEditTextLastName)
+        val email = view.findViewById<EditText>(R.id.interimSignUpEditTextEmail)
+        val password = view.findViewById<EditText>(R.id.interimSignUpEditTextPassword)
+        val phone = view.findViewById<EditText>(R.id.interimSignUpEditTextPhone)
+        val birthday = view.findViewById<EditText>(R.id.interimSignUpEditTextBirthday)
+        val city = view.findViewById<EditText>(R.id.interimSignUpEditTextCity)
+        val nationality = view.findViewById<EditText>(R.id.interimSignUpEditTextNationality)
+        val commentary = view.findViewById<EditText>(R.id.interimSignUpEditTextCommentary)
 
         if (checkSignUpInterim(view)){
             val user = Bundle()
@@ -70,23 +72,23 @@ class SignUpTemporaryWorkerFragment : Fragment() {
 
     private fun checkSignUpInterim(view: View) : Boolean{
         var correct : Boolean = true
-        val lastName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextFirstName)
-        val firstName = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextLastName)
-        val email = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextEmail)
-        val password = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPassword)
-        val phone = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextPhone)
-        val birthday = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextBirthday)
-        val city = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextCity)
-        val nationality = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpEditTextNationality)
+        val lastName = view.findViewById<EditText>(R.id.interimSignUpEditTextFirstName)
+        val firstName = view.findViewById<EditText>(R.id.interimSignUpEditTextLastName)
+        val email = view.findViewById<EditText>(R.id.interimSignUpEditTextEmail)
+        val password = view.findViewById<EditText>(R.id.interimSignUpEditTextPassword)
+        val phone = view.findViewById<EditText>(R.id.interimSignUpEditTextPhone)
+        val birthday = view.findViewById<EditText>(R.id.interimSignUpEditTextBirthday)
+        val city = view.findViewById<EditText>(R.id.interimSignUpEditTextCity)
+        val nationality = view.findViewById<EditText>(R.id.interimSignUpEditTextNationality)
 
-        val lastNameWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningFirstName)
-        val firstNameWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningLastName)
-        val emailWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningEmail)
-        val passwordWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningPassword)
-        val phoneWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningPhone)
-        val birthdayWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningBirthday)
-        val cityWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningCity)
-        val nationalityWarning = view.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.interimSignUpTextViewWarningNationality)
+        val lastNameWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningFirstName)
+        val firstNameWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningLastName)
+        val emailWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningEmail)
+        val passwordWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningPassword)
+        val phoneWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningPhone)
+        val birthdayWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningBirthday)
+        val cityWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningCity)
+        val nationalityWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningNationality)
 
         var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
         if (firstName.text.toString() == "" ){
