@@ -118,8 +118,10 @@ class CandidatureFormFragment: Fragment() {
         val birthdayWarning = view.findViewById<TextView>(R.id.candidature_birthday_warning)
         val nationalityWarning = view.findViewById<TextView>(R.id.candidature_nationality_warning)
 
-        var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
-        if (firstName.text.toString() == "" || !pattern.matcher(firstName.text.toString()).matches()){
+        val textPattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
+        val bithdayPattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
+
+        if (firstName.text.toString() == "" || !textPattern.matcher(firstName.text.toString()).matches()){
             firstName.setBackgroundResource(R.drawable.outline_warning)
             firstNameWarning.visibility = View.VISIBLE
             correct = false
@@ -128,7 +130,7 @@ class CandidatureFormFragment: Fragment() {
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (lastName.text.toString() == "" || !pattern.matcher(lastName.text.toString()).matches()){
+        if (lastName.text.toString() == "" || !textPattern.matcher(lastName.text.toString()).matches()){
             lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
@@ -137,7 +139,7 @@ class CandidatureFormFragment: Fragment() {
             lastName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (nationality.text.toString() == "" || !pattern.matcher(nationality.text.toString()).matches()){
+        if (nationality.text.toString() == "" || !textPattern.matcher(nationality.text.toString()).matches()){
             nationality.setBackgroundResource(R.drawable.outline_warning)
             nationalityWarning.visibility = View.VISIBLE
         } else {
@@ -145,8 +147,7 @@ class CandidatureFormFragment: Fragment() {
             nationality.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
-        if (nationality.text.toString() == "" || (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches())){
+        if (nationality.text.toString() == "" || (birthday.text.toString() != "" && !bithdayPattern.matcher(birthday.text.toString()).matches())){
             birthday.setBackgroundResource(R.drawable.outline_warning)
             birthdayWarning.visibility = View.VISIBLE
             correct = false

@@ -90,12 +90,16 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         val cityWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningCity)
         val nationalityWarning = view.findViewById<TextView>(R.id.interimSignUpTextViewWarningNationality)
 
-        var pattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
+        val textPattern = Pattern.compile("^[\\p{L}\\s'-]+\$")
+        val emailPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\$")
+        val birthdayPattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
+        val phonePattern = Pattern.compile("^\\d{10}$")
+
         if (firstName.text.toString() == "" ){
             firstName.setBackgroundResource(R.drawable.outline_warning)
             firstNameWarning.visibility = View.VISIBLE
             correct = false
-        } else if (!pattern.matcher(firstName.text.toString()).matches()){
+        } else if (!textPattern.matcher(firstName.text.toString()).matches()){
             firstNameWarning.visibility = View.VISIBLE
             correct = false
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
@@ -108,7 +112,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
-        } else if (!pattern.matcher(lastName.text.toString()).matches()){
+        } else if (!textPattern.matcher(lastName.text.toString()).matches()){
             lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
@@ -126,7 +130,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             password.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (city.text.toString() != "" && !pattern.matcher(city.text.toString()).matches()){
+        if (city.text.toString() != "" && !textPattern.matcher(city.text.toString()).matches()){
             city.setBackgroundResource(R.drawable.outline_warning)
             cityWarning.visibility = View.VISIBLE
         } else {
@@ -134,7 +138,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             city.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (nationality.text.toString() != "" && !pattern.matcher(nationality.text.toString()).matches()){
+        if (nationality.text.toString() != "" && !textPattern.matcher(nationality.text.toString()).matches()){
             nationality.setBackgroundResource(R.drawable.outline_warning)
             nationalityWarning.visibility = View.VISIBLE
         } else {
@@ -149,15 +153,14 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             phoneWarning.visibility = View.VISIBLE
             correct = false
         } else {
-            pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
-            if (email.text.toString() != "" && !pattern.matcher(email.text.toString()).matches()){
+            if (email.text.toString() != "" && !emailPattern.matcher(email.text.toString()).matches()){
                 email.setBackgroundResource(R.drawable.outline_warning)
                 emailWarning.visibility = View.VISIBLE
                 correct = false
             } else { emailWarning.visibility = View.GONE
                 email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-            if (phone.text.toString() != "" && phone.text.toString().length != 10){
+            if (phone.text.toString() != "" && !phonePattern.matcher(phone.text.toString()).matches()){
                 phone.setBackgroundResource(R.drawable.outline_warning)
                 phoneWarning.visibility = View.VISIBLE
                 correct = false
@@ -165,8 +168,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
                 phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
         }
 
-        pattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
-        if (birthday.text.toString() != "" && !pattern.matcher(birthday.text.toString()).matches()){
+        if (birthday.text.toString() != "" && !birthdayPattern.matcher(birthday.text.toString()).matches()){
             birthday.setBackgroundResource(R.drawable.outline_warning)
             birthdayWarning.visibility = View.VISIBLE
             correct = false
