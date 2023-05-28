@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
 import com.example.interim.models.Candidature
+import org.w3c.dom.Text
 
 
 class EmployerCandidatureFragment: Fragment() {
@@ -43,10 +44,10 @@ class EmployerCandidatureFragment: Fragment() {
         info_btn.setOnClickListener {
             if(info_layout.visibility == View.GONE) {
                 info_layout.visibility = View.VISIBLE
-                info_btn.text = "Masquer les informations"
+                info_btn.text = context?.getString(R.string.hide_info_worker)
             } else {
                 info_layout.visibility = View.GONE
-                info_btn.text = "Afficher les informations"
+                info_btn.text = context?.getString(R.string.info_worker)
             }
         }
 
@@ -60,12 +61,16 @@ class EmployerCandidatureFragment: Fragment() {
         val worker_email = infoLayout?.findViewById<TextView>(R.id.interim_email)
         val worker_phone = infoLayout?.findViewById<TextView>(R.id.interim_phone)
         val worker_birthday = infoLayout?.findViewById<TextView>(R.id.interim_birthday)
+        val worker_city = infoLayout?.findViewById<TextView>(R.id.interim_ville)
+        val worker_nationality = infoLayout?.findViewById<TextView>(R.id.interim_nationality)
 
         worker_name?.text = candidature.user?.getFirstName()
         worker_last_name?.text = candidature.user?.getLastName()
         worker_email?.text = candidature.user?.getEmail()
         worker_phone?.text = candidature.user?.getPhone()
         worker_birthday?.text = candidature.user?.getBirthday()
+        worker_city?.text = candidature.user?.getCity()
+        worker_nationality?.text = candidature.user?.getNationality()
     }
 
     private fun showContactInfoDialog() {

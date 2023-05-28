@@ -6,14 +6,14 @@ import android.os.Parcelable
 import com.example.interim.database.Requetes
 
 class Offre(
-    var title: String?,
-    var metier: String?,
-    var description: String?,
-    var date_debut: String?,
-    var date_fin: String?,
-    var remuneration: String?,
+    var title: String,
+    var metier: String,
+    var description: String,
+    var date_debut: String,
+    var date_fin: String,
+    var remuneration: String,
     var id: Long,
-    var ville: String? = "",
+    var ville: String = "",
     var employer: Employer
 ) {
 

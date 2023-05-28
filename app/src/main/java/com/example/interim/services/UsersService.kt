@@ -8,6 +8,7 @@ import com.example.interim.database.DataBase
 import com.example.interim.database.Requetes
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
+import com.example.interim.models.TemporaryWorker.Companion.format_date_to_view
 import com.example.interim.models.User
 
 class UsersService() {
@@ -55,21 +56,20 @@ class UsersService() {
                 cursor.close()
             }
         }
-        Log.d("signIn", "signIn: $user")
         return user
     }
 
     @SuppressLint("Range")
     fun getTemporaryWorker(TEMPORARYWORKER_id: Long): TemporaryWorker? {
-        val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE ${Requetes.COL_ID_TEMPORARYWORKER} = '$TEMPORARYWORKER_id';"
-        val cursor = db.rawQuery(query, null)
+        val selection = "${Requetes.COL_ID_TEMPORARYWORKER} = ?"
+        val selectionArgs = arrayOf(TEMPORARYWORKER_id.toString())
+        val cursor = db.query(Requetes.TABLE_TEMPORARYWORKERS, null, selection, selectionArgs, null, null, null)
         var temporaryWorker: TemporaryWorker? = null
 
         if(cursor.moveToFirst()){
             temporaryWorker = cursorToWorker(cursor)
         }
         cursor.close()
-        Log.d("getTemporaryWorker", temporaryWorker.toString())
         return temporaryWorker
     }
 
@@ -119,7 +119,7 @@ class UsersService() {
             password=password,
             phone=phone,
             city=city,
-            birthday=birthday,
+            birthday=format_date_to_view(birthday),
             nationality=nationality
         )
     }

@@ -2,6 +2,7 @@ package com.example.interim.ui.offres
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        val user_id = activity?.getPreferences(Context.MODE_PRIVATE)?.getLong("user_id", 0)!!
+        val user_id = activity?.getSharedPreferences("interim",Context.MODE_PRIVATE)?.getLong("user_id", -1)!!
 
 
         val offre_title = view?.findViewById<android.widget.EditText>(R.id.edit_title)?.text.toString()
@@ -40,21 +41,22 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
         val offre_desc = view?.findViewById<android.widget.EditText>(R.id.edit_description)?.text.toString()
         val offre_ville = view?.findViewById<android.widget.EditText>(R.id.edit_address)?.text.toString()
         val offre_remuneration = view?.findViewById<android.widget.EditText>(R.id.edit_salary)?.text.toString()
-        val offre_date_debut = view?.findViewById<android.widget.DatePicker>(R.id.date_start)
-        val offre_date_fin = view?.findViewById<android.widget.DatePicker>(R.id.date_end)
+        val offre_date_debut = view?.findViewById<android.widget.DatePicker>(R.id.date_start)!!
+        val offre_date_fin = view?.findViewById<android.widget.DatePicker>(R.id.date_end)!!
 
-        val debut_date = offre_date_debut?.dayOfMonth.toString() + "/" +
-                offre_date_debut?.month.toString() + "/" +
-                offre_date_debut?.year.toString()
+        val debut_date = offre_date_debut.year.toString() + "-" +
+                (offre_date_debut.month + 1).toString() + "-" +
+                offre_date_debut.dayOfMonth.toString()
 
-        val fin_date = offre_date_fin?.dayOfMonth.toString() + "/" +
-                offre_date_fin?.month.toString() + "/" +
-                offre_date_fin?.year.toString()
+        val fin_date = offre_date_fin.year.toString() + "-" +
+                (offre_date_fin.month + 1).toString() + "-" +
+                offre_date_fin.dayOfMonth.toString()
 
-
+        
         if(offre_title         == "" ||
             offre_metier       == "" ||
             offre_desc         == "" ||
+            offre_ville        == "" ||
             offre_remuneration == "" ||
             debut_date         == "" ||
             fin_date           == ""){
@@ -62,18 +64,19 @@ class OffreFormFragment: Fragment(), View.OnClickListener {
             return
         }
 
+
         val employer = UsersService().getEmployer(user_id)
 
-        var offre = Offre(
-            offre_title,
-            offre_metier,
-            offre_desc,
-            debut_date,
-            fin_date,
-            offre_remuneration,
-            user_id,
-            offre_ville,
-            employer!!
+        val offre = Offre(
+            title=offre_title,
+            metier=offre_metier,
+            description=offre_desc,
+            date_debut=debut_date,
+            date_fin=fin_date,
+            remuneration=offre_remuneration,
+            id=0,
+            ville=offre_ville,
+            employer=employer!!
         )
 
 

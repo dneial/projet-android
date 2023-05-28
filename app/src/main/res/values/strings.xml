@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">interim</string>
     <string name="title_home">Accueil</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Tableau de bord</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_offres">Offre</string>
     <string name="creer_offre">Proposer une offre</string>
@@ -102,7 +102,7 @@
     <string name="dashboard_search_label">Rechercher</string>
     <string name="btn_show_cv">Voir CV</string>
     <string name="button_show_lm">Voir Lettre de Motivation</string>
-    <string name="info_worker">Afficher informations sur le candidat</string>
+    <string name="info_worker">Afficher informations du candidat</string>
     <string name="first_name">Prenom</string>
     <string name="last_name">Nom</string>
     <string name="company_name">Nom de l\'entreprise</string>
@@ -114,4 +114,10 @@
     <string name="btn_deconnextion">Se déconnecter</string>
     <string name="warning_form">Ce champ est incorrect</string>
     <string name="warning_sign_in">Email ou mot de passe incorrect</string>
+    <string name="publier_offre">Créer une offre</string>
+    <string name="hide_info_worker">Masquer les informations</string>
+    <string name="offre_confirm">Confirmer modifications</string>
+    <string name="btn_delete">Supprimer offre</string>
+    <string name="postuler">Me candidater</string>
+    <string name="enregistrer">Enregistrer</string>
 </resources>

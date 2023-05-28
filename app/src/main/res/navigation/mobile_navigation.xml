@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_navigation_offres_to_navigation_candidature"
             app:destination="@id/navigation_candidature" />
+        <action
+            android:id="@+id/action_navigation_offre_to_navigation_edit_offre"
+            app:destination="@id/navigation_edit_offre" />
 
     </fragment>
 
@@ -102,6 +105,19 @@
             android:name="candidature_id"
             app:argType="long"
             android:defaultValue="-1L" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_edit_offre"
+        android:name="com.example.interim.ui.offres.OffreEditFragment"
+        android:label="Modifier une offre"
+        tools:layout="@layout/offre_edit_fragment">
+        <argument
+            android:name="offre_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_navigation_edit_offre_to_navigation_offre"
+            app:destination="@id/navigation_offre" />
     </fragment>
 
 

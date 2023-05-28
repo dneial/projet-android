@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
@@ -17,6 +18,8 @@ import com.example.interim.database.OffreService
 import com.example.interim.services.UsersService
 import com.example.interim.models.Candidature
 import com.example.interim.models.TemporaryWorker
+import com.example.interim.models.TemporaryWorker.Companion.format_date
+import com.example.interim.models.TemporaryWorker.Companion.format_date_to_view
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.regex.Pattern
@@ -53,9 +56,12 @@ class CandidatureFormFragment: Fragment() {
             view?.findViewById<EditText>(R.id.candidature_prenom_edit)?.setText(user.getFirstName())
             view?.findViewById<EditText>(R.id.candidature_nom_edit)?.setText(user.getLastName())
             view?.findViewById<EditText>(R.id.candidature_nationality_edit)?.setText(user.getNationality())
-            view?.findViewById<EditText>(R.id.candidature_birthday_edit)?.setText(user.getBirthday())
+            view?.findViewById<EditText>(R.id.candidature_birthday_edit)?.setText(
+                format_date_to_view(user.getBirthday())
+            )
         }
     }
+
 
     private fun postuler(offreId: Long) {
 
@@ -75,28 +81,42 @@ class CandidatureFormFragment: Fragment() {
         val user = UsersService().getTemporaryWorker(user_id!!)
 
         var candidature = Candidature(
-            0,
-            offre!!,
-            user!!,
-            dateFormated,
-            "En attente"
+            id=0,
+            offre=offre!!,
+            user=user!!,
+            date=dateFormated,
+            status="En attente"
         )
 
-        candidature = CandidatureService().create(candidature)
+        CandidatureService().create(candidature)
 
-        val navController = findNavController()
 
-        val fragInStack = navController.popBackStack(R.id.navigation_offre, false)
+        if(candidature.id != 0L) {
+            Toast.makeText(context, "Candidature envoyée", Toast.LENGTH_SHORT).show()
 
-        if(fragInStack) {
-            navController.navigate(
-                R.id.navigation_offre,
-                Bundle().apply {
-                    putLong("offre_id", offre.id)
-                }
-            )
+            val navController = findNavController()
+
+            val fragInStack = navController.popBackStack(R.id.navigation_offre, false)
+
+            if (fragInStack) {
+                navController.navigate(
+                    R.id.navigation_offre,
+                    Bundle().apply {
+                        putLong("offre_id", offre.id)
+                    }
+                )
+            } else {
+                navController.navigate(
+                    R.id.navigation_offre,
+                    Bundle().apply {
+                        putLong("offre_id", offre.id)
+                    }
+
+                )
+            }
         } else {
-            navController.navigate(
+            Toast.makeText(context, "Vous avez déjà candidaté à cette offre", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(
                 R.id.navigation_offre,
                 Bundle().apply {
                     putLong("offre_id", offre.id)

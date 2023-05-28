@@ -93,5 +93,38 @@
         android:layout_below="@+id/interim_phone_label"
         android:importantForAutofill="no" />
 
+    <TextView
+        android:id="@+id/interim_natinality_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_nationality"
+        android:textSize="20dp"
+        android:layout_below="@+id/interim_phone"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/interim_nationality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/interim_natinality_label"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/interim_ville_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_city"
+        android:textSize="20dp"
+        android:layout_below="@+id/interim_nationality"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/interim_ville"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/interim_ville_label"
+        android:importantForAutofill="no" />
+
+
 </RelativeLayout>
 </ScrollView>

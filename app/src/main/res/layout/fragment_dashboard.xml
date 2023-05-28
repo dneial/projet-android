@@ -7,14 +7,23 @@
     android:layout_height="wrap_content"
     tools:context=".ui.dashboard.DashboardFragment">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <include
             layout="@layout/offre_search_bar" />
+
+        <Button
+            android:id="@+id/fixedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/publier_offre"
+            android:layout_gravity="end"
+            android:visibility="gone"
+            android:layout_margin="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"
@@ -23,15 +32,8 @@
             android:layout_weight="1"
             android:clipToPadding="false"/>
 
-        <Button
-            android:id="@+id/fixedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dashboard_creer_offre"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:visibility="invisible"
-            android:src="@drawable/add"/>
+
     </LinearLayout>
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

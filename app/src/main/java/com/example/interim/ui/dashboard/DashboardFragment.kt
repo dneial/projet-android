@@ -59,7 +59,6 @@ class DashboardFragment : Fragment() {
         }
 
 
-
         if(ville != "") dashboardViewModel.filterByCity(ville)
 
         val listView: RecyclerView = binding.listView
@@ -73,6 +72,11 @@ class DashboardFragment : Fragment() {
         }
 
         val button: Button = binding.fixedButton
+        val user_role = sharedPref.getString("user_role", "")!!
+        if(user_role == "employer")
+            button.visibility = View.VISIBLE
+        else
+            button.visibility = View.GONE
 
         button.setOnClickListener{
             if(check_permissions())

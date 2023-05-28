@@ -63,8 +63,6 @@ class CandidatureFragment : Fragment() {
         val offre = candidature.offre
         title.text = offre.title
 
-        val user_id = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", -1)
-
         val description = view.findViewById<android.widget.TextView>(R.id.offre_desc)
         description.text = offre.description
 

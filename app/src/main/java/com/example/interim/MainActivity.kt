@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,
+                R.id.navigation_dashboard, R.id.navigation_home, R.id.navigation_notifications,
                 R.id.navigation_compte
             )
         )
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     private fun showRationaleDialog() {
         val dialogBuilder = AlertDialog.Builder(this)
             .setTitle("Location Permission")
-            .setMessage("This app requires access to your location to provide offers based on your locationf.")
+            .setMessage("This app requires access to your location to provide offers based on your location.")
             .setPositiveButton("Grant") { dialogInterface: DialogInterface, i: Int ->
                 // Request the permission when the user clicks "Grant"
                 ActivityCompat.requestPermissions(

@@ -25,6 +25,7 @@ import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
 import com.example.interim.ui.connection.ConnectionActivity
 import java.util.Date
+import java.util.regex.Pattern
 
 class OffreFragment : Fragment() {
 
@@ -42,12 +43,17 @@ class OffreFragment : Fragment() {
         _binding = FragmentOffreBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
-
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
         val offreId: Long = arguments?.getLong("offre_id")!!
+
+        val user_id = sharedPref?.getLong("user_id", -1)
+        val user_role = sharedPref?.getString("user_role", "worker")
+
         val offre = OffreService().getOffre(offreId)!!
 
         bind_offre(root, offre)
 
+        val user_btns = root.findViewById<View>(R.id.user_offre_buttons)
         val enregistrer = root.findViewById<Button>(R.id.saveButton)
         enregistrer.setOnClickListener {
             enregistrer_offre(offre)
@@ -58,8 +64,61 @@ class OffreFragment : Fragment() {
             postuler_offre(offre, it, root)
         }
 
+        val employer_btns = root.findViewById<View>(R.id.entreprise_offre_buttons)
+        val modifier = root.findViewById<Button>(R.id.btn_modifier)
+        modifier.setOnClickListener {
+            modifier_offre(offre, it, root)
+        }
+
+        val supprimer = root.findViewById<Button>(R.id.btn_delete)
+        supprimer.setOnClickListener {
+            supprimer_offre(offre, it, root)
+        }
+
+        when(user_role){
+            "worker" -> {
+                user_btns.visibility = View.VISIBLE
+                employer_btns.visibility = View.GONE
+            }
+            "employer" -> {
+                if(offre.employer.getId() == user_id){
+                    user_btns.visibility = View.GONE
+                    employer_btns.visibility = View.VISIBLE
+                }
+
+            }
+            else -> {
+                user_btns.visibility = View.GONE
+                employer_btns.visibility = View.GONE
+            }
+        }
+
         return root
 
+    }
+
+    private fun supprimer_offre(offre: Offre, it: View?, root: View) {
+
+        val deleted = OffreService().delete(offre.id)
+
+        var msg: String
+        if(!deleted)
+            msg = "L'offre n'a pas pu être supprimée"
+        else
+            msg = "L'offre a bien été supprimée"
+
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+
+        findNavController().navigate(R.id.navigation_dashboard)
+    }
+
+    private fun modifier_offre(offre: Offre, it: View?, root: View) {
+        findNavController().navigate(
+            R.id.action_navigation_offre_to_navigation_edit_offre,
+            Bundle().apply {
+                putLong("offre_id", offre.id)
+            },
+        )
     }
 
     private fun postuler_offre(offre: Offre, anchorView: View, root: View) {
@@ -105,21 +164,35 @@ class OffreFragment : Fragment() {
 
     private fun bind_offre(root: View, offre: Offre) {
         // fill the view
-        val title = root.findViewById<android.widget.TextView>(R.id.offre_title)
+        val title = root.findViewById<TextView>(R.id.offre_title)
         title.text = offre.title
 
-        val metier = root.findViewById<android.widget.TextView>(R.id.offre_metier)
+        val metier = root.findViewById<TextView>(R.id.offre_metier)
         metier.text = offre.metier
 
-        val description = root.findViewById<android.widget.TextView>(R.id.offre_desc)
+        val ville = root.findViewById<TextView>(R.id.offre_ville)
+        ville.text = offre.ville
+
+        val description = root.findViewById<TextView>(R.id.offre_desc)
         description.text = offre.description
 
-        val start_date = root.findViewById<android.widget.TextView>(R.id.offre_date)
-        start_date.text = offre.date_debut + " - " + offre.date_fin
+        val start_date = root.findViewById<TextView>(R.id.offre_date)
+        start_date.text = format_date_to_view(offre.date_debut) + " - " + format_date_to_view(offre.date_fin)
 
-        val remuneration = root.findViewById<android.widget.TextView>(R.id.offre_remuneration)
+        val remuneration = root.findViewById<TextView>(R.id.offre_remuneration)
         remuneration.text = offre.remuneration.toString() + "€/h"
 
+    }
+
+    fun format_date_to_view(date: String): String {
+        val pattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})")
+        val matcher = pattern.matcher(date)
+
+        if(matcher.find()) {
+            return matcher.group(3) + "/" + matcher.group(2) + "/" + matcher.group(1)
+        }
+
+        return date
     }
 
 
