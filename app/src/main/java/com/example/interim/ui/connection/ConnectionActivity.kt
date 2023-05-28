@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.interim.MainActivity
 import com.example.interim.R
 import com.example.interim.database.DataBase
+import com.example.interim.ui.LocationActivity
 
 class ConnectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ class ConnectionActivity : AppCompatActivity() {
         val storedExpirationTime = sharedPref.getLong("expirationTime", 0)
 
         if(userId != -1L && storedExpirationTime > System.currentTimeMillis()){
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)
         } else {
             supportFragmentManager.beginTransaction()
