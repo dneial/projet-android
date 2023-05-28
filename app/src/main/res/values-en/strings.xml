@@ -117,7 +117,7 @@
     <string name="hide_info_worker">Hide information</string>
     <string name="offre_confirm">Comfirm modification</string>
     <string name="btn_delete">Delete offer</string>
-    <string name="postuler">Postulate</string>
+    <string name="postuler">Apply</string>
     <string name="enregistrer">Save</string>
     <string name="popup_location_title">Localisation permission</string>
     <string name="popup_location_message">This application need to access to your location in order to suggest offer according to your location.</string>
