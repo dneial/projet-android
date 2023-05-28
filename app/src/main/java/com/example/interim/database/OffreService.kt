@@ -43,7 +43,6 @@ class OffreService() {
         val selection = "${Requetes.COL_ID_OFFRE} = ?"
         val selectionArgs = arrayOf(offre.id.toString())
         db.update(Requetes.TABLE_OFFRE, values, selection, selectionArgs)
-        Log.d("update", "offre updated: $offre")
 
 
     }
@@ -88,7 +87,6 @@ class OffreService() {
         try {
             id = db.insertOrThrow(Requetes.TABLE_OFFRE_ENREGISTREE, null, values)
         } catch (e: SQLiteConstraintException) {
-            Log.d("error", e.toString())
         }
         return id
     }
@@ -134,7 +132,6 @@ class OffreService() {
             // Remove the trailing "AND" from the query
             queryBuilder.setLength(queryBuilder.length - 4)
         }
-        Log.d("query", queryBuilder.toString())
         val cursor = db.rawQuery(queryBuilder.toString(), null)
         val offres = ArrayList<Offre>();
 
@@ -160,6 +157,22 @@ class OffreService() {
         return offres;
     }
 
+    fun isEnregistree(userId: Long, id: Long): Boolean {
+       val offres = getEnregistresByUser(userId)
+        for (offre in offres) {
+            if (offre.id == id) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun unsave(id: Long, userId: Long?): Boolean {
+        val selection = "${Requetes.COL_ID_OFFRE_ENREGISTREE} = ? AND ${Requetes.COL_ID_USER_ENREGISTREE} = ?"
+        val selectionArgs = arrayOf(id.toString(), userId.toString())
+        return db.delete(Requetes.TABLE_OFFRE_ENREGISTREE, selection, selectionArgs) > 0
+    }
+
     companion object {
         fun cursorToOffre(cursor: Cursor): Offre {
 
@@ -173,18 +186,6 @@ class OffreService() {
             val remuneration = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION))
             val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE))
             val city = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY))
-
-            Log.d("cursortoffre", Offre(
-                title=title,
-                metier=metier,
-                description=description,
-                date_debut=date_debut,
-                date_fin=date_fin,
-                remuneration=remuneration,
-                id=id,
-                ville=city,
-                employer=employer!!
-            ).toString())
 
             return Offre(
                 title=title,

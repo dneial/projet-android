@@ -61,6 +61,16 @@
             android:layout_marginTop="16dp"
             android:padding="16dp"
             android:text="@string/enregistrer" />
+
+        <Button
+            android:id="@+id/unsaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="@string/unsave"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
 </RelativeLayout>

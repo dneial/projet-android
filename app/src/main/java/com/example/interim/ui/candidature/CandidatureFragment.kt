@@ -31,9 +31,7 @@ class CandidatureFragment : Fragment() {
         val user_role =  sharedPref.getString("user_role", "worker")
 
         val candidature_id = arguments?.getLong("candidature_id")!!
-        if (user_role != null) {
-            Log.d("CandidatureFragment", user_role)
-        }
+
         val candidatureService = CandidatureService()
 
         candidature = candidatureService.getCandidature(candidature_id!!)

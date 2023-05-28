@@ -11,7 +11,6 @@ import com.example.interim.ui.home.user_view.UserCandidaturesViewModel
 class HomeViewModelFactory(private val user_id: Long, private val user_role: String) : ViewModelProvider.Factory{
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            Log.d("HomeViewModelFactory", modelClass.toString())
 
             if (modelClass.isAssignableFrom(UserCandidaturesViewModel::class.java)) {
                     return UserCandidaturesViewModel(user_id) as T

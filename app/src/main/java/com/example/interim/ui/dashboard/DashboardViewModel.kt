@@ -24,7 +24,6 @@ class DashboardViewModel() : ViewModel() {
     fun refresh() {
 
         _offres.value = offreService.readAll()
-        (_offres.value as ArrayList<Offre>).map { o -> Log.d("offre_deb et offre_fin", o.employer?.getId().toString())}
 
     }
 

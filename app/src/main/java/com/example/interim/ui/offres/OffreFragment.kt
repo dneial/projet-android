@@ -55,9 +55,8 @@ class OffreFragment : Fragment() {
 
         val user_btns = root.findViewById<View>(R.id.user_offre_buttons)
         val enregistrer = root.findViewById<Button>(R.id.saveButton)
-        enregistrer.setOnClickListener {
-            enregistrer_offre(offre)
-        }
+        check_enregistrement_and_set_listener(offre, enregistrer)
+
 
         val postuler = root.findViewById<Button>(R.id.applyButton)
         postuler.setOnClickListener {
@@ -95,6 +94,45 @@ class OffreFragment : Fragment() {
 
         return root
 
+    }
+
+    private fun check_enregistrement_and_set_listener(offre: Offre, enregistrer: Button) {
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
+        val user_id = sharedPref?.getLong("user_id", -1)
+
+        val enregistree = OffreService().isEnregistree(user_id!!, offre.id)
+
+        if(enregistree) {
+            enregistrer?.text = context?.getString(R.string.unsave)
+            enregistrer.setOnClickListener {
+                desenregistrer_offre(offre)
+                check_enregistrement_and_set_listener(offre, enregistrer)
+            }
+        }
+        else {
+            enregistrer?.text = context?.getString(R.string.enregistrer)
+            enregistrer.setOnClickListener {
+                enregistrer_offre(offre)
+                check_enregistrement_and_set_listener(offre, enregistrer)
+            }
+        }
+    }
+
+    private fun desenregistrer_offre(offre: Offre) {
+
+        val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
+        val user_id = sharedPref?.getLong("user_id", -1)
+
+        val desenregistree = OffreService().unsave(offre.id, user_id)
+
+        var msg: String
+
+        if(!desenregistree)
+            msg = "L'offre n'a pas pu être désenregistrée"
+        else
+            msg = "L'offre a bien été supprimée des enregistrements"
+
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
     private fun supprimer_offre(offre: Offre, it: View?, root: View) {

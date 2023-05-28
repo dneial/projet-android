@@ -33,7 +33,6 @@ class UserCandidatureFragment: Fragment() {
         val view = inflater.inflate(R.layout.user_candidature_layout, container, false)
 
         val candidature_id = arguments?.getLong("candidature_id")
-        Log.d("UserCandidatureFragment", candidature_id.toString())
 
         val candidatureService = CandidatureService()
         candidature = candidatureService.getCandidature(candidature_id!!)
@@ -53,7 +52,6 @@ class UserCandidatureFragment: Fragment() {
         if(candidature.status == "Acceptée") {
             acceptButton.visibility = View.VISIBLE
             acceptButton.setOnClickListener {
-                Log.d("CandidatureFragment", "Accepter")
                 activity?.onBackPressed()
             }
         }

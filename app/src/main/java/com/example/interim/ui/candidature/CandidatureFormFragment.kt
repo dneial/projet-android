@@ -71,9 +71,6 @@ class CandidatureFormFragment: Fragment() {
         // get date in format 'yyyy-mm-dd'
 
 
-        Log.d("Candidature", "Date: $dateFormated")
-
-
         val user_id =
             activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)?.getLong("user_id", 0)
 

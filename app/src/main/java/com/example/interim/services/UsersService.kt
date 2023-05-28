@@ -10,24 +10,26 @@ import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.TemporaryWorker.Companion.format_date_to_view
 import com.example.interim.models.User
+import java.security.MessageDigest
 
 class UsersService() {
 
     var db: SQLiteDatabase = DataBase.db
 
     fun create(temporaryWorker: TemporaryWorker){
-        Log.d("create", "create: $temporaryWorker")
+        Log.d("mdp", "create: ${temporaryWorker.getPassword()}")
         val values = temporaryWorker.toContentValues()
+        values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, hashPassword(temporaryWorker.getPassword()))
         val id = db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
         temporaryWorker.setId(id)
     }
 
     fun create(employer: Employer){
-        Log.d("create", "create: $employer")
+        Log.d("mdp", "create: ${employer.getPassword()}")
         val values = employer.toContentValues()
+        values.put(Requetes.COL_PASSWORD_EMPLOYER, hashPassword(employer.getPassword()))
         val id = db.insert(Requetes.TABLE_EMPLOYER, null, values)
         employer.setId(id)
-
     }
 
     @SuppressLint("Range")
@@ -37,7 +39,7 @@ class UsersService() {
                 " WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
                 "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
 
-        val selectionArgs = arrayOf(email, password)
+        val selectionArgs = arrayOf(email, hashPassword(password))
         var cursor = db.rawQuery(query, selectionArgs)
         var user : User? = null
 
@@ -177,6 +179,12 @@ class UsersService() {
         val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
         val selectionArgs = arrayOf(user.getId().toString())
         db.update(Requetes.TABLE_EMPLOYER, values, selection, selectionArgs)
+    }
+
+    fun hashPassword(password: String): String {
+        val md = MessageDigest.getInstance("SHA-256")
+        val digest = md.digest(password.toByteArray())
+        return digest.fold("", { str, it -> str + "%02x".format(it) })
     }
 
 

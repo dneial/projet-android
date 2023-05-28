@@ -58,10 +58,6 @@ class OffreEditFragment: Fragment() {
         val fin_date = date_fin.year.toString() + "-" +
                 (date_fin.month + 1).toString() + "-" +
                 date_fin.dayOfMonth.toString()
-        Log.d(
-            "date",
-            "debut: " + debut_date + " fin: " + fin_date
-        )
 
         if(title         == "" ||
             metier       == "" ||
@@ -88,7 +84,6 @@ class OffreEditFragment: Fragment() {
     }
 
     private fun bind_offre(root: View, offre: Offre) {
-        Log.d("offre", offre.toString())
         // fill the view
         root.findViewById<android.widget.EditText>(R.id.edit_title)?.setText(offre.title)
         root.findViewById<android.widget.EditText>(R.id.edit_profession)?.setText(offre.metier)

@@ -62,6 +62,7 @@ class SignUpEmployerFragment : Fragment() {
             user.putString("address", address.text.toString())
             user.putString("password", password.text.toString())
             user.putString("commentary", commentary.text.toString())
+            user.putString("type", "Employer")
 
             val targetFragment = SignUpAuthentification()
             targetFragment.arguments = user
@@ -180,7 +181,7 @@ class SignUpEmployerFragment : Fragment() {
         } else { phoneWarning.visibility = View.GONE
             phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        if (subPhone.text.toString() != "" && !textPattern.matcher(subPhone.text.toString()).matches()){
+        if (subPhone.text.toString() != "" && !phonePattern.matcher(subPhone.text.toString()).matches()){
             subPhone.setBackgroundResource(R.drawable.outline_warning)
             subPhoneWarning.visibility = View.VISIBLE
             correct = false
