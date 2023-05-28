@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+
         navView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_home -> {
@@ -110,7 +112,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 // Do something with the city name
                 val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
                 with (sharedPref.edit()) {
-                    putString("ville", "Montpellier")
+                    putString("ville", cityName)
                     commit()
                 }
             }
@@ -170,5 +172,10 @@ class MainActivity : AppCompatActivity(), LocationListener {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navController.popBackStack(navController.graph.startDestinationId, false);
         navController.navigate(destinationId)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
