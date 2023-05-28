@@ -76,9 +76,8 @@ class EmployerCandidatureFragment: Fragment() {
     private fun accept_candidature() {
 
             val candidatureService = CandidatureService()
-            candidatureService.accept(candidature.id)
+            candidatureService.accept(candidature)
             Toast.makeText(context, resources.getString(R.string.candidature_accepted), Toast.LENGTH_SHORT).show()
-            candidature.status = "acceptée"
             view?.findViewById<Button>(R.id.interim_accept)?.visibility = View.GONE
             view?.findViewById<Button>(R.id.interim_refuse)?.visibility = View.GONE
 
@@ -86,13 +85,10 @@ class EmployerCandidatureFragment: Fragment() {
 
     private fun refuse_candidature() {
             val candidatureService = CandidatureService()
-            candidatureService.refuse(candidature.id)
-            activity?.onBackPressed()
+            candidatureService.refuse(candidature)
             Toast.makeText(context, resources.getString(R.string.candidature_refused), Toast.LENGTH_SHORT).show()
-            candidature.status = "refusée"
             view?.findViewById<Button>(R.id.interim_accept)?.visibility = View.GONE
             view?.findViewById<Button>(R.id.interim_refuse)?.visibility = View.GONE
-
     }
 
 

@@ -109,20 +109,23 @@ class CandidatureService {
     }
 
 
-    fun accept(candidatureId: Long) {
+    fun accept(candidature: Candidature) {
         val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
-        val selectionArgs = arrayOf(candidatureId.toString())
+        val selectionArgs = arrayOf(candidature.id.toString())
         val values = ContentValues()
         values.put(Requetes.COL_STATUS_CANDIDATURE, "Acceptée")
         db.update(Requetes.TABLE_CANDIDATURE, values, selection, selectionArgs)
+        candidature.status = "Acceptée"
     }
 
-    fun refuse(candidatureId: Long) {
+    fun refuse(candidature: Candidature) {
         val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
-        val selectionArgs = arrayOf(candidatureId.toString())
+        val selectionArgs = arrayOf(candidature.id.toString())
         val values = ContentValues()
         values.put(Requetes.COL_STATUS_CANDIDATURE, "Refusée")
         db.update(Requetes.TABLE_CANDIDATURE, values, selection, selectionArgs)
+        candidature.status = "Refusée"
+
     }
 
 }
