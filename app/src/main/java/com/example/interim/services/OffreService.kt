@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.example.interim.database.DataBase
 import com.example.interim.database.Requetes
 import com.example.interim.models.Offre
@@ -121,8 +122,8 @@ class OffreService() {
                     "title" -> queryBuilder.append(" ${Requetes.COL_TITLE} LIKE '%${values.getAsString(key)}%' AND")
                     "metier" -> queryBuilder.append(" ${Requetes.COL_METIER} LIKE '%${values.getAsString(key)}%' AND")
                     "description" -> queryBuilder.append(" ${Requetes.COL_DESCRIPTION} LIKE '%${values.getAsString(key)}%' AND")
-                    "date_debut" -> queryBuilder.append(" ${Requetes.COL_DATE_DEBUT} < '${values.getAsString(key)}' AND")
-                    "date_fin" -> queryBuilder.append(" ${Requetes.COL_DATE_FIN} > '${values.getAsString(key)}' AND")
+                    "date_debut" -> queryBuilder.append(" ${Requetes.COL_DATE_DEBUT} >= '${values.getAsString(key)}' AND")
+                    "date_fin" -> queryBuilder.append(" ${Requetes.COL_DATE_FIN} <= '${values.getAsString(key)}' AND")
                     "remuneration" -> queryBuilder.append(" ${Requetes.COL_REMUNERATION} LIKE '%${values.getAsString(key)}%' AND")
                     "ville" -> queryBuilder.append(" ${Requetes.COL_CITY} LIKE '%${values.getAsString(key)}%' AND")
                     else -> {}
@@ -132,8 +133,9 @@ class OffreService() {
             // Remove the trailing "AND" from the query
             queryBuilder.setLength(queryBuilder.length - 4)
         }
+        Log.d("REQUEST", queryBuilder.toString())
         val cursor = db.rawQuery(queryBuilder.toString(), null)
-        val offres = ArrayList<Offre>();
+        val offres = ArrayList<Offre>()
 
         while (cursor.moveToNext()) {
             val offre = cursorToOffre(cursor)

@@ -144,13 +144,23 @@ class DashboardFragment : Fragment() {
         if(startDateChanged) {
             if (date_debut != null) values.put(
                 "date_debut",
-                "${date_debut?.year}-${date_debut?.month}-${date_debut?.dayOfMonth}"
+                "${date_debut.year}-${
+                    if (1+date_debut.month < 10)
+                        "0" + (1+date_debut.month)
+                    else
+                        (1+date_debut.month)
+                }-${date_debut.dayOfMonth}"
             )
         }
         if(endDateChanged) {
             if (date_fin != null) values.put(
                 "date_fin",
-                "${date_fin?.year}-${date_fin?.month}-${date_fin?.dayOfMonth}"
+                "${date_fin.year}-${
+                    if (1+date_fin.month < 10)
+                        "0" + (1+date_fin.month)
+                    else
+                        (1+date_fin.month)
+                }-${date_fin.dayOfMonth}"
             )
         }
         viewModel.filterByValues(values)
