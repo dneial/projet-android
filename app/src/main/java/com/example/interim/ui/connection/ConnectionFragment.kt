@@ -15,6 +15,7 @@ import com.example.interim.R
 import com.example.interim.services.UsersService
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.User
+import com.example.interim.ui.LocationActivity
 
 class ConnectionFragment: Fragment() {
 
@@ -44,7 +45,8 @@ class ConnectionFragment: Fragment() {
         val anonymous = view.findViewById<Button>(R.id.anonymousLoginButton)
 
         anonymous.setOnClickListener{
-            val intent = Intent(activity, MainActivity::class.java)
+
+            val intent = Intent(activity, LocationActivity::class.java)
             startActivity(intent)
         }
 
@@ -68,7 +70,7 @@ class ConnectionFragment: Fragment() {
             if(user != null){
                 warning?.visibility = View.GONE
                 saveSession(user)
-                val intent = Intent(activity, MainActivity::class.java)
+                val intent = Intent(activity, LocationActivity::class.java)
                 startActivity(intent)
             } else {
                 warning?.visibility = View.VISIBLE

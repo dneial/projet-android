@@ -81,24 +81,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
         // demander authorisation pour la localisation
-        manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            manager!!.requestSingleUpdate(LocationManager.GPS_PROVIDER,this, null)
-
-        } else {
-            showRationaleDialog()
-        }
     }
 
     override fun onLocationChanged(location: Location) {
-        Log.d("location", location.toString())
         val latitude = location.latitude
         val longitude = location.longitude
 
@@ -109,7 +94,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 geocoder.getFromLocation(latitude, longitude, 1) as List<Address>
             if (addresses.isNotEmpty()) {
                 val cityName = addresses[0].locality
-                // Do something with the city name
                 val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
                 with (sharedPref.edit()) {
                     putString("ville", cityName)
@@ -121,51 +105,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
         manager!!.removeUpdates(this)
-    }
-
-
-    private fun showRationaleDialog() {
-        val dialogBuilder = AlertDialog.Builder(this)
-            .setTitle(resources.getString(R.string.popup_location_title))
-            .setMessage(resources.getString(R.string.popup_location_message))
-            .setPositiveButton(resources.getString(R.string.popup_location_grant)) { dialogInterface: DialogInterface, i: Int ->
-                // Request the permission when the user clicks "Grant"
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE
-                )
-                dialogInterface.dismiss()
-            }
-            .setNegativeButton(resources.getString(R.string.popup_location_deny)) { dialogInterface: DialogInterface, i: Int ->
-                // Handle the denial case when the user clicks "Deny"
-                dialogInterface.dismiss()
-            }
-            .setCancelable(false)
-
-        dialogBuilder.create().show()
-    }
-
-
-    @SuppressLint("MissingPermission")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted
-                // Request location updates
-                manager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, this)
-            } else {
-                // Permission denied
-                // Handle the denial case
-                // ...
-            }
-        }
     }
 
     private fun clearStackAndNavigateTo(destinationId: Int) {

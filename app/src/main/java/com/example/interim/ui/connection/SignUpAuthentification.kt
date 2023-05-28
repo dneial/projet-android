@@ -16,6 +16,7 @@ import com.example.interim.services.UsersService
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.User
+import com.example.interim.ui.LocationActivity
 import com.teamcreative.javamailapidemo.JavaMailAPI
 import kotlin.random.Random
 
@@ -33,7 +34,7 @@ class SignUpAuthentification : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
         val role = arguments?.getString("type")
 
-        val intent = Intent(requireContext(), MainActivity::class.java)
+        val intent = Intent(requireContext(), LocationActivity::class.java)
 
         val user = generateUser()
 

@@ -115,7 +115,7 @@
     <string name="warning_sign_in">Email or password incorrect</string>
     <string name="publier_offre">Create offer</string>
     <string name="hide_info_worker">Hide information</string>
-    <string name="offre_confirm">Comfirm modification</string>
+    <string name="offre_confirm">Confirm modification</string>
     <string name="btn_delete">Delete offer</string>
     <string name="postuler">Apply</string>
     <string name="enregistrer">Save</string>
@@ -135,4 +135,5 @@
     <string name="yes_btn">Yes</string>
     <string name="no_btn">No</string>
     <string name="warning_mail">The email is already used</string>
+    <string name="location_attente">Please wait while we get your location</string>
 </resources>

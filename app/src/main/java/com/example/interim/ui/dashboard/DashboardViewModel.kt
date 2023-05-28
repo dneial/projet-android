@@ -1,6 +1,7 @@
 package com.example.interim.ui.dashboard
 
 import android.content.ContentValues
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,6 +28,7 @@ class DashboardViewModel() : ViewModel() {
     }
 
     fun filterByCity(ville: String) {
+        Log.d("DashboardViewModel", "filterByCity: $ville")
         if(ville == "")
             _offres.value = offreService.readAll()
         else
