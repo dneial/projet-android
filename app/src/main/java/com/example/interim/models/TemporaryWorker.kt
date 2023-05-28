@@ -101,6 +101,8 @@ class TemporaryWorker(
         this.commentary = commentary
     }
 
+
+
     fun toContentValues(): ContentValues {
         var values = ContentValues()
         values.put(Requetes.COL_NAME_TEMPORARYWORKER, firstName)

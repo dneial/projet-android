@@ -91,28 +91,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
 
         } else {
-            // Permission is not granted
-            // Check if the rationale for permission should be shown
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            ) {
-                // Show a custom rationale message explaining why the permission is needed
-                Log.d("permission", "rationale")
-                showRationaleDialog()
-
-            } else {
-                Log.d("permission", "request")
-                // Request the permission without showing the rationale message
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE
-                )
-            }
+            Log.d("permission", "request")
+            showRationaleDialog()
         }
-        var enabled = manager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
     override fun onLocationChanged(location: Location) {
@@ -144,18 +125,18 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     private fun showRationaleDialog() {
         val dialogBuilder = AlertDialog.Builder(this)
-            .setTitle("Location Permission")
-            .setMessage("This app requires access to your location to provide offers based on your location.")
-            .setPositiveButton("Grant") { dialogInterface: DialogInterface, i: Int ->
+            .setTitle(resources.getString(R.string.popup_location_title))
+            .setMessage(resources.getString(R.string.popup_location_message))
+            .setPositiveButton(resources.getString(R.string.popup_location_grant)) { dialogInterface: DialogInterface, i: Int ->
                 // Request the permission when the user clicks "Grant"
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
                     LOCATION_PERMISSION_REQUEST_CODE
                 )
                 dialogInterface.dismiss()
             }
-            .setNegativeButton("Deny") { dialogInterface: DialogInterface, i: Int ->
+            .setNegativeButton(resources.getString(R.string.popup_location_deny)) { dialogInterface: DialogInterface, i: Int ->
                 // Handle the denial case when the user clicks "Deny"
                 dialogInterface.dismiss()
             }
