@@ -120,4 +120,5 @@
     <string name="btn_delete">Supprimer offre</string>
     <string name="postuler">Me candidater</string>
     <string name="enregistrer">Enregistrer</string>
+    <string name="copy_btn">Copy to clipboard</string>
 </resources>

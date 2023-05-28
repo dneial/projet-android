@@ -29,9 +29,10 @@ class DashboardViewModel() : ViewModel() {
     }
 
     fun filterByCity(ville: String) {
-        // TODO: filtre par ville
-        if(ville != "Montpellier") _offres.value = offreService.readAll()
-        else _offres.value = offreService.filter(ville)
+        if(ville == "")
+            _offres.value = offreService.readAll()
+        else
+            _offres.value = offreService.filter(ville)
     }
 
     fun filterByText(text: String) {

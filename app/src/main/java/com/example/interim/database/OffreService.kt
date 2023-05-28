@@ -61,7 +61,6 @@ class OffreService() {
         }
         cursor.close();
 
-        Log.d("offres", offres.toString())
         return offres;
     }
 
@@ -76,7 +75,6 @@ class OffreService() {
         }
 
         cursor.close();
-        Log.d("offres", offres.toString())
         return offres;
     }
 

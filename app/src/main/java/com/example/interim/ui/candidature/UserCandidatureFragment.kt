@@ -64,8 +64,11 @@ class UserCandidatureFragment: Fragment() {
         val dialog = Dialog(context!!)
         dialog.setContentView(R.layout.dialog_contact_info)
 
+        val name = candidature.offre.employer?.getName()
         val email = candidature.offre.employer?.getEmail()
         val phone = candidature.offre.employer?.getPhone()
+
+        dialog.findViewById<TextView>(R.id.tv_nom_entreprise).text = name
         dialog.findViewById<TextView>(R.id.email_contact).text = email
         dialog.findViewById<TextView>(R.id.phone_contact).text = phone
 
