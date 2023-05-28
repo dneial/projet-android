@@ -53,6 +53,7 @@ class WorkerEditInfoFragment(): Fragment() {
         view?.findViewById<EditText>(R.id.worker_ville_edit)?.setText(user.getCity())
         view?.findViewById<EditText>(R.id.worker_nationality_edit)?.setText(user.getNationality())
         view?.findViewById<EditText>(R.id.worker_anniversaire_edit)?.setText(user.getBirthday())
+        view?.findViewById<EditText>(R.id.worker_commentaire_edit)?.setText(user.getCommentary())
     }
 
     private fun editWorker(view: View?) {
@@ -63,6 +64,7 @@ class WorkerEditInfoFragment(): Fragment() {
         val ville = view?.findViewById<EditText>(R.id.worker_ville_edit)?.text.toString()
         val nationality = view?.findViewById<EditText>(R.id.worker_nationality_edit)?.text.toString()
         val birthday = view?.findViewById<EditText>(R.id.worker_anniversaire_edit)?.text.toString()
+        val commentary = view?.findViewById<EditText>(R.id.worker_commentaire_edit)?.text.toString()
 
         user.setFirstName(first_name)
         user.setLastName(last_name)
@@ -71,6 +73,7 @@ class WorkerEditInfoFragment(): Fragment() {
         user.setCity(ville)
         user.setNationality(nationality)
         user.setBirthday(birthday)
+        user.setCommentary(commentary)
 
         UsersService().updateTemporaryWorker(user)
         Toast.makeText(context, "Informations mises à jour", Toast.LENGTH_SHORT).show()

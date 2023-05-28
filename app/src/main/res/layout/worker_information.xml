@@ -91,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/interim_phone_label"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:minHeight="48dp"/>
 
     <TextView
         android:id="@+id/interim_natinality_label"
@@ -107,7 +108,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/interim_natinality_label"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:minHeight="48dp"/>
 
     <TextView
         android:id="@+id/interim_ville_label"
@@ -123,8 +125,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/interim_ville_label"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:minHeight="48dp"/>
+
+        <TextView
+            android:id="@+id/interim_commentaire_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_commentary"
+            android:textSize="20dp"
+            android:layout_below="@+id/interim_ville"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/interim_commentaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/interim_commentaire_label"
+            android:importantForAutofill="no"
+            android:minHeight="48dp"/>
 
 
-</RelativeLayout>
+
+    </RelativeLayout>
 </ScrollView>

@@ -45,6 +45,7 @@ class WorkerProfileFragment: Fragment() {
             val worker_birthday = userInfoLayout.findViewById<TextView>(R.id.interim_birthday)
             val worker_city = userInfoLayout.findViewById<TextView>(R.id.interim_ville)
             val worker_nationality = userInfoLayout.findViewById<TextView>(R.id.interim_nationality)
+            val worker_commentary = userInfoLayout.findViewById<TextView>(R.id.interim_commentaire)
 
             worker_name.text = user.getFirstName()
             worker_last_name.text = user.getLastName()
@@ -53,6 +54,7 @@ class WorkerProfileFragment: Fragment() {
             worker_birthday.text = user.getBirthday()
             worker_city.text = user.getCity()
             worker_nationality.text = user.getNationality()
+            worker_commentary.text = user.getCommentary()
         }
 
     }
