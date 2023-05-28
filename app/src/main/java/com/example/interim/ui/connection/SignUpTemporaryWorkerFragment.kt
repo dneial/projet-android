@@ -142,7 +142,6 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         if (email.text.toString() == "" && phone.text.toString() == ""){
             email.setBackgroundResource(R.drawable.outline_warning)
             phone.setBackgroundResource(R.drawable.outline_warning)
-            email.setText(R.string.warning_form)
             emailWarning.visibility = View.VISIBLE
             phoneWarning.visibility = View.VISIBLE
             correct = false
