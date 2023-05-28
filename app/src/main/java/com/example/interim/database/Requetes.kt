@@ -159,6 +159,15 @@ object Requetes {
             "INNER JOIN $TABLE_CANDIDATURE " +
             "ON $TABLE_OFFRE.$COL_ID_OFFRE = $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE " +
             "WHERE $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE = ?;";
+
+    const val CHECK_UNIQUE_EMAIL: String = "" +
+            "SELECT * " +
+            "FROM " +
+            "(SELECT $COL_EMAIL_EMPLOYER FROM $TABLE_EMPLOYER " +
+            "UNION ALL " +
+            "SELECT $COL_EMAIL_TEMPORARYWORKER FROM $TABLE_TEMPORARYWORKERS) AS combined " +
+            "WHERE email = ?;";
+
 }
 
 

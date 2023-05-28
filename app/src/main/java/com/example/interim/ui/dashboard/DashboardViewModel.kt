@@ -1,11 +1,10 @@
 package com.example.interim.ui.dashboard
 
 import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.interim.database.OffreService
+import com.example.interim.services.OffreService
 import com.example.interim.models.Offre
 
 class DashboardViewModel() : ViewModel() {

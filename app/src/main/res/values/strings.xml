@@ -134,4 +134,5 @@
     <string name="copy_btn">Copier dans le presse-papier</string>
     <string name="don_t_have_an_account_sign_up">Vous n\'avez pas de compte ? Inscrivez-vous !</string>
     <string name="unsave">Supprimer enregistrement</string>
+    <string name="warning_mail">L\'email est deja utiliser</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.interim.R
+import com.example.interim.services.UsersService
 import java.util.regex.Pattern
 
 
@@ -95,24 +96,16 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         var patternPhone = Pattern.compile("^[0-9]{10}$")
         var patternDate = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)\$")
 
-        if (firstName.text.toString() == "" ){
+        if (firstName.text.toString() == "" || !patternText.matcher(firstName.text.toString()).matches()){
             firstName.setBackgroundResource(R.drawable.outline_warning)
             firstNameWarning.visibility = View.VISIBLE
             correct = false
-        } else if (!patternText.matcher(firstName.text.toString()).matches()){
-            firstNameWarning.visibility = View.VISIBLE
-            correct = false
-            firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         } else {
             firstNameWarning.visibility = View.GONE
             firstName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (lastName.text.toString() == ""){
-            lastNameWarning.visibility = View.VISIBLE
-            lastName.setBackgroundResource(R.drawable.outline_warning)
-            correct = false
-        } else if (!patternText.matcher(lastName.text.toString()).matches()){
+        if (lastName.text.toString() == "" || !patternText.matcher(lastName.text.toString()).matches()){
             lastNameWarning.visibility = View.VISIBLE
             lastName.setBackgroundResource(R.drawable.outline_warning)
             correct = false
@@ -130,7 +123,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             password.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (city.text.toString() == "" || !patternText.matcher(city.text.toString()).matches()){
+        if (city.text.toString() != "" && !patternText.matcher(city.text.toString()).matches()){
             city.setBackgroundResource(R.drawable.outline_warning)
             cityWarning.visibility = View.VISIBLE
         } else {
@@ -138,7 +131,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
             city.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
         }
 
-        if (nationality.text.toString() == "" || !patternText.matcher(nationality.text.toString()).matches()){
+        if (nationality.text.toString() != "" && !patternText.matcher(nationality.text.toString()).matches()){
             nationality.setBackgroundResource(R.drawable.outline_warning)
             nationalityWarning.visibility = View.VISIBLE
         } else {
@@ -149,19 +142,26 @@ class SignUpTemporaryWorkerFragment : Fragment() {
         if (email.text.toString() == "" && phone.text.toString() == ""){
             email.setBackgroundResource(R.drawable.outline_warning)
             phone.setBackgroundResource(R.drawable.outline_warning)
+            email.setText(R.string.warning_form)
             emailWarning.visibility = View.VISIBLE
             phoneWarning.visibility = View.VISIBLE
             correct = false
         } else {
 
-            if (email.text.toString() == "" || !patternEmail.matcher(email.text.toString()).matches()){
+            if (email.text.toString() != "" && !patternEmail.matcher(email.text.toString()).matches()){
                 email.setBackgroundResource(R.drawable.outline_warning)
+                email.setText(R.string.warning_form)
+                emailWarning.visibility = View.VISIBLE
+                correct = false
+            } else if (UsersService().checkEmailUnique(email.text.toString())) {
+                email.setBackgroundResource(R.drawable.outline_warning)
+                email.setText(R.string.warning_mail)
                 emailWarning.visibility = View.VISIBLE
                 correct = false
             } else { emailWarning.visibility = View.GONE
                 email.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-            if (phone.text.toString() == "" || !patternPhone.matcher(phone.text.toString()).matches()){
+            if (phone.text.toString() != "" && !patternPhone.matcher(phone.text.toString()).matches()){
                 phone.setBackgroundResource(R.drawable.outline_warning)
                 phoneWarning.visibility = View.VISIBLE
                 correct = false
@@ -169,7 +169,7 @@ class SignUpTemporaryWorkerFragment : Fragment() {
                 phone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
         }
 
-        if (birthday.text.toString() == "" || !patternDate.matcher(birthday.text.toString()).matches()){
+        if (birthday.text.toString() != "" && !patternDate.matcher(birthday.text.toString()).matches()){
             birthday.setBackgroundResource(R.drawable.outline_warning)
             birthdayWarning.visibility = View.VISIBLE
             correct = false

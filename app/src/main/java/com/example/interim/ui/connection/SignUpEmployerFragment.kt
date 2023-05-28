@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.interim.R
+import com.example.interim.services.UsersService
 import java.util.regex.Pattern
 
 
@@ -131,11 +132,7 @@ class SignUpEmployerFragment : Fragment() {
         } else { subServiceWarning.visibility = View.GONE
             subService.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        if (SIRET.text.toString() == "") {
-            SIRET.setBackgroundResource(R.drawable.outline_warning)
-            SIRETWarning.visibility = View.VISIBLE
-            correct = false
-        } else if (!siretPattern.matcher(SIRET.text.toString()).matches()) {
+        if (SIRET.text.toString() == "" || !siretPattern.matcher(SIRET.text.toString()).matches()) {
             SIRET.setBackgroundResource(R.drawable.outline_warning)
             SIRETWarning.visibility = View.VISIBLE
             correct = false
@@ -156,12 +153,14 @@ class SignUpEmployerFragment : Fragment() {
         } else { subContactWarning.visibility = View.GONE
             subContact.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        if (email.text.toString() == "") {
+        if (email.text.toString() == "" || !emailPattern.matcher(email.text.toString()).matches()) {
             email.setBackgroundResource(R.drawable.outline_warning)
+            email.setText(R.string.warning_form)
             emailWarning.visibility = View.VISIBLE
             correct = false
-        } else if (!emailPattern.matcher(email.text.toString()).matches()) {
+        } else if (UsersService().checkEmailUnique(email.text.toString())) {
             email.setBackgroundResource(R.drawable.outline_warning)
+            email.setText(R.string.warning_mail)
             emailWarning.visibility = View.VISIBLE
             correct = false
         } else { emailWarning.visibility = View.GONE
@@ -188,13 +187,9 @@ class SignUpEmployerFragment : Fragment() {
         } else { subPhoneWarning.visibility = View.GONE
             subPhone.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }
 
-        if (address.text.toString() == "") {
+        if (address.text.toString() == "" || !addressPattern.matcher(address.text.toString()).matches()) {
             address.setBackgroundResource(R.drawable.outline_warning)
             addressWarning.visibility = View.VISIBLE
-            correct = false
-        } else if (!addressPattern.matcher(address.text.toString()).matches()) {
-            addressWarning.visibility = View.VISIBLE
-            address.setBackgroundResource(R.drawable.outline_warning)
             correct = false
         } else { addressWarning.visibility = View.GONE
             address.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material) }

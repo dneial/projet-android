@@ -2,29 +2,20 @@ package com.example.interim.ui.offres
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
-import com.example.interim.database.CandidatureService
-import com.example.interim.database.OffreService
+import com.example.interim.services.OffreService
 import com.example.interim.databinding.FragmentOffreBinding
-import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
 import com.example.interim.ui.connection.ConnectionActivity
-import java.util.Date
 import java.util.regex.Pattern
 
 class OffreFragment : Fragment() {

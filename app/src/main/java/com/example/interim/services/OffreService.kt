@@ -1,12 +1,12 @@
-package com.example.interim.database
+package com.example.interim.services
 
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
+import com.example.interim.database.DataBase
+import com.example.interim.database.Requetes
 import com.example.interim.models.Offre
-import com.example.interim.services.UsersService
 
 class OffreService() {
 

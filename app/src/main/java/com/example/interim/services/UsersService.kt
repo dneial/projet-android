@@ -187,5 +187,10 @@ class UsersService() {
         return digest.fold("", { str, it -> str + "%02x".format(it) })
     }
 
+    fun checkEmailUnique(email: String): Boolean {
+        val selectionArgs = arrayOf(email)
+        val cursor = db.rawQuery(Requetes.CHECK_UNIQUE_EMAIL, selectionArgs)
+        return !cursor.moveToFirst()
+    }
 
 }

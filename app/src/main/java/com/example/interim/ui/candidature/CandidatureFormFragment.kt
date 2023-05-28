@@ -2,7 +2,6 @@ package com.example.interim.ui.candidature
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
-import com.example.interim.database.OffreService
+import com.example.interim.services.OffreService
 import com.example.interim.services.UsersService
 import com.example.interim.models.Candidature
 import com.example.interim.models.TemporaryWorker
-import com.example.interim.models.TemporaryWorker.Companion.format_date
 import com.example.interim.models.TemporaryWorker.Companion.format_date_to_view
 import java.text.SimpleDateFormat
 import java.util.Date
