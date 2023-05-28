@@ -31,11 +31,11 @@ class SignUpAuthentification : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
+        val role = arguments?.getString("type")
 
         val intent = Intent(requireContext(), MainActivity::class.java)
 
         val user = generateUser()
-        val role = arguments?.getString("type")
 
         var code = generateRandomCode(6)
         Log.d("code", code)
@@ -52,6 +52,8 @@ class SignUpAuthentification : Fragment() {
                     UsersService().create(user as TemporaryWorker)
                 else if (role == "Employer")
                     UsersService().create(user as Employer)
+                else
+                    Log.d("error", "role not found: $role")
                 UsersService().signIn(user.getEmail(), user.getPassword())
                 saveSession(user)
                 startActivity(intent)
@@ -70,7 +72,6 @@ class SignUpAuthentification : Fragment() {
 
     private fun generateUser(): User {
         val user: User
-        Log.d("Authentification", arguments?.getString("type")!!)
         if (arguments?.getString("type") == "TemporaryWorker") {
             val lastName = arguments?.getString("lastName")
             val firstName = arguments?.getString("firstName")

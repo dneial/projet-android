@@ -125,4 +125,5 @@
     <string name="popup_location_grant">Accepter</string>
     <string name="popup_location_deny">Refuser</string>
     <string name="copy_btn">Copy to clipboard</string>
+    <string name="unsave">Supprimer enregistrement</string>
 </resources>

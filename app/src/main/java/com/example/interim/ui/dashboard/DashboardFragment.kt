@@ -162,9 +162,7 @@ class DashboardFragment : Fragment() {
 
     fun check_permissions(): Boolean {
         val sharedPref = activity?.getSharedPreferences("interim", Context.MODE_PRIVATE)
-        Log.d("sharedPref", sharedPref?.all.toString())
         val user_id = sharedPref?.getLong("user_id", -1)!!
-        Log.d("user_id", user_id.toString())
 
         if(user_id == -1L){
             Toast.makeText(requireContext(), "Veuillez vous connecter", Toast.LENGTH_SHORT).show()

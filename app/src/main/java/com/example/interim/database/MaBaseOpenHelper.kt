@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Debug
 import android.util.Log
+import java.security.MessageDigest
 
 object DataBase {
     lateinit var db: SQLiteDatabase
@@ -70,10 +71,12 @@ null,
 
     private fun create_default_user(db: SQLiteDatabase?){
         val values = ContentValues()
+        val mdp1 = MessageDigest.getInstance("SHA-256").digest("admin".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
+        val mdp2 = MessageDigest.getInstance("SHA-256").digest("toto".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
         values.put(Requetes.COL_NAME_TEMPORARYWORKER, "admin")
         values.put(Requetes.COL_LASTNAME_TEMPORARYWORKER, "admin")
         values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, "admin@admin.com")
-        values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, "admin")
+        values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, mdp1)
         values.put(Requetes.COL_PHONE_TEMPORARYWORKER, "0000000000")
         values.put(Requetes.COL_CITY_TEMPORARYWORKER, "Montpellier")
         values.put(Requetes.COL_BIRTHDAY_TEMPORARYWORKER, "2000-01-01")
@@ -93,14 +96,13 @@ null,
         values.put(Requetes.COL_PHONE_EMPLOYER, "0123456789")
         values.put(Requetes.COL_SUBPHONE_EMPLOYER, "9876543210")
         values.put(Requetes.COL_ADDRESS_EMPLOYER, "52 rue montmartre 75002 Paris")
-        values.put(Requetes.COL_PASSWORD_EMPLOYER, "toto")
+        values.put(Requetes.COL_PASSWORD_EMPLOYER, mdp2)
         values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
         db?.insert(Requetes.TABLE_EMPLOYER, null, values)
         values.clear()
 
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        Log.d("DB", "onUpgrade")
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
         db?.execSQL(Requetes.DROP_TABLE_TEMPORARYWORKERS);
         db?.execSQL(Requetes.DROP_TABLE_CANDIDATURE);

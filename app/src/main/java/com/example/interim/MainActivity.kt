@@ -88,12 +88,9 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            Log.d("permission", "granted")
             manager!!.requestSingleUpdate(LocationManager.GPS_PROVIDER,this, null)
 
-
         } else {
-            Log.d("permission", "request")
             showRationaleDialog()
         }
     }
@@ -113,7 +110,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 // Do something with the city name
                 val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
                 with (sharedPref.edit()) {
-                    putString("ville", cityName)
+                    putString("ville", "Montpellier")
                     commit()
                 }
             }
@@ -165,7 +162,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 // Permission denied
                 // Handle the denial case
                 // ...
-                Log.d("permission", "denied")
             }
         }
     }

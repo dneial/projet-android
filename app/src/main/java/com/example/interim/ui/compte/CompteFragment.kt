@@ -49,9 +49,6 @@ class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback
 
 
         lateinit var fragment: Fragment
-        if (user_role != null) {
-            Log.d("CompteFragment", user_role)
-        }
 
         when(user_role){
             "worker" -> {
