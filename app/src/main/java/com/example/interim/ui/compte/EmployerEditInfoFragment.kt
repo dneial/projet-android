@@ -77,7 +77,7 @@ class EmployerEditInfoFragment(): Fragment() {
         val company_address = view?.findViewById<TextView>(R.id.company_address_edit)?.text.toString()
         val company_commentary = view?.findViewById<TextView>(R.id.company_comment_edit)?.text.toString()
 
-        if(checkInfo(view!!, employer1_email)) {
+        if(checkInfo(view!!)) {
             user.setName(company_name)
             user.setService(company_service)
             user.setSubService(company_sub_service)
@@ -97,7 +97,7 @@ class EmployerEditInfoFragment(): Fragment() {
         }
     }
 
-    private fun checkInfo(view: View, currentEmail: String): Boolean{
+    private fun checkInfo(view: View): Boolean{
         var correct : Boolean = true
 
         val name = view.findViewById<EditText>(R.id.company_name_edit)
@@ -178,7 +178,7 @@ class EmployerEditInfoFragment(): Fragment() {
             emailWarning.setText(R.string.warning_form)
             emailWarning.visibility = View.VISIBLE
             correct = false
-        } else if (currentEmail != email.text.toString() && !UsersService().checkEmailUnique(email.text.toString())) {
+        } else if (user.getEmail() != email.text.toString() && !UsersService().checkEmailUnique(email.text.toString())) {
             email.setBackgroundResource(R.drawable.outline_warning)
             emailWarning.setText(R.string.warning_mail)
             emailWarning.visibility = View.VISIBLE

@@ -68,7 +68,7 @@ class WorkerEditInfoFragment(): Fragment() {
         val birthday = view?.findViewById<EditText>(R.id.worker_anniversaire_edit)?.text.toString()
         val commentary = view?.findViewById<EditText>(R.id.worker_commentaire_edit)?.text.toString()
 
-        if (checkSignUpInterim(view!!, email)){
+        if (checkSignUpInterim(view!!)){
             user.setFirstName(first_name)
             user.setLastName(last_name)
             user.setEmail(email)
@@ -84,7 +84,7 @@ class WorkerEditInfoFragment(): Fragment() {
         }
     }
 
-    private fun checkSignUpInterim(view: View, currentEmail: String) : Boolean{
+    private fun checkSignUpInterim(view: View) : Boolean{
         var correct : Boolean = true
         val lastName = view.findViewById<EditText>(R.id.worker_nom_edit)
         val firstName = view.findViewById<EditText>(R.id.worker_prenom_edit)
@@ -150,12 +150,11 @@ class WorkerEditInfoFragment(): Fragment() {
         } else {
 
             if (email.text.toString() != "" && !patternEmail.matcher(email.text.toString()).matches()){
-                Log.d("notnormal", "${email.toString()}    $currentEmail")
                 email.setBackgroundResource(R.drawable.outline_warning)
                 emailWarning.setText(R.string.warning_form)
                 emailWarning.visibility = View.VISIBLE
                 correct = false
-            } else if (email.text.toString() != currentEmail && !UsersService().checkEmailUnique(email.text.toString())) {
+            } else if (email.text.toString() != user.getEmail() && !UsersService().checkEmailUnique(email.text.toString())) {
                 email.setBackgroundResource(R.drawable.outline_warning)
                 emailWarning.setText(R.string.warning_mail)
                 emailWarning.visibility = View.VISIBLE
