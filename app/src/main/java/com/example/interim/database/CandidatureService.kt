@@ -1,6 +1,7 @@
 package com.example.interim.database
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
@@ -105,6 +106,23 @@ class CandidatureService {
             date=date,
             status=status
         )
+    }
+
+
+    fun accept(candidatureId: Long) {
+        val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
+        val selectionArgs = arrayOf(candidatureId.toString())
+        val values = ContentValues()
+        values.put(Requetes.COL_STATUS_CANDIDATURE, "Acceptée")
+        db.update(Requetes.TABLE_CANDIDATURE, values, selection, selectionArgs)
+    }
+
+    fun refuse(candidatureId: Long) {
+        val selection = "${Requetes.COL_ID_CANDIDATURE} = ?"
+        val selectionArgs = arrayOf(candidatureId.toString())
+        val values = ContentValues()
+        values.put(Requetes.COL_STATUS_CANDIDATURE, "Refusée")
+        db.update(Requetes.TABLE_CANDIDATURE, values, selection, selectionArgs)
     }
 
 }

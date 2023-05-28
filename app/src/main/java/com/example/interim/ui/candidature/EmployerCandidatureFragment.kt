@@ -1,6 +1,7 @@
 package com.example.interim.ui.candidature
 
 
+import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ClipData
@@ -8,11 +9,14 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.interim.R
 import com.example.interim.database.CandidatureService
@@ -51,8 +55,65 @@ class EmployerCandidatureFragment: Fragment() {
             }
         }
 
+        val acceptButton = view.findViewById<Button>(R.id.interim_accept)
+        val refuseButton = view.findViewById<Button>(R.id.interim_refuse)
+        if(candidature.status == "Acceptée" || candidature.status == "Refusée") {
+            acceptButton.visibility = View.GONE
+            refuseButton.visibility = View.GONE
+        }
+
+        acceptButton.setOnClickListener {
+            createInfoDialog("accept")
+        }
+        refuseButton.setOnClickListener {
+            createInfoDialog("refuse")
+        }
+
         bind_worker_info(info_layout)
         return view
+    }
+
+    private fun accept_candidature() {
+
+            val candidatureService = CandidatureService()
+            candidatureService.accept(candidature.id)
+            Toast.makeText(context, resources.getString(R.string.candidature_accepted), Toast.LENGTH_SHORT).show()
+            candidature.status = "acceptée"
+            view?.findViewById<Button>(R.id.interim_accept)?.visibility = View.GONE
+            view?.findViewById<Button>(R.id.interim_refuse)?.visibility = View.GONE
+
+    }
+
+    private fun refuse_candidature() {
+            val candidatureService = CandidatureService()
+            candidatureService.refuse(candidature.id)
+            activity?.onBackPressed()
+            Toast.makeText(context, resources.getString(R.string.candidature_refused), Toast.LENGTH_SHORT).show()
+            candidature.status = "refusée"
+            view?.findViewById<Button>(R.id.interim_accept)?.visibility = View.GONE
+            view?.findViewById<Button>(R.id.interim_refuse)?.visibility = View.GONE
+
+    }
+
+
+    private fun createInfoDialog(s: String) {
+        val msg = if (s == "accept") resources.getString(R.string.popup_accept_message) else resources.getString(R.string.popup_refuse_message)
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setTitle(resources.getString(R.string.popup_candidature_dialog_title))
+            .setMessage(msg)
+            .setPositiveButton(resources.getString(R.string.yes_btn)) { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.dismiss()
+                if(s == "accept") accept_candidature()
+                else refuse_candidature()
+            }
+            .setNegativeButton(resources.getString(R.string.no_btn)) { dialogInterface: DialogInterface, i: Int ->
+                // Handle the denial case when the user clicks "Deny"
+                dialogInterface.dismiss()
+            }
+            .setCancelable(false)
+
+        dialogBuilder.create().show()
+
     }
 
     private fun bind_worker_info(infoLayout: View?) {
@@ -73,57 +134,6 @@ class EmployerCandidatureFragment: Fragment() {
         worker_nationality?.text = candidature.user?.getNationality()
     }
 
-    private fun showContactInfoDialog() {
-        val dialog = Dialog(context!!)
-        dialog.setContentView(R.layout.dialog_contact_info)
-
-        val email = candidature.offre.employer?.getEmail()
-        val phone = candidature.offre.employer?.getPhone()
-        dialog.findViewById<TextView>(R.id.email_contact).text = email
-        dialog.findViewById<TextView>(R.id.phone_contact).text = phone
-
-        val copyEmailButton = dialog.findViewById<android.widget.ImageButton>(R.id.copyEmail_button)
-        copyEmailButton.setOnClickListener {
-            copyToClipboard(email)
-        }
-
-        val copyPhoneButton = dialog.findViewById<android.widget.ImageButton>(R.id.copyPhone_button)
-        copyPhoneButton.setOnClickListener {
-            copyToClipboard(phone)
-        }
-
-        dialog.show();
-
-    }
-
-    private fun copyToClipboard(info: String?) {
-
-        val clipboardManager: ClipboardManager =
-            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-
-        val clipData = ClipData.newPlainText("info", info)
-
-        clipboardManager.setPrimaryClip(clipData)
-
-    }
-    private fun desister() {
-        val candidatureService = CandidatureService()
-        candidatureService.delete(candidature.id)
-        activity?.onBackPressed()
-    }
-
-
-    private fun showConfirmationDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setTitle("Desistement de candidature")
-        builder.setMessage("Êtes-vous sûr de vouloir vous désister de cette candidature ?")
-        builder.setPositiveButton("Oui",
-            DialogInterface.OnClickListener { dialog, which -> desister() })
-        builder.setNegativeButton("Non",
-            DialogInterface.OnClickListener { dialog, which -> dialog.dismiss() })
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
 
 
 }

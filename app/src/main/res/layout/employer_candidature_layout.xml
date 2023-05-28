@@ -18,23 +18,42 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-    <include
-        layout="@layout/worker_information"/>
+        <include
+            layout="@layout/worker_information"/>
 
 
-    <Button
-        android:id="@+id/interim_btn_cv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/interim_phone"
-        android:text="@string/btn_show_cv" />
+        <Button
+            android:id="@+id/interim_btn_cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/interim_phone"
+            android:text="@string/btn_show_cv" />
 
-    <Button
-        android:id="@+id/interim_btn_lm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/interim_btn_cv"
-        android:layout_marginBottom="200dp"
-        android:text="@string/button_show_lm" />
+        <Button
+            android:id="@+id/interim_btn_lm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/interim_btn_cv"
+            android:layout_marginBottom="200dp"
+            android:text="@string/button_show_lm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/interim_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_accept"/>
+
+        <Button
+            android:id="@+id/interim_refuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_refuse"/>
+
     </LinearLayout>
 </LinearLayout>

@@ -101,7 +101,7 @@
     <string name="dashboard_search_label">Search</string>
     <string name="btn_show_cv">See CV</string>
     <string name="button_show_lm">See cover letter</string>
-    <string name="info_worker">Show candidate inforamtions</string>
+    <string name="info_worker">Show candidate informations</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="company_name">Company name</string>
@@ -124,4 +124,15 @@
     <string name="popup_location_grant">Accept</string>
     <string name="popup_location_deny">Decline</string>
     <string name="copy_btn">Copy to clipboard</string>
+    <string name="unsave">Unsave</string>
+    <string name="button_accept">Accept</string>
+    <string name="button_refuse">Refuse</string>
+    <string name="button_refuse">R</string>
+    <string name="popup_accept_message">Accept this candidacy?</string>
+    <string name="popup_refuse_message">Refuse this candidacy?</string>
+    <string name="popup_candidature_dialog_title">Response confirmation</string>
+    <string name="candidature_accepted">The candidacy was accepted</string>
+    <string name="candidature_refused">The candidacy was refused</string>
+    <string name="yes_btn">Yes</string>
+    <string name="no_btn">No</string>
 </resources>
