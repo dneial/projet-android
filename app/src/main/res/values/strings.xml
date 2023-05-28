@@ -122,8 +122,6 @@
     <string name="popup_location_message">Cette application nécessite l\'accès a votre localisation afin de vous proposer des offres en fonction de celle-ci.</string>
     <string name="popup_location_grant">Accepter</string>
     <string name="popup_location_deny">Refuser</string>
-    <string name="copy_btn">Copy to clipboard</string>
-    <string name="unsave">Supprimer enregistrement</string>
     <string name="button_accept">Accepter</string>
     <string name="button_refuse">Refuser</string>
     <string name="popup_accept_message">Accepter cette candidature?</string>
@@ -133,4 +131,7 @@
     <string name="candidature_refused">La candidature a été refusée</string>
     <string name="yes_btn">Oui</string>
     <string name="no_btn">Non</string>
+    <string name="copy_btn">Copier dans le presse-papier</string>
+    <string name="don_t_have_an_account_sign_up">Vous n\'avez pas de compte ? Inscrivez-vous !</string>
+    <string name="unsave">Supprimer enregistrement</string>
 </resources>
