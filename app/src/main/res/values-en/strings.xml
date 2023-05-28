@@ -124,4 +124,5 @@
     <string name="popup_location_grant">Accept</string>
     <string name="popup_location_deny">Decline</string>
     <string name="copy_btn">Copy to clipboard</string>
+    <string name="unsave">Cancel save</string>
 </resources>
