@@ -78,7 +78,7 @@
     <string name="tv_LettreMotivation">Lettre de motivation</string>
     <string name="candidature_button">Postuler</string>
     <string name="title_candidature">Candidature</string>
-    <string name="login_guest">Connexion annonyme</string>
+    <string name="login_guest">Connexion anonyme</string>
     <string name="don_t_have_an_account">Vous n\'avez pas de compte?</string>
     <string name="or">Ou</string>
     <string name="connection">Connection</string>
@@ -120,5 +120,9 @@
     <string name="btn_delete">Supprimer offre</string>
     <string name="postuler">Me candidater</string>
     <string name="enregistrer">Enregistrer</string>
+    <string name="popup_location_title">Permission localisation</string>
+    <string name="popup_location_message">Cette application nécessite  l\'accès a votre localisation afin de vous proposer des offres en fonction de celle-ci.</string>
+    <string name="popup_location_grant">Accepter</string>
+    <string name="popup_location_deny">Refuser</string>
     <string name="copy_btn">Copy to clipboard</string>
 </resources>
