@@ -155,12 +155,12 @@ class SignUpEmployerFragment : Fragment() {
 
         if (email.text.toString() == "" || !emailPattern.matcher(email.text.toString()).matches()) {
             email.setBackgroundResource(R.drawable.outline_warning)
-            email.setText(R.string.warning_form)
+            emailWarning.setText(R.string.warning_form)
             emailWarning.visibility = View.VISIBLE
             correct = false
-        } else if (UsersService().checkEmailUnique(email.text.toString())) {
+        } else if (!UsersService().checkEmailUnique(email.text.toString())) {
             email.setBackgroundResource(R.drawable.outline_warning)
-            email.setText(R.string.warning_mail)
+            emailWarning.setText(R.string.warning_mail)
             emailWarning.visibility = View.VISIBLE
             correct = false
         } else { emailWarning.visibility = View.GONE

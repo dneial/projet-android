@@ -38,7 +38,7 @@
     <string name="et_contact_name_2">Azevedo Gomes Daniel</string>
     <string name="tv_mail_1">Email 1 *</string>
     <string name="et_mail_1">premier.mail@gmail.com</string>
-    <string name="tv_mail_2">Email 2 *</string>
+    <string name="tv_mail_2">Email 2</string>
     <string name="et_mail_2">second.mail@gmail.com</string>
     <string name="tv_phone_1">Numéro de téléphone 1</string>
     <string name="tv_phone_2">Numéro de téléphone 2</string>

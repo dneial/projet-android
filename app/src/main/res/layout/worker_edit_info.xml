@@ -25,10 +25,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_prenom_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_prenom_edit"/>
+
+        <TextView
             android:id="@+id/worker_nom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_prenom_edit"
+            android:layout_below="@+id/worker_prenom_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_last_name" />
 
@@ -43,10 +53,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_nom_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_nom_edit"/>
+
+        <TextView
             android:id="@+id/worker_anniversaire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_nom_edit"
+            android:layout_below="@+id/worker_nom_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_birthday" />
 
@@ -61,10 +81,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_anniversaire_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_anniversaire_edit"/>
+
+        <TextView
             android:id="@+id/worker_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_anniversaire_edit"
+            android:layout_below="@+id/worker_anniversaire_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_email" />
 
@@ -79,10 +109,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_email_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_email_edit"/>
+
+        <TextView
             android:id="@+id/worker_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_email_edit"
+            android:layout_below="@+id/worker_email_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_phone" />
 
@@ -96,10 +136,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_phone_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_phone_edit"/>
+
+        <TextView
             android:id="@+id/worker_nationality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_phone_edit"
+            android:layout_below="@+id/worker_phone_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_nationality" />
 
@@ -114,10 +164,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_nationality_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_nationality_edit"/>
+
+        <TextView
             android:id="@+id/worker_ville"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_nationality_edit"
+            android:layout_below="@+id/worker_nationality_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_city" />
 
@@ -132,10 +192,20 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:id="@+id/worker_ville_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/warning_form"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:layout_below="@+id/worker_ville_edit"/>
+
+        <TextView
             android:id="@+id/worker_commentaire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/worker_ville_edit"
+            android:layout_below="@+id/worker_ville_warning"
             android:layout_marginTop="8dp"
             android:text="@string/tv_commentary" />
 
