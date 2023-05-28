@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">interim</string>
-    <string name="title_home">Accueil</string>
+    <string name="title_home">Recherche</string>
     <string name="title_dashboard">Tableau de bord</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_offres">Offre</string>
