@@ -6,6 +6,6 @@ open abstract class User() {
     abstract fun getPhone(): String
     abstract fun getPassword(): String
     abstract fun getRole(): String
-
     abstract fun getId(): Long
+    abstract fun getDateCreation(): String
 }

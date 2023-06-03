@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.interim.R
-import com.example.interim.database.CandidatureService
+import com.example.interim.services.CandidatureService
 import com.example.interim.services.OffreService
 import com.example.interim.services.UsersService
 import com.example.interim.models.Candidature

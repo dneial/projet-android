@@ -175,6 +175,7 @@ class OffreService() {
         return db.delete(Requetes.TABLE_OFFRE_ENREGISTREE, selection, selectionArgs) > 0
     }
 
+
     companion object {
         fun cursorToOffre(cursor: Cursor): Offre {
 
@@ -188,6 +189,7 @@ class OffreService() {
             val remuneration = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_REMUNERATION))
             val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE))
             val city = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY))
+            val created_at = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_CREATION_OFFRE))
 
             return Offre(
                 title=title,
@@ -198,7 +200,8 @@ class OffreService() {
                 remuneration=remuneration,
                 id=id,
                 ville=city,
-                employer=employer!!
+                employer=employer!!,
+                created_at=created_at
             )
         }
     }

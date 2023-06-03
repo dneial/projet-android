@@ -32,6 +32,7 @@ null,
 
         create_default_user(db)
         create_default_offres(db)
+        create_report(db)
     }
 
     private fun create_default_offres(db: SQLiteDatabase?) {
@@ -99,6 +100,24 @@ null,
         values.put(Requetes.COL_ADDRESS_EMPLOYER, "52 rue montmartre 75002 Paris")
         values.put(Requetes.COL_PASSWORD_EMPLOYER, mdp2)
         values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
+        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
+        db?.insert(Requetes.TABLE_EMPLOYERS, null, values)
+        values.clear()
+
+        values.put(Requetes.COL_NAME_EMPLOYER, "employer2")
+        values.put(Requetes.COL_SERVICE_EMPLOYER, "admin")
+        values.put(Requetes.COL_SUBSERVICE_EMPLOYER, "admin")
+        values.put(Requetes.COL_SIRET_EMPLOYER, "12312312312345")
+        values.put(Requetes.COL_CONTACT_EMPLOYER, "admin")
+        values.put(Requetes.COL_SUBCONTACT_EMPLOYER, "admin")
+        values.put(Requetes.COL_EMAIL_EMPLOYER, "employer2@employer.com")
+        values.put(Requetes.COL_SUBEMAIL_EMPLOYER, "employer3@employer.com")
+        values.put(Requetes.COL_PHONE_EMPLOYER, "0123456789")
+        values.put(Requetes.COL_SUBPHONE_EMPLOYER, "9876543210")
+        values.put(Requetes.COL_ADDRESS_EMPLOYER, "52 rue montmartre 75002 Paris")
+        values.put(Requetes.COL_PASSWORD_EMPLOYER, mdp2)
+        values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
+        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
         db?.insert(Requetes.TABLE_EMPLOYERS, null, values)
         values.clear()
 
@@ -108,6 +127,25 @@ null,
         values.clear()
 
     }
+
+    private fun create_report(db: SQLiteDatabase?){
+        val values = ContentValues()
+        values.put(Requetes.COL_ID_REPORT, 1)
+        values.put(Requetes.COL_EMAIL_REPORT, "interim@interim.com")
+        values.put(Requetes.COL_COMMENTARY_REPORT, "hgjfghjfghjfghjmdfglihjsdfmglkjsfdmoigjsdrfmoifgjsqdmflkgjsdmlkfgjsmdlkfjgsmd lfkgjnsdmofugn,smdiofun,gpsidfunglmiusdf")
+        values.put(Requetes.COL_ID_OFFRE, 1)
+        db?.insert(Requetes.TABLE_REPORTS, null, values)
+
+
+        values.clear()
+        values.put(Requetes.COL_ID_REPORT, 2)
+        values.put(Requetes.COL_EMAIL_REPORT, "interim@interim.com")
+        values.put(Requetes.COL_COMMENTARY_REPORT, "commentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentaire" +
+                "commentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentairecommentaire")
+        values.put(Requetes.COL_ID_OFFRE, 2)
+        db?.insert(Requetes.TABLE_REPORTS, null, values)
+    }
+
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(Requetes.DROP_TABLE_OFFRE);
         db?.execSQL(Requetes.DROP_TABLE_TEMPORARYWORKERS);

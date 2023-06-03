@@ -14,7 +14,8 @@ class TemporaryWorker(
     private var birthday: String = "",
     private var nationality: String = "",
     private var city: String = "",
-    private var commentary: String = ""
+    private var commentary: String = "",
+    private var created_at: String = ""
 ) : User() {
 
     override fun getRole(): String {
@@ -101,6 +102,9 @@ class TemporaryWorker(
         this.commentary = commentary
     }
 
+    override fun getDateCreation(): String {
+        return created_at
+    }
 
 
     fun toContentValues(): ContentValues {

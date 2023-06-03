@@ -17,7 +17,8 @@ class Employer(
     private var subPhone: String = "",
     private var address: String = "",
     private var commentary: String = "",
-    private var password: String = ""
+    private var password: String = "",
+    private var created_at: String = ""
 ) : User() {
 
     override fun getRole(): String {
@@ -137,6 +138,10 @@ class Employer(
 
     fun setPassword(password: String) {
         this.password = password
+    }
+
+    override fun getDateCreation(): String {
+        return created_at
     }
 
     fun toContentValues(): ContentValues {

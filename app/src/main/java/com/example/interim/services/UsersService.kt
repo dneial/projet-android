@@ -1,6 +1,7 @@
 package com.example.interim.services
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
@@ -36,37 +37,12 @@ class UsersService() {
 
     @SuppressLint("Range")
     fun signIn(email: String, password: String): User? {
-        val queryWorker = "SELECT * " +
-                "FROM ${Requetes.TABLE_TEMPORARYWORKERS} "+
-                " WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
-                "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
-        val queryEmployer = "SELECT * " +
-                "FROM ${Requetes.TABLE_EMPLOYERS} "+
-                " WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND " +
-                "${Requetes.COL_PASSWORD_EMPLOYER} = ?"
-        val queryAdmin = "SELECT * " +
-                "FROM ${Requetes.TABLE_ADMINS} "+
-                " WHERE ${Requetes.COL_EMAIL_ADMIN} = ? AND " +
-                "${Requetes.COL_PASSWORD_ADMIN} = ?"
-
-        val selectionArgs = arrayOf(email, hashPassword(password))
-        var cursor = db.rawQuery(queryAdmin, selectionArgs)
-        var user : User? = null
-
-        if(cursor.moveToFirst()){
-            user = cursorToWorker(cursor)
-            cursor.close()
-        }else{
-            cursor = db.rawQuery(queryEmployer, selectionArgs)
-            if(cursor.moveToFirst()){
-                user = cursorToEmployer(cursor)
-                cursor.close()
-            } else {
-                cursor = db.rawQuery(queryWorker, selectionArgs)
-                if(cursor.moveToFirst()){
-                    user = cursorToWorker(cursor)
-                    cursor.close()
-                }
+        var user: User? = null
+        user = getWorkerByEmailAndPassword(email, password)
+        if(user == null){
+            user = getEmployerByEmailAndPassword(email, password)
+            if(user == null){
+                user = getAdminByEmailAndPassword(email, password)
             }
         }
         return user
@@ -87,7 +63,7 @@ class UsersService() {
     }
 
 
-    fun readAll(): ArrayList<TemporaryWorker> {
+    fun readAllWorkers(): ArrayList<TemporaryWorker> {
         val sortOrder = "${Requetes.COL_ID_TEMPORARYWORKER} DESC"
         val cursor = db.query(Requetes.TABLE_TEMPORARYWORKERS, null, null, null, null, null, sortOrder);
         val temporaryWorkers = ArrayList<TemporaryWorker>();
@@ -98,6 +74,19 @@ class UsersService() {
         cursor.close();
 
         return temporaryWorkers;
+    }
+
+    fun readAllEmployers(): ArrayList<Employer> {
+        val sortOrder = "${Requetes.COL_ID_EMPLOYER} DESC"
+        val cursor = db.query(Requetes.TABLE_EMPLOYERS, null, null, null, null, null, sortOrder);
+        val users = ArrayList<Employer>();
+
+        while (cursor.moveToNext()) {
+            users.add(cursorToEmployer(cursor));
+        }
+        cursor.close();
+
+        return users;
     }
 
     fun getEmployer(employerId: Long): Employer? {
@@ -113,16 +102,52 @@ class UsersService() {
         return employer
     }
 
+    fun getWorkerByEmailAndPassword(email: String, password: String): TemporaryWorker? {
+        val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND ${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
+        val selectionArgs = arrayOf(email, hashPassword(password))
+        val cursor = db.rawQuery(query, selectionArgs)
+        var worker: TemporaryWorker? = null
+
+        if(cursor.moveToFirst()){
+            worker = cursorToWorker(cursor)
+        }
+        cursor.close()
+        return worker
+    }
+
+    fun getEmployerByEmailAndPassword(email: String, password: String): Employer? {
+        val query = "SELECT * FROM ${Requetes.TABLE_EMPLOYERS} WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND ${Requetes.COL_PASSWORD_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(email, hashPassword(password))
+        val cursor = db.rawQuery(query, selectionArgs)
+        var employer: Employer? = null
+
+        if(cursor.moveToFirst()){
+            employer = cursorToEmployer(cursor)
+        }
+        cursor.close()
+        return employer
+    }
+
+    fun getAdminByEmailAndPassword(email: String, password: String): Admin? {
+        val query = "SELECT * FROM ${Requetes.TABLE_ADMINS} WHERE ${Requetes.COL_EMAIL_ADMIN} = ? AND ${Requetes.COL_PASSWORD_ADMIN} = ?"
+        val selectionArgs = arrayOf(email, hashPassword(password))
+        val cursor = db.rawQuery(query, selectionArgs)
+        var admin: Admin? = null
+
+        if(cursor.moveToFirst()){
+            admin = cursorToAdmin(cursor)
+        }
+        cursor.close()
+        return admin
+    }
+
     private fun cursorToAdmin(cursor: Cursor): Admin {
         val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_ADMIN))
         val email = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_ADMIN))
         val password = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_ADMIN))
+        val created_at = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_CREATION_ADMIN))
 
-        return Admin(
-            id=id,
-            email=email,
-            password=password
-        )
+        return Admin(id=id, email=email, password=password, created_at=created_at)
     }
 
     private fun cursorToWorker(cursor: Cursor): TemporaryWorker {
@@ -135,6 +160,7 @@ class UsersService() {
         val city = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_CITY_TEMPORARYWORKER))
         val birthday = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_BIRTHDAY_TEMPORARYWORKER))
         val nationality = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NATIONALITY_TEMPORARYWORKER))
+        val created_at = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_CREATION_TEMPORARYWORKER))
 
         return TemporaryWorker(
             id=id,
@@ -145,10 +171,11 @@ class UsersService() {
             phone=phone,
             city=city,
             birthday=format_date_to_view(birthday),
-            nationality=nationality
+            nationality=nationality,
+            created_at=created_at
         )
     }
-    private fun cursorToEmployer(cursor: Cursor): Employer? {
+    private fun cursorToEmployer(cursor: Cursor): Employer {
         val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_EMPLOYER))
         val name = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_NAME_EMPLOYER))
         val service = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_SERVICE_EMPLOYER))
@@ -162,8 +189,9 @@ class UsersService() {
         val address = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_ADDRESS_EMPLOYER))
         val comment = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_COMMENTARY_EMPLOYER))
         val password = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_EMPLOYER))
+        val created_at = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_DATE_CREATION_EMPLOYER))
 
-         return Employer(
+        return Employer(
             id=id,
             name=name,
             service=service,
@@ -176,7 +204,8 @@ class UsersService() {
             phone=phone,
             address=address,
             commentary=comment,
-            password=password
+            password=password,
+            created_at=created_at
         )
     }
 
@@ -216,15 +245,50 @@ class UsersService() {
         return !cursor.moveToFirst()
     }
 
-    fun checkUserConfirm(id: Long, role: String): Boolean {
 
+    fun checkUserConfirm(id: Long, role: String): Boolean {
         val selectionArgs = arrayOf(id.toString())
-       if (role == "admin" || role == "worker"){
-           return true
-       } else if(db.rawQuery(Requetes.CHECK_STATUS_EMPLOYER,selectionArgs).moveToFirst()) {
-           return true
-       }
+        if (role == "admin" || role == "worker"){
+            return true
+        } else if(db.rawQuery(Requetes.CHECK_STATUS_EMPLOYER,selectionArgs).moveToFirst()) {
+            return true
+        }
         return false;
     }
+
+    fun getUnverifiedEmployers(): List<Employer> {
+        val selection = "${Requetes.COL_STATUS_EMPLOYER} = ?"
+        val selectionArgs = arrayOf("0")
+        val cursor = db.query(
+            Requetes.TABLE_EMPLOYERS,
+            null,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+        val employers = mutableListOf<Employer>()
+        while (cursor.moveToNext()) {
+            employers.add(cursorToEmployer(cursor))
+        }
+        cursor.close()
+        return employers
+    }
+
+    fun verifyEmployer(id: Long) {
+        val values = ContentValues()
+        values.put(Requetes.COL_STATUS_EMPLOYER, 1)
+        val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(id.toString())
+        db.update(Requetes.TABLE_EMPLOYERS, values, selection, selectionArgs)
+    }
+
+    fun deleteEmployer(id: Long) {
+        val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
+        val selectionArgs = arrayOf(id.toString())
+        db.delete(Requetes.TABLE_EMPLOYERS, selection, selectionArgs)
+    }
+
 
 }

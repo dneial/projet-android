@@ -22,17 +22,13 @@ import com.example.interim.databinding.ActivityMainBinding
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
+import androidx.core.view.get
 import java.io.IOException
 import java.util.Locale
 
-class MainActivity : AppCompatActivity(), LocationListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
-    var manager: LocationManager? = null
-
-
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +38,13 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
         val navView: BottomNavigationView = binding.navView
 
+
+        val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
+        val role = sharedPref.getString("user_role", "null")
+        if(role != "admin") navView.menu.removeItem(R.id.navigation_statistiques)
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 R.id.navigation_dashboard,
                 R.id.navigation_home,
                 R.id.navigation_notifications,
+                R.id.navigation_statistiques,
                 R.id.navigation_compte
             )
         )
@@ -76,38 +79,23 @@ class MainActivity : AppCompatActivity(), LocationListener {
                     clearStackAndNavigateTo(R.id.navigation_compte)
                     true
                 }
-                else -> false
+                R.id.navigation_statistiques -> {
+                    clearStackAndNavigateTo(R.id.navigation_statistiques)
+                    true
+                }
+                else -> {
+                    Log.d("navigattion id", "onCreate: " + it.itemId)
+                    false
+                }
             }
         }
 
         // demander authorisation pour la localisation
     }
 
-    override fun onLocationChanged(location: Location) {
-        val latitude = location.latitude
-        val longitude = location.longitude
-
-        // Reverse geocoding
-        val geocoder = Geocoder(this, Locale.getDefault())
-        try {
-            val addresses: List<Address> =
-                geocoder.getFromLocation(latitude, longitude, 1) as List<Address>
-            if (addresses.isNotEmpty()) {
-                val cityName = addresses[0].locality
-                val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
-                with (sharedPref.edit()) {
-                    putString("ville", cityName)
-                    commit()
-                }
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        manager!!.removeUpdates(this)
-    }
 
     private fun clearStackAndNavigateTo(destinationId: Int) {
+        Log.d("clearStackAndNavigateTo", "clearStackAndNavigateTo: " + destinationId)
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navController.popBackStack(navController.graph.startDestinationId, false);
         navController.navigate(destinationId)

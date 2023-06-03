@@ -13,8 +13,9 @@ class Offre(
     var date_fin: String,
     var remuneration: String,
     var id: Long,
-    var ville: String = "",
-    var employer: Employer
+    var ville: String,
+    var employer: Employer,
+    var created_at: String = ""
 ) {
 
 
@@ -37,7 +38,7 @@ class Offre(
         values.put(Requetes.COL_DATE_FIN, date_fin)
         values.put(Requetes.COL_REMUNERATION, remuneration)
         values.put(Requetes.COL_CITY, ville)
-        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, employer?.getId())
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, employer.getId())
         return values
     }
 

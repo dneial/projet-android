@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.interim.R
+import com.example.interim.ui.home.admin_view.AdminViewPageAdapter
 import com.example.interim.ui.home.employer_view.EmployerViewPageAdapter
 import com.example.interim.ui.home.user_view.WorkerViewPageAdapter
 import com.google.android.material.tabs.TabLayout
@@ -34,10 +35,24 @@ class HomeFragment : Fragment() {
         tabLayout = view.findViewById(R.id.home_tabs)
         viewPager = view.findViewById(R.id.home_view_pager)
 
-        adapter = if(user_role == "worker")
-            WorkerViewPageAdapter(fragment = this)
-        else
-            EmployerViewPageAdapter(fragment = this)
+        when(user_role){
+            "worker" -> {
+                adapter = WorkerViewPageAdapter(fragment = this)
+            }
+            "employer" -> {
+                adapter = EmployerViewPageAdapter(fragment = this)
+            }
+            "admin" -> {
+                val tab = tabLayout.getTabAt(0)
+                tab?.text = "Demandes de création de compte"
+
+                val tab2 = tabLayout.getTabAt(1)
+                tab2?.text = "Signalements"
+
+
+                adapter = AdminViewPageAdapter(fragment = this)
+            }
+        }
 
         viewPager.adapter = adapter
 

@@ -3,7 +3,7 @@ package com.example.interim.ui.home.user_view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.interim.database.CandidatureService
+import com.example.interim.services.CandidatureService
 import com.example.interim.models.Candidature
 
 class UserCandidaturesViewModel(var user_id: Long) : ViewModel() {

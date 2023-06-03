@@ -121,6 +121,10 @@
     </fragment>
 
 
-
+    <fragment
+        android:id="@+id/navigation_statistiques"
+        android:name="com.example.interim.ui.statistiques.StatistiquesFragment"
+        android:label="@string/title_stats"
+        tools:layout="@layout/fragment_statistiques" />
 
 </navigation>

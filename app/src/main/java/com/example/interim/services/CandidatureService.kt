@@ -1,13 +1,13 @@
-package com.example.interim.database
+package com.example.interim.services
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.example.interim.database.DataBase
+import com.example.interim.database.Requetes
 import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
-import com.example.interim.services.OffreService
-import com.example.interim.services.UsersService
 
 class CandidatureService {
     var db: SQLiteDatabase = DataBase.db
@@ -91,7 +91,7 @@ class CandidatureService {
         return candidatures
     }
 
-    fun cursorToCandidature(cursor: Cursor, offre: Offre): Candidature {
+    private fun cursorToCandidature(cursor: Cursor, offre: Offre): Candidature {
         val userService: UsersService = UsersService()
         val user_id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_TEMPORARYWORKER_CANDIDATURE))
         val user = userService.getTemporaryWorker(user_id)!!

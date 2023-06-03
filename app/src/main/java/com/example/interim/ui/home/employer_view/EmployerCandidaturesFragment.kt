@@ -41,8 +41,8 @@ class EmployerCandidaturesFragment: Fragment() {
         homeViewModel.candidatures.observe(viewLifecycleOwner) {
             val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
             manager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-            listView.adapter = CandidatureRecycleAdapter(it)
             listView.layoutManager = manager
+            listView.adapter = CandidatureRecycleAdapter(it)
             listView.setPadding(0, 0, 0, 200)
             listView.clipToPadding = false
         }

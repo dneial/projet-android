@@ -41,6 +41,7 @@ class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback
         deconnect_button.setOnClickListener {
             with(sharedPref.edit()) {
                 this?.putLong("user_id", -1)
+                this?.putString("user_role", "")
                 this?.apply()
             }
 

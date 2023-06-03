@@ -13,6 +13,7 @@ object Requetes {
     const val COL_REMUNERATION: String = "remuneration";
     const val COL_ID_OFFRE_EMPLOYER: String = "id_employer";
     const val COL_CITY: String = "CITY";
+    const val COL_DATE_CREATION_OFFRE: String = "date_creation";
 
 
     const val CREATE_TABLE_OFFRE: String = "CREATE TABLE $TABLE_OFFRE (" +
@@ -24,7 +25,8 @@ object Requetes {
             "$COL_DATE_FIN DATE," +
             "$COL_REMUNERATION TEXT," +
             "$COL_CITY TEXT," +
-            "$COL_ID_OFFRE_EMPLOYER INTEGER" +
+            "$COL_ID_OFFRE_EMPLOYER INTEGER," +
+            "$COL_DATE_CREATION_OFFRE TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
     const val DROP_TABLE_OFFRE: String = "DROP TABLE IF EXISTS $TABLE_OFFRE;";
@@ -42,6 +44,7 @@ object Requetes {
     const val COL_BIRTHDAY_TEMPORARYWORKER: String = "birthday";
     const val COL_NATIONALITY_TEMPORARYWORKER: String = "nationality";
     const val COL_COMMENTARY_TEMPORARYWORKER: String = "comment";
+    const val COL_DATE_CREATION_TEMPORARYWORKER: String = "date_creation";
 
     const val CREATE_TABLE_TEMPORARYWORKER: String = "CREATE TABLE $TABLE_TEMPORARYWORKERS (" +
             "$COL_ID_TEMPORARYWORKER INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -53,7 +56,8 @@ object Requetes {
             "$COL_CITY_TEMPORARYWORKER TEXT," +
             "$COL_BIRTHDAY_TEMPORARYWORKER TEXT," +
             "$COL_NATIONALITY_TEMPORARYWORKER TEXT," +
-            "$COL_COMMENTARY_TEMPORARYWORKER TEXT" +
+            "$COL_COMMENTARY_TEMPORARYWORKER TEXT," +
+            "$COL_DATE_CREATION_TEMPORARYWORKER TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
     const val DROP_TABLE_TEMPORARYWORKERS: String = "DROP TABLE IF EXISTS $TABLE_TEMPORARYWORKERS;";
@@ -75,6 +79,7 @@ object Requetes {
     const val COL_ADDRESS_EMPLOYER: String = "address";
     const val COL_PASSWORD_EMPLOYER: String = "password";
     const val COL_COMMENTARY_EMPLOYER: String = "commentary";
+    const val COL_DATE_CREATION_EMPLOYER: String = "date_creation";
     const val COL_STATUS_EMPLOYER: String = "status";
 
     const val CREATE_TABLE_EMPLOYER: String = "CREATE TABLE $TABLE_EMPLOYERS (" +
@@ -92,7 +97,8 @@ object Requetes {
             "$COL_ADDRESS_EMPLOYER TEXT, " +
             "$COL_PASSWORD_EMPLOYER TEXT, " +
             "$COL_COMMENTARY_EMPLOYER TEXT," +
-            "$COL_STATUS_EMPLOYER INTERGER(1)" +
+            "$COL_STATUS_EMPLOYER INTERGER(1), " +
+            "$COL_DATE_CREATION_EMPLOYER TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
     const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMPLOYERS;";
@@ -102,11 +108,13 @@ object Requetes {
     const val COL_ID_ADMIN: String = "id_admin";
     const val COL_EMAIL_ADMIN: String = "email";
     const val COL_PASSWORD_ADMIN: String = "password";
+    const val COL_DATE_CREATION_ADMIN: String = "date_creation";
 
     const val CREATE_TABLE_ADMIN: String = "CREATE TABLE $TABLE_ADMINS (" +
             "$COL_ID_ADMIN INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_EMAIL_ADMIN TEXT," +
-            "$COL_PASSWORD_ADMIN TEXT" +
+            "$COL_PASSWORD_ADMIN TEXT," +
+            "$COL_DATE_CREATION_ADMIN TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
     const val DROP_TABLE_ADMINS: String = "DROP TABLE IF EXISTS $TABLE_ADMINS;";
@@ -125,7 +133,15 @@ object Requetes {
             ");";
 
     const val DROP_TABLE_REPORTS: String = "DROP TABLE IF EXISTS $TABLE_REPORTS;";
-    const val SELECT_ALL_REPORTS: String = "SELECT * FROM $TABLE_REPORTS;";
+    const val SELECT_ALL_REPORTS: String = "" +
+            "SELECT * " +
+            "FROM $TABLE_REPORTS " +
+            "INNER JOIN $TABLE_OFFRE " +
+            "ON $TABLE_REPORTS.$COL_ID_OFFRE = $TABLE_OFFRE.$COL_ID_OFFRE;"
+
+
+
+
 
 
 
@@ -205,7 +221,3 @@ object Requetes {
             "WHERE $COL_ID_EMPLOYER = ? AND $COL_STATUS_EMPLOYER IS TRUE;";
 
 }
-
-
-
-

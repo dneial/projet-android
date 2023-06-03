@@ -2,17 +2,13 @@ package com.example.interim.ui.candidature
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.interim.R
-import com.example.interim.database.CandidatureService
-import com.example.interim.services.UsersService
+import com.example.interim.services.CandidatureService
 import com.example.interim.models.Candidature
-import com.example.interim.models.TemporaryWorker
 
 class CandidatureFragment : Fragment() {
 

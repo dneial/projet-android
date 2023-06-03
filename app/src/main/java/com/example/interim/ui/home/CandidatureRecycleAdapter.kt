@@ -1,7 +1,6 @@
 package com.example.interim.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.example.interim.R
-import com.example.interim.database.CandidatureService
 import com.example.interim.models.Candidature
-import com.example.interim.models.Offre
 
 class CandidatureRecycleAdapter(private val values: List<Candidature>) : RecyclerView.Adapter<CandidatureRecycleAdapter.ViewHolder>() {
 
-    var CandidatureService: CandidatureService = CandidatureService()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cardView: CardView = view.findViewById(R.id.candidature_card_view)
