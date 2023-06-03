@@ -96,6 +96,20 @@ object Requetes {
     const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMPLOYER;";
     const val SELECT_ALL_EMPLOYERS: String = "SELECT * FROM $TABLE_EMPLOYER;";
 
+    const val TABLE_ADMIN: String = "Admins";
+    const val COL_ID_ADMIN: String = "id_admin";
+    const val COL_EMAIL_ADMIN: String = "email";
+    const val COL_PASSWORD_ADMIN: String = "password";
+
+    const val CREATE_TABLE_ADMIN: String = "CREATE TABLE $TABLE_ADMIN (" +
+            "$COL_ID_ADMIN INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "$COL_EMAIL_ADMIN TEXT," +
+            "$COL_PASSWORD_ADMIN TEXT," +
+            ");";
+
+    const val DROP_TABLE_ADMINS: String = "DROP TABLE IF EXISTS $TABLE_ADMIN;";
+    const val SELECT_ALL_ADMINS: String = "SELECT * FROM $TABLE_ADMIN;";
+
 
 
     const val TABLE_CANDIDATURE: String = "candidatures";
