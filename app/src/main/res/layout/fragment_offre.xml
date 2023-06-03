@@ -8,6 +8,26 @@
     <include layout="@layout/offre_detail" />
 
     <LinearLayout
+        android:id="@+id/admin_offre_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/offre_detail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_delete_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp"
+            android:padding="16dp"
+            android:text="@string/btn_delete" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/entreprise_offre_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

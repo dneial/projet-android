@@ -28,7 +28,7 @@ class UsersService() {
         Log.d("mdp", "create: ${employer.getPassword()}")
         val values = employer.toContentValues()
         values.put(Requetes.COL_PASSWORD_EMPLOYER, hashPassword(employer.getPassword()))
-        val id = db.insert(Requetes.TABLE_EMPLOYER, null, values)
+        val id = db.insert(Requetes.TABLE_EMPLOYERS, null, values)
         employer.setId(id)
     }
 
@@ -48,7 +48,7 @@ class UsersService() {
             cursor.close()
         }else{
             query = "SELECT * " +
-                    "FROM ${Requetes.TABLE_EMPLOYER} "+
+                    "FROM ${Requetes.TABLE_EMPLOYERS} "+
                     " WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND " +
                     "${Requetes.COL_PASSWORD_EMPLOYER} = ?"
 
@@ -90,7 +90,7 @@ class UsersService() {
     }
 
     fun getEmployer(employerId: Long): Employer? {
-        val query = "SELECT * FROM ${Requetes.TABLE_EMPLOYER} WHERE ${Requetes.COL_ID_EMPLOYER} = ?"
+        val query = "SELECT * FROM ${Requetes.TABLE_EMPLOYERS} WHERE ${Requetes.COL_ID_EMPLOYER} = ?"
         val selectionArgs = arrayOf(employerId.toString())
         val cursor = db.rawQuery(query, selectionArgs)
         var employer: Employer? = null
@@ -178,7 +178,7 @@ class UsersService() {
         val values = user.toContentValues()
         val selection = "${Requetes.COL_ID_EMPLOYER} = ?"
         val selectionArgs = arrayOf(user.getId().toString())
-        db.update(Requetes.TABLE_EMPLOYER, values, selection, selectionArgs)
+        db.update(Requetes.TABLE_EMPLOYERS, values, selection, selectionArgs)
     }
 
     fun hashPassword(password: String): String {

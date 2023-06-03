@@ -60,7 +60,7 @@ object Requetes {
     const val SELECT_ALL_TEMPORARYWORKERS: String = "SELECT * FROM $TABLE_TEMPORARYWORKERS;";
 
 
-    const val TABLE_EMPLOYER: String = "Employers";
+    const val TABLE_EMPLOYERS: String = "Employers";
     const val COL_ID_EMPLOYER: String = "id_employer";
     const val COL_NAME_EMPLOYER: String = "name";
     const val COL_SERVICE_EMPLOYER: String = "service";
@@ -76,7 +76,7 @@ object Requetes {
     const val COL_PASSWORD_EMPLOYER: String = "password";
     const val COL_COMMENTARY_EMPLOYER: String = "commentary";
 
-    const val CREATE_TABLE_EMPLOYER: String = "CREATE TABLE $TABLE_EMPLOYER (" +
+    const val CREATE_TABLE_EMPLOYER: String = "CREATE TABLE $TABLE_EMPLOYERS (" +
             "$COL_ID_EMPLOYER INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_NAME_EMPLOYER TEXT," +
             "$COL_SERVICE_EMPLOYER TEXT," +
@@ -93,22 +93,35 @@ object Requetes {
             "$COL_COMMENTARY_EMPLOYER TEXT" +
             ");";
 
-    const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMPLOYER;";
-    const val SELECT_ALL_EMPLOYERS: String = "SELECT * FROM $TABLE_EMPLOYER;";
+    const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMPLOYERS;";
+    const val SELECT_ALL_EMPLOYERS: String = "SELECT * FROM $TABLE_EMPLOYERS;";
 
-    const val TABLE_ADMIN: String = "Admins";
+    const val TABLE_ADMINS: String = "Admins";
     const val COL_ID_ADMIN: String = "id_admin";
     const val COL_EMAIL_ADMIN: String = "email";
     const val COL_PASSWORD_ADMIN: String = "password";
 
-    const val CREATE_TABLE_ADMIN: String = "CREATE TABLE $TABLE_ADMIN (" +
+    const val CREATE_TABLE_ADMIN: String = "CREATE TABLE $TABLE_ADMINS (" +
             "$COL_ID_ADMIN INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_EMAIL_ADMIN TEXT," +
             "$COL_PASSWORD_ADMIN TEXT," +
             ");";
 
-    const val DROP_TABLE_ADMINS: String = "DROP TABLE IF EXISTS $TABLE_ADMIN;";
-    const val SELECT_ALL_ADMINS: String = "SELECT * FROM $TABLE_ADMIN;";
+    const val DROP_TABLE_ADMINS: String = "DROP TABLE IF EXISTS $TABLE_ADMINS;";
+    const val SELECT_ALL_ADMINS: String = "SELECT * FROM $TABLE_ADMINS;";
+
+    const val TABLE_REPORTS: String = "Reports";
+    const val COL_ID_REPORT: String = "id_report";
+    const val COL_EMAIL_REPORT: String = "email";
+
+    const val CREATE_TABLE_REPORT: String = "CREATE TABLE $TABLE_REPORTS (" +
+            "$COL_ID_REPORT INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "$COL_EMAIL_REPORT TEXT," +
+            "$COL_ID_OFFRE TEXT," +
+            ");";
+
+    const val DROP_TABLE_REPORTS: String = "DROP TABLE IF EXISTS $TABLE_REPORTS;";
+    const val SELECT_ALL_REPORTS: String = "SELECT * FROM $TABLE_REPORTS;";
 
 
 
@@ -177,7 +190,7 @@ object Requetes {
     const val CHECK_UNIQUE_EMAIL: String = "" +
             "SELECT * " +
             "FROM " +
-            "(SELECT $COL_EMAIL_EMPLOYER FROM $TABLE_EMPLOYER " +
+            "(SELECT $COL_EMAIL_EMPLOYER FROM $TABLE_EMPLOYERS " +
             "UNION ALL " +
             "SELECT $COL_EMAIL_TEMPORARYWORKER FROM $TABLE_TEMPORARYWORKERS) AS combined " +
             "WHERE email = ?;";

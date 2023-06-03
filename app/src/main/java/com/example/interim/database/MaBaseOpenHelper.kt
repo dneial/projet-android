@@ -27,6 +27,8 @@ null,
         db?.execSQL(Requetes.CREATE_TABLE_EMPLOYER)
         db?.execSQL(Requetes.CREATE_TABLE_CANDIDATURE)
         db?.execSQL(Requetes.CREATE_TABLE_OFFRE_ENREGISTREE)
+        db?.execSQL(Requetes.CREATE_TABLE_REPORT)
+        db?.execSQL(Requetes.CREATE_TABLE_ADMIN)
 
         create_default_user(db)
         create_default_offres(db)
@@ -69,11 +71,12 @@ null,
 
     private fun create_default_user(db: SQLiteDatabase?){
         val values = ContentValues()
-        val mdp1 = MessageDigest.getInstance("SHA-256").digest("admin".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
+        val mdp1 = MessageDigest.getInstance("SHA-256").digest("interim".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
         val mdp2 = MessageDigest.getInstance("SHA-256").digest("toto".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
-        values.put(Requetes.COL_NAME_TEMPORARYWORKER, "admin")
-        values.put(Requetes.COL_LASTNAME_TEMPORARYWORKER, "admin")
-        values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, "admin@admin.com")
+        val mdp3 = MessageDigest.getInstance("SHA-256").digest("admin".toByteArray()).fold("", { str, it -> str + "%02x".format(it) }).toString()
+        values.put(Requetes.COL_NAME_TEMPORARYWORKER, "interim")
+        values.put(Requetes.COL_LASTNAME_TEMPORARYWORKER, "interim")
+        values.put(Requetes.COL_EMAIL_TEMPORARYWORKER, "interim@interim.com")
         values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, mdp1)
         values.put(Requetes.COL_PHONE_TEMPORARYWORKER, "0000000000")
         values.put(Requetes.COL_CITY_TEMPORARYWORKER, "Montpellier")
@@ -96,7 +99,12 @@ null,
         values.put(Requetes.COL_ADDRESS_EMPLOYER, "52 rue montmartre 75002 Paris")
         values.put(Requetes.COL_PASSWORD_EMPLOYER, mdp2)
         values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
-        db?.insert(Requetes.TABLE_EMPLOYER, null, values)
+        db?.insert(Requetes.TABLE_EMPLOYERS, null, values)
+        values.clear()
+
+        values.put(Requetes.COL_EMAIL_ADMIN, "admin")
+        values.put(Requetes.COL_PASSWORD_ADMIN, mdp3)
+        db?.insert(Requetes.TABLE_ADMINS, null, values)
         values.clear()
 
     }
