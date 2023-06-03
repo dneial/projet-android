@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.interim.database.DataBase
 import com.example.interim.database.Requetes
+import com.example.interim.models.Admin
 import com.example.interim.models.Employer
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.models.TemporaryWorker.Companion.format_date_to_view
@@ -34,28 +35,37 @@ class UsersService() {
 
     @SuppressLint("Range")
     fun signIn(email: String, password: String): User? {
-        var query = "SELECT * " +
+        val queryWorker = "SELECT * " +
                 "FROM ${Requetes.TABLE_TEMPORARYWORKERS} "+
                 " WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND " +
                 "${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
+        val queryEmployer = "SELECT * " +
+                "FROM ${Requetes.TABLE_EMPLOYERS} "+
+                " WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND " +
+                "${Requetes.COL_PASSWORD_EMPLOYER} = ?"
+        val queryAdmin = "SELECT * " +
+                "FROM ${Requetes.TABLE_ADMINS} "+
+                " WHERE ${Requetes.COL_EMAIL_ADMIN} = ? AND " +
+                "${Requetes.COL_PASSWORD_ADMIN} = ?"
 
         val selectionArgs = arrayOf(email, hashPassword(password))
-        var cursor = db.rawQuery(query, selectionArgs)
+        var cursor = db.rawQuery(queryAdmin, selectionArgs)
         var user : User? = null
 
         if(cursor.moveToFirst()){
             user = cursorToWorker(cursor)
             cursor.close()
         }else{
-            query = "SELECT * " +
-                    "FROM ${Requetes.TABLE_EMPLOYERS} "+
-                    " WHERE ${Requetes.COL_EMAIL_EMPLOYER} = ? AND " +
-                    "${Requetes.COL_PASSWORD_EMPLOYER} = ?"
-
-            cursor = db.rawQuery(query, selectionArgs)
+            cursor = db.rawQuery(queryEmployer, selectionArgs)
             if(cursor.moveToFirst()){
                 user = cursorToEmployer(cursor)
                 cursor.close()
+            } else {
+                cursor = db.rawQuery(queryWorker, selectionArgs)
+                if(cursor.moveToFirst()){
+                    user = cursorToWorker(cursor)
+                    cursor.close()
+                }
             }
         }
         return user
@@ -100,6 +110,18 @@ class UsersService() {
         }
         cursor.close()
         return employer
+    }
+
+    private fun cursorToAdmin(cursor: Cursor): Admin {
+        val id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_ADMIN))
+        val email = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_EMAIL_ADMIN))
+        val password = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_PASSWORD_ADMIN))
+
+        return Admin(
+            id=id,
+            email=email,
+            password=password
+        )
     }
 
     private fun cursorToWorker(cursor: Cursor): TemporaryWorker {
@@ -191,6 +213,17 @@ class UsersService() {
         val selectionArgs = arrayOf(email)
         val cursor = db.rawQuery(Requetes.CHECK_UNIQUE_EMAIL, selectionArgs)
         return !cursor.moveToFirst()
+    }
+
+    fun checkUserConfirm(email: String, role: String): Boolean {
+
+        val selectionArgs = arrayOf(email)
+       if (role == "admin"){
+           return true
+       } else if(db.rawQuery(null,selectionArgs).moveToFirst()) {
+           return true
+       }
+        return false;
     }
 
 }

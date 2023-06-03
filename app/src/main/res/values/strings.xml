@@ -136,4 +136,7 @@
     <string name="unsave">Supprimer enregistrement</string>
     <string name="warning_mail">L\'email est deja utiliser</string>
     <string name="location_attente">Merci d\'attendre tant qu\'on recupère votre localisation</string>
+    <string name="warning_waiting">Un administrateur doit confirmer votre inscription</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

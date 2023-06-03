@@ -63,16 +63,18 @@ class ConnectionFragment: Fragment() {
         val warning = view?.findViewById<TextView>(R.id.identificationWarningTextView)
 
         if(email == "" || password == "") {
+            warning?.setText(R.string.warning_sign_in)
             warning?.visibility = View.VISIBLE
             Log.d("ConnectionFragment", "email or password empty")
         } else {
             val user: User? = usersService.signIn(email, password)
-            if(user != null){
+            if(user != null /*&& UsersService().checkUserConfirm(user.getEmail(), user.getRole())*/){
                 warning?.visibility = View.GONE
                 saveSession(user)
                 val intent = Intent(activity, LocationActivity::class.java)
                 startActivity(intent)
             } else {
+                warning?.setText(R.string.warning_sign_in)
                 warning?.visibility = View.VISIBLE
             }
 

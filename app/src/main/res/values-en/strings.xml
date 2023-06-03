@@ -136,4 +136,5 @@
     <string name="no_btn">No</string>
     <string name="warning_mail">The email is already used</string>
     <string name="location_attente">Please wait while we get your location</string>
+    <string name="warning_waiting">An adnistrator need to confirm your registration</string>
 </resources>

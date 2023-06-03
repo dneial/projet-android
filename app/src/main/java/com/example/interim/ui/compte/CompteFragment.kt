@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.interim.MainActivity
 import com.example.interim.R
+import com.example.interim.models.AdminProfileFragment
 import com.example.interim.models.TemporaryWorker
 import com.example.interim.services.UsersService
 import com.example.interim.ui.candidature.EmployerCandidatureFragment
@@ -47,15 +48,22 @@ class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback
             startActivity(intent)
         }
 
+        val btn_modifier = view.findViewById<Button>(R.id.btn_modifier)
 
         lateinit var fragment: Fragment
 
         when(user_role){
             "worker" -> {
                 fragment = WorkerProfileFragment()
+                btn_modifier.visibility = View.VISIBLE
             }
             "employer" -> {
                 fragment = EmployerProfileFragment()
+                btn_modifier.visibility = View.VISIBLE
+            }
+            "admin" -> {
+                fragment = AdminProfileFragment()
+                btn_modifier.visibility = View.GONE
             }
         }
 
@@ -64,9 +72,6 @@ class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback
         var fragmentTransaction = childFragmentManager.beginTransaction()
         fragmentTransaction.replace(fragmentContainer.id, fragment)
         fragmentTransaction.commit()
-
-
-        val btn_modifier = view.findViewById<Button>(R.id.btn_modifier)
 
         btn_modifier.setOnClickListener {
             if(btn_modifier.visibility == View.VISIBLE) {
