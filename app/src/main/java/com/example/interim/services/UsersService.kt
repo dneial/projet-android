@@ -21,7 +21,6 @@ class UsersService() {
         Log.d("mdp", "create: ${temporaryWorker.getPassword()}")
         val values = temporaryWorker.toContentValues()
         values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, hashPassword(temporaryWorker.getPassword()))
-        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
         val id = db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
         temporaryWorker.setId(id)
     }
@@ -30,6 +29,7 @@ class UsersService() {
         Log.d("mdp", "create: ${employer.getPassword()}")
         val values = employer.toContentValues()
         values.put(Requetes.COL_PASSWORD_EMPLOYER, hashPassword(employer.getPassword()))
+        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
         val id = db.insert(Requetes.TABLE_EMPLOYERS, null, values)
         employer.setId(id)
     }
