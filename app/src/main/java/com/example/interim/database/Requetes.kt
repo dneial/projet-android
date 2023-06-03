@@ -75,6 +75,7 @@ object Requetes {
     const val COL_ADDRESS_EMPLOYER: String = "address";
     const val COL_PASSWORD_EMPLOYER: String = "password";
     const val COL_COMMENTARY_EMPLOYER: String = "commentary";
+    const val COL_STATUS_EMPLOYER: String = "status";
 
     const val CREATE_TABLE_EMPLOYER: String = "CREATE TABLE $TABLE_EMPLOYERS (" +
             "$COL_ID_EMPLOYER INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -90,7 +91,8 @@ object Requetes {
             "$COL_SUBPHONE_EMPLOYER TEXT, " +
             "$COL_ADDRESS_EMPLOYER TEXT, " +
             "$COL_PASSWORD_EMPLOYER TEXT, " +
-            "$COL_COMMENTARY_EMPLOYER TEXT" +
+            "$COL_COMMENTARY_EMPLOYER TEXT," +
+            "$COL_STATUS_EMPLOYER INTERGER(1)" +
             ");";
 
     const val DROP_TABLE_EMPLOYERS: String = "DROP TABLE IF EXISTS $TABLE_EMPLOYERS;";
@@ -104,7 +106,7 @@ object Requetes {
     const val CREATE_TABLE_ADMIN: String = "CREATE TABLE $TABLE_ADMINS (" +
             "$COL_ID_ADMIN INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_EMAIL_ADMIN TEXT," +
-            "$COL_PASSWORD_ADMIN TEXT," +
+            "$COL_PASSWORD_ADMIN TEXT" +
             ");";
 
     const val DROP_TABLE_ADMINS: String = "DROP TABLE IF EXISTS $TABLE_ADMINS;";
@@ -113,11 +115,13 @@ object Requetes {
     const val TABLE_REPORTS: String = "Reports";
     const val COL_ID_REPORT: String = "id_report";
     const val COL_EMAIL_REPORT: String = "email";
+    const val COL_COMMENTARY_REPORT: String = "commentary";
 
     const val CREATE_TABLE_REPORT: String = "CREATE TABLE $TABLE_REPORTS (" +
             "$COL_ID_REPORT INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_EMAIL_REPORT TEXT," +
             "$COL_ID_OFFRE TEXT," +
+            "$COL_COMMENTARY_REPORT TEXT" +
             ");";
 
     const val DROP_TABLE_REPORTS: String = "DROP TABLE IF EXISTS $TABLE_REPORTS;";
@@ -194,6 +198,11 @@ object Requetes {
             "UNION ALL " +
             "SELECT $COL_EMAIL_TEMPORARYWORKER FROM $TABLE_TEMPORARYWORKERS) AS combined " +
             "WHERE email = ?;";
+
+    const val CHECK_STATUS_EMPLOYER: String = "" +
+            "SELECT * " +
+            "FROM $TABLE_EMPLOYERS" +
+            "WHERE $COL_ID_EMPLOYER = ? AND $COL_STATUS_EMPLOYER IS TRUE;";
 
 }
 

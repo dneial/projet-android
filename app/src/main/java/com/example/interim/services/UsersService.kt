@@ -21,6 +21,7 @@ class UsersService() {
         Log.d("mdp", "create: ${temporaryWorker.getPassword()}")
         val values = temporaryWorker.toContentValues()
         values.put(Requetes.COL_PASSWORD_TEMPORARYWORKER, hashPassword(temporaryWorker.getPassword()))
+        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
         val id = db.insert(Requetes.TABLE_TEMPORARYWORKERS, null, values)
         temporaryWorker.setId(id)
     }
@@ -215,12 +216,12 @@ class UsersService() {
         return !cursor.moveToFirst()
     }
 
-    fun checkUserConfirm(email: String, role: String): Boolean {
+    fun checkUserConfirm(id: Long, role: String): Boolean {
 
-        val selectionArgs = arrayOf(email)
-       if (role == "admin"){
+        val selectionArgs = arrayOf(id.toString())
+       if (role == "admin" || role == "worker"){
            return true
-       } else if(db.rawQuery(null,selectionArgs).moveToFirst()) {
+       } else if(db.rawQuery(Requetes.CHECK_STATUS_EMPLOYER,selectionArgs).moveToFirst()) {
            return true
        }
         return false;

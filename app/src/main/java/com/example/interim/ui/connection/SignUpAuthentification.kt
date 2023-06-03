@@ -34,7 +34,7 @@ class SignUpAuthentification : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sign_up_authentification, container, false)
         val role = arguments?.getString("type")
 
-        val intent = Intent(requireContext(), LocationActivity::class.java)
+        val intent = Intent(requireContext(), ConnectionActivity::class.java)
 
         val user = generateUser()
 
@@ -56,7 +56,6 @@ class SignUpAuthentification : Fragment() {
                 else
                     Log.d("error", "role not found: $role")
                 UsersService().signIn(user.getEmail(), user.getPassword())
-                saveSession(user)
                 startActivity(intent)
             }
         }
