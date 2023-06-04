@@ -23,11 +23,13 @@ import com.androidplot.xy.BoundaryMode
 import com.androidplot.xy.StepMode
 import com.androidplot.xy.XYGraphWidget
 import com.example.interim.models.Offre
+import com.example.interim.models.User
 import com.example.interim.services.OffreService
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Arrays
 import java.util.Date
@@ -168,6 +170,4 @@ class OffreStatistiquesFragment : Fragment() {
             else -> emptyArray()
         }
     }
-
-
 }
