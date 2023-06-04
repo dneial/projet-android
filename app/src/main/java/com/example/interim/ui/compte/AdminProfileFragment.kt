@@ -13,6 +13,6 @@ class AdminProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.worker_profile_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_admin_profile, container, false)
     }
 }
