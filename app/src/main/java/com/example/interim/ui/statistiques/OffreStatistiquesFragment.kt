@@ -27,6 +27,7 @@ import com.example.interim.services.OffreService
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Arrays
 import java.util.Date
@@ -72,8 +73,8 @@ class OffreStatistiquesFragment : Fragment() {
             }
         }
 
-        offres = OffreService().readAll()
-        Log.d("dates", offres.map{it.created_at }.toString())
+        val offreService = OffreService()
+        offres = offreService.readAll()
         metiers = offres.map { it.metier }.distinct()
         metiersCount = metiers.map { metier -> offres.count { it.metier == metier } }
 
@@ -83,23 +84,12 @@ class OffreStatistiquesFragment : Fragment() {
         villes = offres.map { it.ville }.distinct()
         villesCount = villes.map { ville -> offres.count { it.ville == ville } }
 
-        val now = Date()
-        val week = 7
-        val month = 30
-        val year = 365
-        val currentDate = Date(now.time)
-        val dateFormatter = DateTimeFormatter.ofPattern("YYYY-MM-DD:HH:MM:SS")
-
-
-
-
-
-        Log.d("metiers", metiers.toString())
-        Log.d("metiersCount", metiersCount.toString())
-        Log.d("employeurs", employeurs.toString())
-        Log.d("employeursCount", employeursCount.toString())
-        Log.d("villes", villes.toString())
-        Log.d("villesCount", villesCount.toString())
+        val offresFromLastWeek = offreService.getFrom("week")
+        Log.d("offresFromLastWeek", offresFromLastWeek.toString())
+        val offresFromLastMonth = offreService.getFrom("month")
+        Log.d("offresFromLastMonth", offresFromLastMonth.toString())
+        val offresFromLastYear = offreService.getFrom("year")
+        Log.d("offresFromLastYear", offresFromLastYear.toString())
         return root
     }
 

@@ -175,6 +175,24 @@ class OffreService() {
         return db.delete(Requetes.TABLE_OFFRE_ENREGISTREE, selection, selectionArgs) > 0
     }
 
+    fun getFrom(period: String): List<Offre> {
+        var selection: String
+        when(period) {
+            "week" -> selection = "${Requetes.COL_DATE_CREATION_OFFRE} BETWEEN date('now', '-7 days') AND date('now');"
+            "month" -> selection = "${Requetes.COL_DATE_CREATION_OFFRE} BETWEEN date('now', '-1 month') AND date('now');"
+            "year" -> selection = "${Requetes.COL_DATE_CREATION_OFFRE} BETWEEN date('now', '-1 year') AND date('now');"
+            else -> selection = "${Requetes.COL_DATE_CREATION_OFFRE} BETWEEN date('now', '-7 days') AND date('now');"
+        }
+        val offres = ArrayList<Offre>();
+        val cursor = db.query(Requetes.TABLE_OFFRES, null, selection, null, null, null, null);
+        while (cursor.moveToNext()) {
+            val offre = cursorToOffre(cursor)
+            offres.add(offre);
+        }
+        cursor.close();
+        return offres;
+    }
+
 
     companion object {
         fun cursorToOffre(cursor: Cursor): Offre {

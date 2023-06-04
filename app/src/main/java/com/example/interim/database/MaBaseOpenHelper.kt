@@ -45,6 +45,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 50000)
         values.put(Requetes.COL_CITY, "Montpellier")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
+        values.put(Requetes.COL_DATE_CREATION_OFFRE, "2022-06-01:12:00:00")
         db?.insert(Requetes.TABLE_OFFRES, null, values)
 
         values.clear()
@@ -56,6 +57,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Montpellier")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
+        values.put(Requetes.COL_DATE_CREATION_OFFRE, "2023-05-01:12:00:00")
         db?.insert(Requetes.TABLE_OFFRES, null, values)
 
         values.clear()
@@ -67,6 +69,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Paris")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
+        values.put(Requetes.COL_DATE_CREATION_OFFRE, "2023-06-03:12:00:00")
         db?.insert(Requetes.TABLE_OFFRES, null, values)
 
 
@@ -79,6 +82,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 50000)
         values.put(Requetes.COL_CITY, "Nice")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 2)
+        values.put(Requetes.COL_DATE_CREATION_OFFRE, "2023-06-04:12:00:00")
         db?.insert(Requetes.TABLE_OFFRES, null, values)
 
 
