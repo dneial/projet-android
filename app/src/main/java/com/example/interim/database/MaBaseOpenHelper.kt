@@ -100,7 +100,7 @@ null,
         values.put(Requetes.COL_ADDRESS_EMPLOYER, "52 rue montmartre 75002 Paris")
         values.put(Requetes.COL_PASSWORD_EMPLOYER, mdp2)
         values.put(Requetes.COL_COMMENTARY_EMPLOYER, "commentaire")
-        values.put(Requetes.COL_STATUS_EMPLOYER, 0)
+        values.put(Requetes.COL_STATUS_EMPLOYER, 1)
         db?.insert(Requetes.TABLE_EMPLOYERS, null, values)
         values.clear()
 
