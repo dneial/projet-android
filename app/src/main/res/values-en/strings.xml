@@ -145,4 +145,6 @@
     <string name="report">Report</string>
     <string name="report_offer">Repport offer</string>
     <string name="report_done">Offer reported</string>
+    <string name="pull_out">Pull out</string>
+    <string name="contact_employer">Contact employer</string>
 </resources>

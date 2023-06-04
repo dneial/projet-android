@@ -88,7 +88,7 @@ class OffreStatistiquesFragment : Fragment() {
         val month = 30
         val year = 365
         val currentDate = Date(now.time)
-        val dateFormatter = DateTimeFormatter.ofPattern("YYYY-MM-DDTHH:MM:SS")
+        val dateFormatter = DateTimeFormatter.ofPattern("YYYY-MM-DD:HH:MM:SS")
 
 
 

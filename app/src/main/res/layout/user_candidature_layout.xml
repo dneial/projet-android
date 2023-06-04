@@ -19,16 +19,17 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_desister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modifier"
+            android:text="@string/pull_out"
             android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/btn_contacter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contacter employeur" />
+            android:text="@string/contact_employer" />
 
     </LinearLayout>
 
