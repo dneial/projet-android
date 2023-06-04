@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.androidplot.Plot
 import com.androidplot.util.PixelUtils
 import com.androidplot.xy.BarFormatter
 import com.androidplot.xy.BarRenderer
@@ -46,27 +47,20 @@ class UserStatistiquesFragment : Fragment() {
         val series1: XYSeries = SimpleXYSeries(
             metiersCount,
             SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
-            "Series1"
+            "Metiers"
         )
 
-        val bar = BarFormatter(Color.RED, Color.BLACK)
+        val bar = BarFormatter(Color.RED, Color.GREEN)
         bar.marginLeft = PixelUtils.dpToPix(1F);
         bar.marginRight = PixelUtils.dpToPix(1F);
 
         plot.setDomainStep(StepMode.INCREMENT_BY_VAL, 1.0)
-        plot.setDomainBoundaries(-0.5, metiers.count() - 0.5, BoundaryMode.FIXED);
-        plot.setRangeBoundaries(0, metiersCount.max() * 2, BoundaryMode.FIXED);
-
+        plot.setRangeStep(StepMode.INCREMENT_BY_VAL, 1.0)
         plot.addSeries(series1, bar)
 
-        val barRenderer = BarRenderer<BarFormatter>(plot)
-
-        Log.d("barRenderer", barRenderer.toString())
-
-        barRenderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, PixelUtils.dpToPix(25F));
-        barRenderer.barOrientation = BarRenderer.BarOrientation.SIDE_BY_SIDE;
-        barRenderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, 40F);
-
+        val renderer = plot.getRenderer(BarRenderer::class.java)
+        renderer.barOrientation = BarRenderer.BarOrientation.SIDE_BY_SIDE
+        renderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, PixelUtils.dpToPix(25F));
 
 
         plot.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(object : Format() {
@@ -81,7 +75,6 @@ class UserStatistiquesFragment : Fragment() {
                 return null
             }
         })
-
 
         return root
     }

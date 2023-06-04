@@ -68,6 +68,20 @@ null,
         values.put(Requetes.COL_CITY, "Paris")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
         db?.insert(Requetes.TABLE_OFFRES, null, values)
+
+
+        values.clear()
+        values.put(Requetes.COL_TITLE, "Kotlin Developer")
+        values.put(Requetes.COL_METIER, "IT")
+        values.put(Requetes.COL_DESCRIPTION, "Looking for an experienced Kotlin developer to join our team")
+        values.put(Requetes.COL_DATE_DEBUT, "2023-06-01")
+        values.put(Requetes.COL_DATE_FIN, "2023-12-31")
+        values.put(Requetes.COL_REMUNERATION, 50000)
+        values.put(Requetes.COL_CITY, "Nice")
+        values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 2)
+        db?.insert(Requetes.TABLE_OFFRES, null, values)
+
+
     }
 
     private fun create_default_user(db: SQLiteDatabase?){
