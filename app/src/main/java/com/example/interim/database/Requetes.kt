@@ -161,7 +161,12 @@ object Requetes {
             ");";
 
     const val DROP_TABLE_CANDIDATURE: String = "DROP TABLE IF EXISTS $TABLE_CANDIDATURE;";
-    const val SELECT_ALL_CANDIDATURE: String = "SELECT * FROM $TABLE_CANDIDATURE;";
+    const val SELECT_ALL_CANDIDATURE: String = "" +
+            "SELECT * " +
+            "FROM $TABLE_CANDIDATURE " +
+            "INNER JOIN $TABLE_OFFRES " +
+            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRES.$COL_ID_OFFRE;";
+
     const val SELECT_CANDIDATURE_BY_ID_TEMPORARYWORKER: String = "" +
             "SELECT * " +
             "FROM $TABLE_CANDIDATURE " +

@@ -49,7 +49,6 @@ class LocationActivity: AppCompatActivity(), LocationListener {
                     this
                 )
             } else {
-                Log.d("on request 1", "ville != null")
                 startActivity(Intent(this, MainActivity::class.java))
             }
         } else {
@@ -58,7 +57,6 @@ class LocationActivity: AppCompatActivity(), LocationListener {
     }
 
     override fun onLocationChanged(location: Location) {
-        Log.d("location", location.toString())
         val latitude = location.latitude
         val longitude = location.longitude
 
@@ -132,7 +130,6 @@ class LocationActivity: AppCompatActivity(), LocationListener {
                         this
                     )
                 } else {
-                    Log.d("on reequest", "ville != null")
                     startActivity(Intent(this, MainActivity::class.java))
                 }
             } else {

@@ -1,23 +1,26 @@
 package com.example.interim.ui.statistiques
 
-import android.graphics.DashPathEffect
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.androidplot.util.PixelUtils
-import com.androidplot.xy.CatmullRomInterpolator
-import com.androidplot.xy.LineAndPointFormatter
+import com.androidplot.xy.BarFormatter
+import com.androidplot.xy.BarRenderer
+import com.androidplot.xy.BoundaryMode
 import com.androidplot.xy.SimpleXYSeries
+import com.androidplot.xy.StepMode
 import com.androidplot.xy.XYGraphWidget
 import com.androidplot.xy.XYPlot
 import com.androidplot.xy.XYSeries
 import com.example.interim.databinding.FragmentUserStatistiquesBinding
+import com.example.interim.services.CandidatureService
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition
-import java.util.Arrays
 
 
 class UserStatistiquesFragment : Fragment() {
@@ -34,60 +37,50 @@ class UserStatistiquesFragment : Fragment() {
         _binding = FragmentUserStatistiquesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val plot: XYPlot = binding.plot
+        val plot: XYPlot = binding.candidaturesStats
 
-        val domainLabels = arrayOf<Number>(1, 2, 3, 6, 7, 8, 9, 10, 13, 14)
-        val series1Numbers = arrayOf<Number>(1, 4, 2, 8, 4, 16, 8, 32, 16, 64)
-        val series2Numbers = arrayOf<Number>(5, 2, 10, 5, 20, 10, 40, 20, 80, 40)
+        val candidatures = CandidatureService().readAll()
+        val metiers = candidatures.map { it.offre.metier }.distinct()
+        val metiersCount = metiers.map { metier -> candidatures.count { it.offre.metier == metier } }
 
         val series1: XYSeries = SimpleXYSeries(
-            Arrays.asList<Number>(*series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1"
-        )
-        val series2: XYSeries = SimpleXYSeries(
-            Arrays.asList<Number>(*series2Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series2"
-        )
-
-        val series1Format = LineAndPointFormatter(context, com.example.interim.R.xml.line_point_formatter_with_labels)
-
-        val series2Format = LineAndPointFormatter(context,  com.example.interim.R.xml.line_point_formatter_with_labels_2)
-
-        // add an "dash" effect to the series2 line:
-        // add an "dash" effect to the series2 line:
-        series2Format.linePaint.pathEffect = DashPathEffect(
-            floatArrayOf( // always use DP when specifying pixel sizes, to keep things consistent across devices:
-                PixelUtils.dpToPix(20f),
-                PixelUtils.dpToPix(15f)
-            ), 0f
+            metiersCount,
+            SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
+            "Series1"
         )
 
-        // just for fun, add some smoothing to the lines:
-        // see: http://androidplot.com/smooth-curves-and-androidplot/
+        val bar = BarFormatter(Color.RED, Color.BLACK)
+        bar.marginLeft = PixelUtils.dpToPix(1F);
+        bar.marginRight = PixelUtils.dpToPix(1F);
 
-        // just for fun, add some smoothing to the lines:
-        // see: http://androidplot.com/smooth-curves-and-androidplot/
-        series1Format.interpolationParams =
-            CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal)
+        plot.setDomainStep(StepMode.INCREMENT_BY_VAL, 1.0)
+        plot.setDomainBoundaries(-0.5, metiers.count() - 0.5, BoundaryMode.FIXED);
+        plot.setRangeBoundaries(0, metiersCount.max() * 2, BoundaryMode.FIXED);
 
-        series2Format.interpolationParams =
-            CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal)
+        plot.addSeries(series1, bar)
 
-        // add a new series' to the xyplot:
+        val barRenderer = BarRenderer<BarFormatter>(plot)
 
-        // add a new series' to the xyplot:
-        plot.addSeries(series1, series1Format)
-        plot.addSeries(series2, series2Format)
+        Log.d("barRenderer", barRenderer.toString())
+
+        barRenderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, PixelUtils.dpToPix(25F));
+        barRenderer.barOrientation = BarRenderer.BarOrientation.SIDE_BY_SIDE;
+        barRenderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, 40F);
+
+
 
         plot.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(object : Format() {
             override fun format(obj: Any, toAppendTo: StringBuffer, pos: FieldPosition?): StringBuffer? {
                 val i = Math.round((obj as Number).toFloat())
-                return toAppendTo.append(domainLabels[i])
+                Log.d("i", i.toString())
+                Log.d("metiers", metiers[i])
+                return toAppendTo.append(metiers[i])
             }
 
             override fun parseObject(source: String?, pos: ParsePosition?): Any? {
                 return null
             }
         })
-
 
 
         return root

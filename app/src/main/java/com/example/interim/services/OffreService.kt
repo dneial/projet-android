@@ -178,7 +178,6 @@ class OffreService() {
 
     companion object {
         fun cursorToOffre(cursor: Cursor): Offre {
-
             val employer_id = cursor.getLong(cursor.getColumnIndexOrThrow(Requetes.COL_ID_OFFRE_EMPLOYER))
             val employer = UsersService().getEmployer(employer_id)
             val title = cursor.getString(cursor.getColumnIndexOrThrow(Requetes.COL_TITLE))

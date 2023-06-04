@@ -10,6 +10,7 @@ import com.example.interim.models.Candidature
 import com.example.interim.models.Offre
 
 class CandidatureService {
+
     var db: SQLiteDatabase = DataBase.db
 
     fun create(candidature: Candidature){
@@ -36,6 +37,21 @@ class CandidatureService {
         cursor.close()
         return exists
 
+    }
+
+    fun readAll(): ArrayList<Candidature> {
+        val candidatures = ArrayList<Candidature>()
+        val cursor = db.rawQuery(Requetes.SELECT_ALL_CANDIDATURE, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val offre = OffreService.cursorToOffre(cursor)
+                val candidature = cursorToCandidature(cursor, offre)
+                candidatures.add(candidature)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return candidatures
     }
 
     @SuppressLint("Range")
