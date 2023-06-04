@@ -313,7 +313,7 @@ class UsersService() {
         return users
     }
 
-    private fun getEmployersFrom(period: String): List<Employer> {
+    fun getEmployersFrom(period: String): List<Employer> {
         val employers = mutableListOf<Employer>()
         val selection: String
         when(period) {
@@ -341,7 +341,7 @@ class UsersService() {
         return employers
     }
 
-    private fun getTemporaryWorkersFrom(period: String): List<TemporaryWorker> {
+    fun getTemporaryWorkersFrom(period: String): List<TemporaryWorker> {
         val workers = mutableListOf<TemporaryWorker>()
         val selection: String = when(period) {
             "week" -> "${Requetes.COL_DATE_CREATION_TEMPORARYWORKER} BETWEEN date('now', '-7 days') AND date('now');"

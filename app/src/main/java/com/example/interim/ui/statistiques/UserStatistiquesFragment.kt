@@ -22,6 +22,7 @@ import com.androidplot.xy.XYGraphWidget
 import com.androidplot.xy.XYPlot
 import com.androidplot.xy.XYSeries
 import com.example.interim.databinding.FragmentUserStatistiquesBinding
+import com.example.interim.models.Employer
 import com.example.interim.models.User
 import com.example.interim.services.UsersService
 import java.text.FieldPosition
@@ -41,8 +42,9 @@ class UserStatistiquesFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var usersFromLastWeek: List<User>
-    lateinit var usersFromLastMonth: List<User>
+    lateinit var employersFromLastWeek: List<Employer>
     lateinit var usersFromLastYear: List<User>
+    lateinit var employersFromLastYear: List<Employer>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -54,7 +56,7 @@ class UserStatistiquesFragment : Fragment() {
         _binding = FragmentUserStatistiquesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val spinnerPeriod = binding.spinnerPeriod
-        val selection = arrayOf("Semaine", "Mois", "Année")
+        val selection = arrayOf("Week", "Year")
         val adapter = ArrayAdapter(context!!, R.layout.simple_spinner_item, selection)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerPeriod.adapter = adapter
@@ -70,9 +72,12 @@ class UserStatistiquesFragment : Fragment() {
         }
 
         val usersService = UsersService()
-        usersFromLastWeek = usersService.getUsersFrom("week")
-        usersFromLastMonth = usersService.getUsersFrom("month")
-        usersFromLastYear = usersService.getUsersFrom("year")
+        usersFromLastWeek = usersService.getTemporaryWorkersFrom("week")
+        usersFromLastYear = usersService.getTemporaryWorkersFrom("year")
+        employersFromLastWeek = usersService.getEmployersFrom("week")
+        employersFromLastYear = usersService.getEmployersFrom("year")
+
+
 
         return root
     }
@@ -85,18 +90,20 @@ class UserStatistiquesFragment : Fragment() {
 
 
         val series1: XYSeries = SimpleXYSeries(
-            Arrays.asList(*calculateWorkerStatistics(selection)), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, selection
+            Arrays.asList(*calculateWorkerStatistics(selection)), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Temporary workers"
         )
 
         val series2: XYSeries = SimpleXYSeries(
-            Arrays.asList(*calculateEmployerStatistics(selection)), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, selection
+            Arrays.asList(*calculateEmployerStatistics(selection)), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Employers"
         )
-
 
         val bar = BarFormatter(Color.RED, Color.BLACK)
         bar.marginLeft = PixelUtils.dpToPix(1F);
         bar.marginRight = PixelUtils.dpToPix(1F);
 
+        val bar2 = BarFormatter(Color.BLUE, Color.BLACK)
+        bar2.marginLeft = PixelUtils.dpToPix(1F);
+        bar2.marginRight = PixelUtils.dpToPix(1F);
 
 
         plot.setDomainStep(StepMode.INCREMENT_BY_VAL, 1.0)
@@ -104,6 +111,7 @@ class UserStatistiquesFragment : Fragment() {
         plot.setRangeBoundaries(0, BoundaryMode.FIXED, 10, BoundaryMode.GROW)
 
         plot.addSeries(series1, bar)
+        plot.addSeries(series2, bar2)
 
 
         val renderer = plot.getRenderer(BarRenderer::class.java)
@@ -135,16 +143,14 @@ class UserStatistiquesFragment : Fragment() {
             "Week" -> {
                getUserByWeekDay(usersFromLastWeek).toTypedArray()
             }
-            "Month" -> {
-                getUsersByMonth(usersFromLastMonth).toTypedArray()
-            }
             "Year" -> {
-                arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                getUsersByMonth(usersFromLastYear).toTypedArray()
             }
             else -> emptyArray()
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun calculateEmployerStatistics(period: String): Array<Number> {
         // Perform the necessary calculations and retrieve the statistics data for the selected period
         // This could involve querying your temporary worker and employer records, applying filters based on the selected period, and aggregating the data
@@ -152,13 +158,10 @@ class UserStatistiquesFragment : Fragment() {
         // Dummy data for demonstration
         return when (period) {
             "Week" -> {
-                arrayOf(1, 3)
+                getUserByWeekDay(employersFromLastWeek).toTypedArray()
             }
-            "Mois" -> {
-                arrayOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-            }
-            "Année" -> {
-                arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            "Year" -> {
+                getUsersByMonth(employersFromLastYear).toTypedArray()
             }
             else -> emptyArray()
         }
@@ -183,12 +186,9 @@ class UserStatistiquesFragment : Fragment() {
                 val today = LocalDate.now()
                 val months = (0 until 12).map { i ->
                     val date = today.minusMonths(i.toLong())
-                    date.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
+                    date.month.getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + date.year
                 }.reversed()
                 months.toTypedArray()
-            }
-            "Month" -> {
-               arrayOf("Ville 1", "Ville 2", "Ville 3", "Ville 4", "Ville 5", "Ville 6", "Ville 7", "Ville 8", "Ville 9", "Ville 10")
             }
             else -> emptyArray()
         }
