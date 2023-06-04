@@ -304,5 +304,69 @@ class UsersService() {
         db.delete(Requetes.TABLE_EMPLOYERS, selection, selectionArgs)
     }
 
+    fun getUsersFrom(period: String): List<User>{
+        val workers = getTemporaryWorkersFrom(period)
+        val employers = getEmployersFrom(period)
+        val users = mutableListOf<User>()
+        users.addAll(workers)
+        users.addAll(employers)
+        return users
+    }
+
+    private fun getEmployersFrom(period: String): List<Employer> {
+        val employers = mutableListOf<Employer>()
+        val selection: String
+        when(period) {
+            "week" -> selection = "${Requetes.COL_DATE_CREATION_EMPLOYER} BETWEEN date('now', '-7 days') AND date('now');"
+            "month" -> selection = "${Requetes.COL_DATE_CREATION_EMPLOYER} BETWEEN date('now', '-1 month') AND date('now');"
+            "year" -> selection = "${Requetes.COL_DATE_CREATION_EMPLOYER} BETWEEN date('now', '-1 year') AND date('now');"
+            else -> selection = "${Requetes.COL_DATE_CREATION_EMPLOYER} BETWEEN date('now', '-7 days') AND date('now');"
+        }
+
+        val cursor = db.query(
+            Requetes.TABLE_EMPLOYERS,
+            null,
+            selection,
+            null,
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            employers.add(cursorToEmployer(cursor))
+        }
+
+        cursor.close()
+        return employers
+    }
+
+    private fun getTemporaryWorkersFrom(period: String): List<TemporaryWorker> {
+        val workers = mutableListOf<TemporaryWorker>()
+        val selection: String = when(period) {
+            "week" -> "${Requetes.COL_DATE_CREATION_TEMPORARYWORKER} BETWEEN date('now', '-7 days') AND date('now');"
+            "month" -> "${Requetes.COL_DATE_CREATION_TEMPORARYWORKER} BETWEEN date('now', '-1 month') AND date('now');"
+            "year" -> "${Requetes.COL_DATE_CREATION_TEMPORARYWORKER} BETWEEN date('now', '-1 year') AND date('now');"
+            else -> "${Requetes.COL_DATE_CREATION_TEMPORARYWORKER} BETWEEN date('now', '-7 days') AND date('now');"
+        }
+
+        val cursor = db.query(
+            Requetes.TABLE_TEMPORARYWORKERS,
+            null,
+            selection,
+            null,
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            workers.add(cursorToWorker(cursor))
+        }
+
+        cursor.close()
+        return workers
+    }
+
 
 }
