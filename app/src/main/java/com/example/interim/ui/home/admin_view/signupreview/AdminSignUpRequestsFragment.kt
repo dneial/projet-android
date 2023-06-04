@@ -7,14 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.interim.R
+import com.example.interim.models.Employer
 
 class AdminSignUpRequestsFragment : Fragment(), EmployerReviewAdapter.OnUpdateButtonClickListener {
 
+
+    lateinit var viewModel: SignUpReviewViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(
             R.layout.fragment_requests,
             container,
@@ -22,7 +26,7 @@ class AdminSignUpRequestsFragment : Fragment(), EmployerReviewAdapter.OnUpdateBu
         )
 
 
-        val viewModel = ViewModelProvider(this)[SignUpReviewViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SignUpReviewViewModel::class.java]
 
         val list = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.request_listView)
 
@@ -40,9 +44,12 @@ class AdminSignUpRequestsFragment : Fragment(), EmployerReviewAdapter.OnUpdateBu
         return view
     }
 
-    override fun onUpdateButtonClick(position: Int) {
-        val viewModel = ViewModelProvider(this)[SignUpReviewViewModel::class.java]
-        viewModel.refresh(position)
+    override fun onAcceptButtonClick(item: Employer) {
+        viewModel.verifyUser(item)
+    }
+
+    override fun onRefuseButtonClick(item: Employer) {
+        viewModel.refuseUser(item)
     }
 
 }
