@@ -13,15 +13,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:gravity="center_horizontal" />
+            android:layout_margin="16dp" />
 
         <com.androidplot.xy.XYPlot
             style="@style/APDefacto.Light"
             android:id="@+id/plot_view"
             android:layout_width="350dp"
             android:layout_height="550dp"
-            ap:title="Statistiques des offres"
+            ap:title="@string/stat_offer"
             ap:rangeTitle="Nombre d'offres"
             ap:domainTitle="Labels"
             ap:lineLabels="left|bottom"
