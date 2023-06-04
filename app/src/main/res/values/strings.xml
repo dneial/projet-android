@@ -147,4 +147,6 @@
     <string name="report_done">Offre Signalé</string>
     <string name="pull_out">Désister</string>
     <string name="contact_employer">Contacter employeur</string>
+    <string name="stat_offer">Statistiques des offres</string>
+    <string name="stat_user">Statistiques des utilisateurs</string>
 </resources>

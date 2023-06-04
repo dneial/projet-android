@@ -147,4 +147,6 @@
     <string name="report_done">Offer reported</string>
     <string name="pull_out">Pull out</string>
     <string name="contact_employer">Contact employer</string>
+    <string name="stat_offer">Offers statistics</string>
+    <string name="stat_user">Users statistics</string>
 </resources>

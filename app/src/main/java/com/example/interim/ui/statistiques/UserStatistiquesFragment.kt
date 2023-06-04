@@ -51,12 +51,10 @@ class UserStatistiquesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentUserStatistiquesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val spinnerPeriod = binding.spinnerPeriod
-        val selection = arrayOf("Week", "Month", "Year")
+        val selection = arrayOf("Semaine", "Mois", "Année")
         val adapter = ArrayAdapter(context!!, R.layout.simple_spinner_item, selection)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerPeriod.adapter = adapter
@@ -156,10 +154,10 @@ class UserStatistiquesFragment : Fragment() {
             "Week" -> {
                 arrayOf(1, 3)
             }
-            "Month" -> {
+            "Mois" -> {
                 arrayOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
             }
-            "Year" -> {
+            "Année" -> {
                 arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
             }
             else -> emptyArray()
