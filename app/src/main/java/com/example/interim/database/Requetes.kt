@@ -217,7 +217,7 @@ object Requetes {
 
     const val CHECK_STATUS_EMPLOYER: String = "" +
             "SELECT * " +
-            "FROM $TABLE_EMPLOYERS" +
+            "FROM $TABLE_EMPLOYERS " +
             "WHERE $COL_ID_EMPLOYER = ? AND $COL_STATUS_EMPLOYER IS TRUE;";
 
 }

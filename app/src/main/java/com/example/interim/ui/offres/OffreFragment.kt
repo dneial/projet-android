@@ -71,12 +71,16 @@ class OffreFragment : Fragment() {
             supprimer_offre(offre, it, root)
         }
 
+        val reportButton = root.findViewById<View>(R.id.reportButton)
+        reportButton.setOnClickListener {
+
+        }
+
         when(user_role){
             "worker" -> {
                 user_btns.visibility = View.VISIBLE
                 employer_btns.visibility = View.GONE
                 admin_btns.visibility = View.GONE
-
             }
             "employer" -> {
                 if(offre.employer.getId() == user_id){

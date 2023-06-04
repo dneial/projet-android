@@ -68,11 +68,16 @@ class ConnectionFragment: Fragment() {
             Log.d("ConnectionFragment", "email or password empty")
         } else {
             val user: User? = usersService.signIn(email, password)
-            if(user != null && UsersService().checkUserConfirm(user.getId(), user.getRole())){
-                warning?.visibility = View.GONE
-                saveSession(user)
-                val intent = Intent(activity, LocationActivity::class.java)
-                startActivity(intent)
+            if(user != null){
+                if (UsersService().checkUserConfirm(user.getId(), user.getRole())){
+                    warning?.visibility = View.GONE
+                    saveSession(user)
+                    val intent = Intent(activity, LocationActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    warning?.setText(R.string.warning_waiting)
+                    warning?.visibility = View.VISIBLE
+                }
             } else {
                 warning?.setText(R.string.warning_sign_in)
                 warning?.visibility = View.VISIBLE

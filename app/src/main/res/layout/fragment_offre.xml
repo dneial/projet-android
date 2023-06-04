@@ -1,97 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
     <include layout="@layout/offre_detail" />
 
     <LinearLayout
-        android:id="@+id/admin_offre_buttons"
+        android:id="@+id/buttonPerUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/offre_detail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:layout_below="@id/offre_detail">
 
-        <Button
-            android:id="@+id/btn_delete_admin"
+        <LinearLayout
+            android:id="@+id/admin_offre_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="10dp"
-            android:padding="16dp"
-            android:text="@string/btn_delete" />
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_delete_admin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:padding="16dp"
+                android:text="@string/btn_delete" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/entreprise_offre_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_modifier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:padding="16dp"
+                android:text="@string/btn_modifier_infos" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/btn_delete"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_offre_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/applyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:padding="16dp"
+                android:text="@string/postuler" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/enregistrer" />
+
+            <Button
+                android:id="@+id/unsaveButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:text="@string/unsave"
+                android:visibility="gone"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/entreprise_offre_buttons"
+    <Button
+        android:id="@+id/reportButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/offre_detail"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btn_modifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="10dp"
-            android:padding="16dp"
-            android:text="@string/btn_modifier_infos" />
-
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:text="@string/btn_delete"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/user_offre_buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/offre_detail"
+        android:padding="16dp"
+        android:layout_below="@+id/buttonPerUser"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/applyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="10dp"
-            android:padding="16dp"
-            android:text="@string/postuler" />
-
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:text="@string/enregistrer" />
-
-        <Button
-            android:id="@+id/unsaveButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:text="@string/unsave"
-            android:visibility="gone"/>
-
-    </LinearLayout>
+        android:text="@string/report"/>
 
 </RelativeLayout>
 
