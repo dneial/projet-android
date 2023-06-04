@@ -3,20 +3,12 @@ package com.example.interim.ui.compte
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.interim.MainActivity
 import com.example.interim.R
-import com.example.interim.models.AdminProfileFragment
-import com.example.interim.models.TemporaryWorker
-import com.example.interim.services.UsersService
-import com.example.interim.ui.candidature.EmployerCandidatureFragment
-import com.example.interim.ui.candidature.UserCandidatureFragment
 import com.example.interim.ui.connection.ConnectionActivity
 
 class CompteFragment : Fragment(), WorkerEditInfoFragment.NestedFragmentCallback, EmployerEditInfoFragment.NestedFragmentCallback {

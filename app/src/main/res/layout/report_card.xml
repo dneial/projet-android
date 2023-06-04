@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/report_card_title"
-            android:text="@string/comment"/>
+            android:text="@string/tv_commentary"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -45,14 +45,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/report_ok"
-            android:text="ok"/>
+            android:id="@+id/report_card_go_to_offer"
+            android:text="@string/go_to_offer"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/report_card_go_to_offer"
-            android:text="@string/go_to_offer"/>
+            android:id="@+id/report_ok"
+            android:text="ok"/>
 
     </LinearLayout>
 
