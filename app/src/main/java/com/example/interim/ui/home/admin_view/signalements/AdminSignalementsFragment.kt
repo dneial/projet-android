@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.interim.R
+import com.example.interim.models.Report
 
-class AdminSignalementsFragment : Fragment() {
+class AdminSignalementsFragment : Fragment(), SignalementRecycleAdapter.OnReportClickListener {
+
+    lateinit var viewModel: SignalementsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,13 +21,14 @@ class AdminSignalementsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_signalements, container, false)
 
-        val viewModel = ViewModelProvider(this)[SignalementsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SignalementsViewModel::class.java]
 
         val list = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.report_listView)
 
         viewModel.reports.observe(viewLifecycleOwner) {
             val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
             val adapter = SignalementRecycleAdapter(it)
+            adapter.onReportClickListener = this
             manager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
             list.layoutManager = manager
             list.adapter = adapter
@@ -33,6 +37,10 @@ class AdminSignalementsFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onReportClick(item: Report) {
+        viewModel.deleteReport(item)
     }
 
 }

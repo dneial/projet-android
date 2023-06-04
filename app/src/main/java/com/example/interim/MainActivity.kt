@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("interim", Context.MODE_PRIVATE) ?: return
         val role = sharedPref.getString("user_role", "null")
+
         if(role != "admin") navView.menu.removeItem(R.id.navigation_statistiques)
+        if(role == "admin") navView.menu.removeItem(R.id.navigation_notifications)
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 

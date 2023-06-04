@@ -9,6 +9,7 @@ import com.example.interim.services.ReportsService
 
 class SignalementsViewModel: ViewModel() {
 
+
     var reportsService: ReportsService = ReportsService()
 
     private val _reports = MutableLiveData<List<Report>>().apply {
@@ -16,4 +17,9 @@ class SignalementsViewModel: ViewModel() {
     }
 
     val reports: LiveData<List<Report>> = _reports
+
+    fun deleteReport(item: Report) {
+        reportsService.delete(item.id)
+        _reports.value = reportsService.readAll()
+    }
 }

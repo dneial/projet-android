@@ -17,7 +17,8 @@ class EmployerReviewAdapter(private val values: List<Employer>) : RecyclerView.A
     var onUpdateButtonClickListener: OnUpdateButtonClickListener? = null
 
     interface OnUpdateButtonClickListener {
-        fun onUpdateButtonClick(position: Int)
+        fun onAcceptButtonClick(item: Employer)
+        fun onRefuseButtonClick(item: Employer)
     }
 
 
@@ -43,15 +44,11 @@ class EmployerReviewAdapter(private val values: List<Employer>) : RecyclerView.A
             cardView.findViewById<TextView>(R.id.company_comment).text = item.getCommentary()
 
             cardView.findViewById<Button>(R.id.accept_button).setOnClickListener {
-                val userService = UsersService()
-                userService.verifyEmployer(cardView.id.toLong())
-                onUpdateButtonClickListener?.onUpdateButtonClick(adapterPosition)
+                onUpdateButtonClickListener?.onAcceptButtonClick(item)
             }
 
             cardView.findViewById<Button>(R.id.reject_button).setOnClickListener {
-                val userService = UsersService()
-                userService.deleteEmployer(cardView.id.toLong())
-                onUpdateButtonClickListener?.onUpdateButtonClick(adapterPosition)
+                onUpdateButtonClickListener?.onRefuseButtonClick(item)
             }
         }
     }

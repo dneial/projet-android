@@ -16,8 +16,18 @@ class SignUpReviewViewModel: ViewModel() {
 
     val users: LiveData<List<Employer>> = _users
 
-    fun refresh(position: Int) {
+    fun refresh() {
         _users.value = userService.getUnverifiedEmployers()
+    }
+
+    fun verifyUser(item: Employer) {
+        userService.verifyEmployer(item.getId())
+        refresh()
+    }
+
+    fun refuseUser(item: Employer) {
+        userService.deleteEmployer(item.getId())
+        refresh()
     }
 
 

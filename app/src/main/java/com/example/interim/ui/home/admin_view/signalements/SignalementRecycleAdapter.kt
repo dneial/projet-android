@@ -16,7 +16,16 @@ import com.example.interim.ui.home.admin_view.signupreview.EmployerReviewAdapter
 
 class SignalementRecycleAdapter(private val values: List<Report>) : RecyclerView.Adapter<SignalementRecycleAdapter.ViewHolder>() {
 
+    interface OnReportClickListener {
+        fun onReportClick(item: Report)
+    }
+
+    lateinit var onReportClickListener: OnReportClickListener
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        lateinit var onReportClickListener: OnReportClickListener
+
         val cardView: View = view.findViewById(R.id.report_card)
 
         fun bind(item: Report) {
@@ -34,9 +43,7 @@ class SignalementRecycleAdapter(private val values: List<Report>) : RecyclerView
             }
 
             cardView.findViewById<Button>(R.id.report_ok).setOnClickListener {
-                ReportsService().delete(item.id)
-                cardView.visibility = View.GONE
-                //TODO delete
+                onReportClickListener.onReportClick(item)
             }
         }
     }
@@ -55,5 +62,6 @@ class SignalementRecycleAdapter(private val values: List<Report>) : RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(values[position])
+        holder.onReportClickListener = onReportClickListener
     }
 }
