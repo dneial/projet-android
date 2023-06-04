@@ -9,9 +9,15 @@ import com.example.interim.database.Requetes
 import com.example.interim.models.Offre
 import com.example.interim.models.Report
 
-class ReportsService {
+class ReportService {
 
     var db: SQLiteDatabase = DataBase.db
+
+    fun create(report: Report) {
+        val values = report.toContentValues()
+        val id = db.insert(Requetes.TABLE_REPORTS, null, values)
+        report.id = id
+    }
 
     fun readAll(): List<Report> {
         val cursor = db.rawQuery(Requetes.SELECT_ALL_REPORTS, null)

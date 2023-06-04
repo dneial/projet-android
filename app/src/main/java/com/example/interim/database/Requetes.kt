@@ -3,7 +3,7 @@ package com.example.interim.database
 object Requetes {
 
 
-    const val TABLE_OFFRE: String = "offres";
+    const val TABLE_OFFRES: String = "offres";
     const val COL_ID_OFFRE: String = "id_offre";
     const val COL_TITLE: String = "title";
     const val COL_METIER: String = "metier";
@@ -16,7 +16,7 @@ object Requetes {
     const val COL_DATE_CREATION_OFFRE: String = "date_creation";
 
 
-    const val CREATE_TABLE_OFFRE: String = "CREATE TABLE $TABLE_OFFRE (" +
+    const val CREATE_TABLE_OFFRE: String = "CREATE TABLE $TABLE_OFFRES (" +
             "$COL_ID_OFFRE INTEGER PRIMARY KEY AUTOINCREMENT," +
             "$COL_TITLE TEXT," +
             "$COL_METIER TEXT," +
@@ -29,8 +29,8 @@ object Requetes {
             "$COL_DATE_CREATION_OFFRE TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
-    const val DROP_TABLE_OFFRE: String = "DROP TABLE IF EXISTS $TABLE_OFFRE;";
-    const val SELECT_ALL_OFFRE: String = "SELECT * FROM $TABLE_OFFRE;";
+    const val DROP_TABLE_OFFRE: String = "DROP TABLE IF EXISTS $TABLE_OFFRES;";
+    const val SELECT_ALL_OFFRE: String = "SELECT * FROM $TABLE_OFFRES;";
 
 
     const val TABLE_TEMPORARYWORKERS: String = "TemporaryWorkers";
@@ -136,8 +136,8 @@ object Requetes {
     const val SELECT_ALL_REPORTS: String = "" +
             "SELECT * " +
             "FROM $TABLE_REPORTS " +
-            "INNER JOIN $TABLE_OFFRE " +
-            "ON $TABLE_REPORTS.$COL_ID_OFFRE = $TABLE_OFFRE.$COL_ID_OFFRE;"
+            "INNER JOIN $TABLE_OFFRES " +
+            "ON $TABLE_REPORTS.$COL_ID_OFFRE = $TABLE_OFFRES.$COL_ID_OFFRE;"
 
 
 
@@ -165,17 +165,17 @@ object Requetes {
     const val SELECT_CANDIDATURE_BY_ID_TEMPORARYWORKER: String = "" +
             "SELECT * " +
             "FROM $TABLE_CANDIDATURE " +
-            "INNER JOIN $TABLE_OFFRE " +
-            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID_OFFRE " +
+            "INNER JOIN $TABLE_OFFRES " +
+            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRES.$COL_ID_OFFRE " +
             "WHERE $TABLE_CANDIDATURE.$COL_ID_TEMPORARYWORKER_CANDIDATURE = ?;";
 
 
     const val SELECT_CANDIDATURE_BY_ID_EMPLOYER: String = "" +
             "SELECT * " +
             "FROM $TABLE_CANDIDATURE " +
-            "INNER JOIN $TABLE_OFFRE " +
-            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRE.$COL_ID_OFFRE " +
-            "WHERE $TABLE_OFFRE.$COL_ID_OFFRE_EMPLOYER = ?;";
+            "INNER JOIN $TABLE_OFFRES " +
+            "ON $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE = $TABLE_OFFRES.$COL_ID_OFFRE " +
+            "WHERE $TABLE_OFFRES.$COL_ID_OFFRE_EMPLOYER = ?;";
 
 
 
@@ -193,8 +193,8 @@ object Requetes {
     const val OFFRE_ENREGISTREE_GET_BY_USER_ID: String = "" +
             "SELECT * " +
             "FROM $TABLE_OFFRE_ENREGISTREE " +
-            "INNER JOIN $TABLE_OFFRE " +
-            "ON $TABLE_OFFRE_ENREGISTREE.$COL_ID_OFFRE_ENREGISTREE = $TABLE_OFFRE.$COL_ID_OFFRE " +
+            "INNER JOIN $TABLE_OFFRES " +
+            "ON $TABLE_OFFRE_ENREGISTREE.$COL_ID_OFFRE_ENREGISTREE = $TABLE_OFFRES.$COL_ID_OFFRE " +
             "WHERE $COL_ID_USER_ENREGISTREE = ?;";
 
 
@@ -202,9 +202,9 @@ object Requetes {
 
     const val GET_CANDIDATURE_BY_ID: String = "" +
             "SELECT * " +
-            "FROM $TABLE_OFFRE " +
+            "FROM $TABLE_OFFRES " +
             "INNER JOIN $TABLE_CANDIDATURE " +
-            "ON $TABLE_OFFRE.$COL_ID_OFFRE = $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE " +
+            "ON $TABLE_OFFRES.$COL_ID_OFFRE = $TABLE_CANDIDATURE.$COL_ID_OFFRE_CANDIDATURE " +
             "WHERE $TABLE_CANDIDATURE.$COL_ID_CANDIDATURE = ?;";
 
     const val CHECK_UNIQUE_EMAIL: String = "" +

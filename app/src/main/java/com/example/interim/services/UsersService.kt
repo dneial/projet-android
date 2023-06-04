@@ -102,6 +102,20 @@ class UsersService() {
         return employer
     }
 
+    fun getUser(id: Long, role: String): User? {
+        when(role){
+            "worker" -> {
+                return getTemporaryWorker(id)!!
+            }
+            "employer" -> {
+                return getEmployer(id)!!
+            }
+            else -> {
+                return null
+            }
+        }
+    }
+
     fun getWorkerByEmailAndPassword(email: String, password: String): TemporaryWorker? {
         val query = "SELECT * FROM ${Requetes.TABLE_TEMPORARYWORKERS} WHERE ${Requetes.COL_EMAIL_TEMPORARYWORKER} = ? AND ${Requetes.COL_PASSWORD_TEMPORARYWORKER} = ?"
         val selectionArgs = arrayOf(email, hashPassword(password))

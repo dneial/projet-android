@@ -143,4 +143,6 @@
     <string name="go_to_offer">See offer</string>
     <string name="ignore">Ignore</string>
     <string name="report">Report</string>
+    <string name="report_offer">Repport offer</string>
+    <string name="report_done">Offer reported</string>
 </resources>

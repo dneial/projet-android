@@ -15,14 +15,14 @@ class OffreService() {
 
     fun create(offre: Offre): Boolean {
         val values = offre.toContentValues()
-        val id = db.insert(Requetes.TABLE_OFFRE, null, values)
+        val id = db.insert(Requetes.TABLE_OFFRES, null, values)
         offre.id = id
         return id > 0
     }
 
     fun readAll(): ArrayList<Offre> {
         val sortOrder = "${Requetes.COL_ID_OFFRE} DESC"
-        val cursor = db.query(Requetes.TABLE_OFFRE, null, null, null, null, null, sortOrder);
+        val cursor = db.query(Requetes.TABLE_OFFRES, null, null, null, null, null, sortOrder);
         val offres = ArrayList<Offre>();
 
         while (cursor.moveToNext()) {
@@ -36,14 +36,14 @@ class OffreService() {
     fun delete(offre_id: Long): Boolean {
         val selection = "${Requetes.COL_ID_OFFRE} = ?"
         val selectionArgs = arrayOf(offre_id.toString())
-        return db.delete(Requetes.TABLE_OFFRE, selection, selectionArgs) > 0
+        return db.delete(Requetes.TABLE_OFFRES, selection, selectionArgs) > 0
     }
 
     fun update(offre: Offre) {
         val values = offre.toContentValues()
         val selection = "${Requetes.COL_ID_OFFRE} = ?"
         val selectionArgs = arrayOf(offre.id.toString())
-        db.update(Requetes.TABLE_OFFRE, values, selection, selectionArgs)
+        db.update(Requetes.TABLE_OFFRES, values, selection, selectionArgs)
 
 
     }
@@ -52,7 +52,7 @@ class OffreService() {
         val sortOrder = "${Requetes.COL_ID_OFFRE} DESC"
         val selection = "${Requetes.COL_CITY} = ?"
         val selectionArgs = arrayOf(ville)
-        val cursor = db.query(Requetes.TABLE_OFFRE, null, selection, selectionArgs, null, null, sortOrder);
+        val cursor = db.query(Requetes.TABLE_OFFRES, null, selection, selectionArgs, null, null, sortOrder);
         val offres = ArrayList<Offre>();
 
         while (cursor.moveToNext()) {
@@ -95,7 +95,7 @@ class OffreService() {
     fun getOffre(offreId: Long): Offre? {
         val selection = "${Requetes.COL_ID_OFFRE} = ?"
         val selectionArgs = arrayOf(offreId.toString())
-        val cursor = db.query(Requetes.TABLE_OFFRE, null, selection, selectionArgs, null, null, null);
+        val cursor = db.query(Requetes.TABLE_OFFRES, null, selection, selectionArgs, null, null, null);
         val offres = ArrayList<Offre>();
 
         while (cursor.moveToNext()) {
@@ -114,7 +114,7 @@ class OffreService() {
 
     fun filter(values: ContentValues): ArrayList<Offre> {
         val queryBuilder = StringBuilder()
-        queryBuilder.append("SELECT * FROM ${Requetes.TABLE_OFFRE}")
+        queryBuilder.append("SELECT * FROM ${Requetes.TABLE_OFFRES}")
         if (values.size() > 0) {
             queryBuilder.append(" WHERE")
             for (key in values.keySet()) {
@@ -150,7 +150,7 @@ class OffreService() {
         val selection = "${Requetes.COL_ID_OFFRE_EMPLOYER} = ?"
         val selectionArgs = arrayOf(userId.toString())
         val offres = ArrayList<Offre>();
-        val cursor = db.query(Requetes.TABLE_OFFRE, null, selection, selectionArgs, null, null, null);
+        val cursor = db.query(Requetes.TABLE_OFFRES, null, selection, selectionArgs, null, null, null);
         while (cursor.moveToNext()) {
             val offre = cursorToOffre(cursor)
             offres.add(offre);

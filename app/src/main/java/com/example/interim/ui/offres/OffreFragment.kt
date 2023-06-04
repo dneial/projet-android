@@ -17,6 +17,13 @@ import com.example.interim.databinding.FragmentOffreBinding
 import com.example.interim.models.Offre
 import com.example.interim.ui.connection.ConnectionActivity
 import java.util.regex.Pattern
+import android.app.AlertDialog
+import android.text.InputType
+import android.widget.EditText
+import com.example.interim.models.Report
+import com.example.interim.services.ReportService
+import com.example.interim.services.UsersService
+
 
 class OffreFragment : Fragment() {
 
@@ -73,7 +80,26 @@ class OffreFragment : Fragment() {
 
         val reportButton = root.findViewById<View>(R.id.reportButton)
         reportButton.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle(resources.getText(R.string.report_offer))
 
+            val input = EditText(context)
+            input.hint = resources.getText(R.string.et_commentary)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+            builder.setView(input)
+
+            builder.setPositiveButton(resources.getText(R.string.report)) { dialog, which ->
+                val reportReason = input.text.toString()
+                ReportService().create(Report(0, UsersService().getUser(user_id!!, user_role!!)!!.getEmail(), offre, reportReason))
+                Toast.makeText(context, resources.getText(R.string.report_done), Toast.LENGTH_SHORT).show()
+            }
+
+            builder.setNegativeButton(resources.getText(R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
         }
 
         when(user_role){
@@ -81,18 +107,21 @@ class OffreFragment : Fragment() {
                 user_btns.visibility = View.VISIBLE
                 employer_btns.visibility = View.GONE
                 admin_btns.visibility = View.GONE
+                reportButton.visibility = View.VISIBLE
             }
             "employer" -> {
                 if(offre.employer.getId() == user_id){
                     user_btns.visibility = View.GONE
                     employer_btns.visibility = View.VISIBLE
                     admin_btns.visibility = View.GONE
+                    reportButton.visibility = View.VISIBLE
                 }
             }
             "admin" -> {
                 user_btns.visibility = View.GONE
                 employer_btns.visibility = View.GONE
                 admin_btns.visibility = View.VISIBLE
+                reportButton.visibility = View.GONE
             }
             else -> {
                 user_btns.visibility = View.GONE

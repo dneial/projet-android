@@ -1,25 +1,24 @@
 package com.example.interim.ui.home.admin_view.signalements
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.interim.models.Report
-import com.example.interim.services.ReportsService
+import com.example.interim.services.ReportService
 
 class SignalementsViewModel: ViewModel() {
 
 
-    var reportsService: ReportsService = ReportsService()
+    var reportService: ReportService = ReportService()
 
     private val _reports = MutableLiveData<List<Report>>().apply {
-        value = reportsService.readAll()
+        value = reportService.readAll()
     }
 
     val reports: LiveData<List<Report>> = _reports
 
     fun deleteReport(item: Report) {
-        reportsService.delete(item.id)
-        _reports.value = reportsService.readAll()
+        reportService.delete(item.id)
+        _reports.value = reportService.readAll()
     }
 }

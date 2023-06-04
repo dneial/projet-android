@@ -8,11 +8,7 @@ import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.interim.R
-import com.example.interim.models.Employer
 import com.example.interim.models.Report
-import com.example.interim.services.ReportsService
-import com.example.interim.ui.home.CandidatureRecycleAdapter
-import com.example.interim.ui.home.admin_view.signupreview.EmployerReviewAdapter
 
 class SignalementRecycleAdapter(private val values: List<Report>) : RecyclerView.Adapter<SignalementRecycleAdapter.ViewHolder>() {
 

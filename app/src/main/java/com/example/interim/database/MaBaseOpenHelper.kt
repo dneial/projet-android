@@ -45,7 +45,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 50000)
         values.put(Requetes.COL_CITY, "Montpellier")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
-        db?.insert(Requetes.TABLE_OFFRE, null, values)
+        db?.insert(Requetes.TABLE_OFFRES, null, values)
 
         values.clear()
         values.put(Requetes.COL_TITLE, "Marketing Manager")
@@ -56,7 +56,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Montpellier")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
-        db?.insert(Requetes.TABLE_OFFRE, null, values)
+        db?.insert(Requetes.TABLE_OFFRES, null, values)
 
         values.clear()
         values.put(Requetes.COL_TITLE, "Sales Manager")
@@ -67,7 +67,7 @@ null,
         values.put(Requetes.COL_REMUNERATION, 70000)
         values.put(Requetes.COL_CITY, "Paris")
         values.put(Requetes.COL_ID_OFFRE_EMPLOYER, 1)
-        db?.insert(Requetes.TABLE_OFFRE, null, values)
+        db?.insert(Requetes.TABLE_OFFRES, null, values)
     }
 
     private fun create_default_user(db: SQLiteDatabase?){
