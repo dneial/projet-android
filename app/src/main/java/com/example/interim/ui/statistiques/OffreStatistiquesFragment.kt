@@ -57,7 +57,7 @@ class OffreStatistiquesFragment : Fragment() {
         val root: View = binding.root
 
         val spinnerPeriod = binding.spinnerPeriod
-        val selection = arrayOf("Metier", "Employeur", "Ville", "Week", "Month", "Year")
+        val selection = arrayOf("Metier", "Employeur", "Ville")
         val adapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, selection)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerPeriod.adapter = adapter
