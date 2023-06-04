@@ -1,4 +1,4 @@
-package com.example.interim.models
+package com.example.interim.ui.compte
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
