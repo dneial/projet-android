@@ -37,12 +37,10 @@ class UserStatistiquesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentUserStatistiquesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val spinnerPeriod = binding.spinnerPeriod
-        val selection = arrayOf("Week", "Month", "Year")
+        val selection = arrayOf("Semaine", "Mois", "Année")
         val adapter = ArrayAdapter(context!!, R.layout.simple_spinner_item, selection)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerPeriod.adapter = adapter
@@ -110,13 +108,13 @@ class UserStatistiquesFragment : Fragment() {
 
         // Dummy data for demonstration
         return when (period) {
-            "Week" -> {
+            "Semaine" -> {
                arrayOf(1, 3)
             }
-            "Month" -> {
+            "Mois" -> {
                 arrayOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
             }
-            "Year" -> {
+            "Année" -> {
                 arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
             }
             else -> emptyArray()
@@ -129,13 +127,13 @@ class UserStatistiquesFragment : Fragment() {
 
         // Dummy data for demonstration
         return when (period) {
-            "Week" -> {
+            "Semaine" -> {
                 arrayOf("Employer", "Temporary Worker")
             }
-            "Month" -> {
+            "Mois" -> {
                 arrayOf("Employeur 1", "Employeur 2", "Employeur 3", "Employeur 4", "Employeur 5", "Employeur 6", "Employeur 7", "Employeur 8", "Employeur 9", "Employeur 10")
             }
-            "Year" -> {
+            "Année" -> {
                arrayOf("Ville 1", "Ville 2", "Ville 3", "Ville 4", "Ville 5", "Ville 6", "Ville 7", "Ville 8", "Ville 9", "Ville 10")
             }
             else -> emptyArray()
