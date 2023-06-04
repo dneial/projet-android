@@ -28,9 +28,9 @@
     <string name="resend">Resend</string>
     <string name="tv_company_name">Company name *</string>
     <string name="et_company_name">Enter the company name</string>
-    <string name="tv_departement_service">Service/Departement name</string>
+    <string name="tv_departement_service">Service/Department name</string>
     <string name="et_departement_service">IT</string>
-    <string name="tv_sub_departement_service">Sub-service/Sub-departement name</string>
+    <string name="tv_sub_departement_service">Sub-service/Sub-department name</string>
     <string name="et_sub_departement_service">Security</string>
     <string name="tv_company_id">Company register *</string>
     <string name="et_company_id">XXX XXX XXX XXXXX</string>
@@ -44,7 +44,7 @@
     <string name="et_mail_2">second.mail@gmail.com</string>
     <string name="tv_phone_1">Phone number 1</string>
     <string name="tv_phone_2">Phone number 2</string>
-    <string name="tv_address">Adress *</string>
+    <string name="tv_address">Address *</string>
     <string name="et_address">52 rue montmartre 75002 Paris</string>
     <string name="button_sign_up">Sign up</string>
     <string name="tv_first_name">First name *</string>
@@ -60,7 +60,7 @@
     <string name="tv_phone">Phone number</string>
     <string name="tv_nationality">Nationality</string>
     <string name="tv_nationality_with_asterisk">Nationality *</string>
-    <string name="et_nationality">Français</string>
+    <string name="et_nationality">French</string>
     <string name="tv_city">City</string>
     <string name="et_city">Montpellier</string>
     <string name="tv_CV">CV</string>
@@ -101,14 +101,14 @@
     <string name="dashboard_search_label">Search</string>
     <string name="btn_show_cv">See CV</string>
     <string name="button_show_lm">See cover letter</string>
-    <string name="info_worker">Show candidate informations</string>
+    <string name="info_worker">Show candidate information</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="company_name">Company name</string>
     <string name="company_id">Company register</string>
     <string name="mail_1">Email 1</string>
     <string name="address">Adress</string>
-    <string name="btn_modifier_infos">Modify informations</string>
+    <string name="btn_modifier_infos">Modify information</string>
     <string name="btn_edit">Comfirm modification</string>
     <string name="btn_deconnextion">Disconnect</string>
     <string name="warning_form">This field is incorrect</string>
@@ -136,8 +136,8 @@
     <string name="no_btn">No</string>
     <string name="warning_mail">The email is already used</string>
     <string name="location_attente">Please wait while we get your location</string>
-    <string name="warning_waiting">An adnistrator need to confirm your registration</string>
-    <string name="title_stats">statistics</string>
+    <string name="warning_waiting">An administrator need to confirm your registration</string>
+    <string name="title_stats">Statistics</string>
     <string name="users">Users</string>
     <string name="created_by">Created by</string>
     <string name="go_to_offer">See offer</string>
